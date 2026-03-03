@@ -43,8 +43,8 @@
     -fx-background-color: -color-slate-900;
 }
 .j-sidebar.light {
-    -fx-background-color: white;
-    -fx-border-color: transparent #e2e8f0 transparent transparent;
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: transparent -color-border-default transparent transparent;
     -fx-border-width: 0 1px 0 0;
 }
 

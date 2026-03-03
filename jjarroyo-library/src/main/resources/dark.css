@@ -4,19 +4,31 @@
 
 .root.dark {
     /* ─── TOKENS SEMÁNTICOS (SISTEMA) ───────────────────────────────────── */
-    -color-bg-body: -color-slate-900;
-    -color-bg-surface: -color-slate-800;
-    -color-bg-surface-hover: -color-slate-700;
-    -color-bg-subtle: -color-slate-800;
+    -color-bg-body: #0f172a; /* Slate 900 */
+    -color-bg-surface: #1e293b; /* Slate 800 */
+    -color-bg-surface-hover: #334155; /* Slate 700 */
+    -color-bg-subtle: #1e293b; /* Slate 800 */
 
-    -color-text-primary: -color-slate-100;
-    -color-text-secondary: -color-slate-400;
-    -color-text-muted: -color-slate-500;
-    -color-text-inverted: -color-slate-900;
+    -color-text-primary: #f8fafc; /* Slate 50 */
+    -color-text-secondary: #cbd5e1; /* Slate 300 */
+    -color-text-muted: #94a3b8; /* Slate 400 */
+    -color-text-inverted: #0f172a; /* Slate 900 */
 
-    -color-border-default: -color-slate-700;
-    -color-border-subtle: -color-slate-800;
+    -color-border-default: #334155; /* Slate 700 */
+    -color-border-subtle: #1e293b; /* Slate 800 */
     -color-border-highlight: -color-primary-400;
+
+    /* ─── INVERTIR PALETA NEUTRAL (SLATE) ───────────────────────────────── */
+    -color-slate-50: #0f172a; /* 900 */
+    -color-slate-100: #1e293b; /* 800 */
+    -color-slate-200: #334155; /* 700 */
+    -color-slate-300: #475569; /* 600 */
+    -color-slate-400: #64748b; /* 500 */
+    -color-slate-500: #94a3b8; /* 400 */
+    -color-slate-600: #cbd5e1; /* 300 */
+    -color-slate-700: #e2e8f0; /* 200 */
+    -color-slate-800: #f1f5f9; /* 100 */
+    -color-slate-900: #f8fafc; /* 50 */
 
     /* Re-aplicar overrides de sistema */
     -fx-background-color: -color-bg-body;
@@ -40,4 +52,43 @@
     -sql-status-bg: -color-slate-800;
     -sql-status-border: -color-slate-700;
     -sql-status-text: -color-slate-400;
+}
+
+/* ───────────────────────────────────────────────────────────────────────── 
+   EXPLICIT COMPONENT OVERRIDES PARA DARK MODE (JAVAFX WORKAROUND)
+   ───────────────────────────────────────────────────────────────────────── */
+/* JavaFX CSS variable reassignment bug forces explicit backgrounds on containers */
+.root.dark .j-content-area {
+    -fx-background-color: -color-bg-body;
+}
+
+.root.dark .j-sidebar.light {
+    -fx-background-color: -color-bg-surface;
+}
+.root.dark .j-header {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+}
+.root.dark .j-header-logo-text,
+.root.dark .j-header-user-name {
+    -fx-text-fill: -color-text-primary;
+}
+.root.dark .j-header-menu-item {
+    -fx-text-fill: -color-text-secondary;
+}
+.root.dark .j-header-menu-item:hover {
+    -fx-text-fill: -color-text-primary;
+}
+
+.root.dark .card {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+}
+.root.dark .card-title,
+.root.dark .card-subtitle {
+    -fx-text-fill: -color-text-primary;
+}
+.root.dark .card-header-line,
+.root.dark .card-footer {
+    -fx-border-color: transparent transparent -color-border-default transparent;
 }

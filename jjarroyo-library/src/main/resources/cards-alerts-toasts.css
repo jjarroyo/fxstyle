@@ -124,58 +124,135 @@
     -fx-min-width: 24px;
 }
 
-.alert-icon          { -fx-fill: -color-slate-600; }
-.alert-close-icon    { -fx-scale-x: 0.8; -fx-scale-y: 0.8; -fx-fill: -color-slate-500; }
+.alert-icon {
+    -fx-fill: -color-slate-600;
+}
+.alert-close-icon {
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+    -fx-fill: -color-slate-500;
+}
 
-.alert-dismiss-btn   { -fx-padding: 8px; -fx-background-radius: 4px; }
-.alert-dismiss-btn:hover { -fx-background-color: rgba(0, 0, 0, 0.05); }
+.alert-dismiss-btn {
+    -fx-padding: 8px;
+    -fx-background-radius: 4px;
+}
+.alert-dismiss-btn:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
 
 /* Variantes Light */
-.alert-primary.alert-light { -fx-background-color: -color-primary-50; }
+.alert-primary.alert-light {
+    -fx-background-color: -color-primary-50;
+}
 .alert-primary.alert-light .alert-title,
-.alert-primary.alert-light .alert-description { -fx-text-fill: -color-primary-700; }
-.alert-primary.alert-light .alert-icon        { -fx-fill: -color-primary-500; }
-.alert-primary.alert-light .alert-close-icon  { -fx-fill: -color-primary-500; }
+.alert-primary.alert-light .alert-description {
+    -fx-text-fill: -color-primary-700;
+}
+.alert-primary.alert-light .alert-icon {
+    -fx-fill: -color-primary-500;
+}
+.alert-primary.alert-light .alert-close-icon {
+    -fx-fill: -color-primary-500;
+}
 
-.alert-success.alert-light { -fx-background-color: #ecfdf5; }
+.alert-success.alert-light {
+    -fx-background-color: #ecfdf5;
+}
 .alert-success.alert-light .alert-title,
-.alert-success.alert-light .alert-description { -fx-text-fill: -color-success-600; }
-.alert-success.alert-light .alert-icon        { -fx-fill: -color-success-500; }
-.alert-success.alert-light .alert-close-icon  { -fx-fill: -color-success-600; }
+.alert-success.alert-light .alert-description {
+    -fx-text-fill: -color-success-600;
+}
+.alert-success.alert-light .alert-icon {
+    -fx-fill: -color-success-500;
+}
+.alert-success.alert-light .alert-close-icon {
+    -fx-fill: -color-success-600;
+}
 
-.alert-danger.alert-light { -fx-background-color: #fef2f2; }
+.alert-danger.alert-light {
+    -fx-background-color: #fef2f2;
+}
 .alert-danger.alert-light .alert-title,
-.alert-danger.alert-light .alert-description { -fx-text-fill: -color-danger-600; }
-.alert-danger.alert-light .alert-icon        { -fx-fill: -color-danger-500; }
-.alert-danger.alert-light .alert-close-icon  { -fx-fill: -color-danger-600; }
+.alert-danger.alert-light .alert-description {
+    -fx-text-fill: -color-danger-600;
+}
+.alert-danger.alert-light .alert-icon {
+    -fx-fill: -color-danger-500;
+}
+.alert-danger.alert-light .alert-close-icon {
+    -fx-fill: -color-danger-600;
+}
 
-.alert-warning.alert-light { -fx-background-color: #fffbeb; }
+.alert-warning.alert-light {
+    -fx-background-color: #fffbeb;
+}
 .alert-warning.alert-light .alert-title,
-.alert-warning.alert-light .alert-description { -fx-text-fill: -color-warning-600; }
-.alert-warning.alert-light .alert-icon        { -fx-fill: -color-warning-500; }
-.alert-warning.alert-light .alert-close-icon  { -fx-fill: -color-warning-600; }
+.alert-warning.alert-light .alert-description {
+    -fx-text-fill: -color-warning-600;
+}
+.alert-warning.alert-light .alert-icon {
+    -fx-fill: -color-warning-500;
+}
+.alert-warning.alert-light .alert-close-icon {
+    -fx-fill: -color-warning-600;
+}
 
-.alert-info.alert-light { -fx-background-color: -color-info-50; }
+.alert-info.alert-light {
+    -fx-background-color: -color-info-50;
+}
 .alert-info.alert-light .alert-title,
-.alert-info.alert-light .alert-description { -fx-text-fill: -color-info-600; }
-.alert-info.alert-light .alert-icon        { -fx-fill: -color-info-500; }
-.alert-info.alert-light .alert-close-icon  { -fx-fill: -color-info-600; }
+.alert-info.alert-light .alert-description {
+    -fx-text-fill: -color-info-600;
+}
+.alert-info.alert-light .alert-icon {
+    -fx-fill: -color-info-500;
+}
+.alert-info.alert-light .alert-close-icon {
+    -fx-fill: -color-info-600;
+}
 
 /* Variantes Bordered */
-.alert-bordered { -fx-border-width: 1px; -fx-border-style: solid; }
-.alert-primary.alert-bordered  { -fx-border-color: -color-primary-500; }
-.alert-danger.alert-bordered   { -fx-border-color: -color-danger-500; }
-.alert-success.alert-bordered  { -fx-border-color: -color-success-500; }
-.alert-warning.alert-bordered  { -fx-border-color: -color-warning-500; }
-.alert-info.alert-bordered     { -fx-border-color: -color-info-500; }
+.alert-bordered {
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+}
+.alert-primary.alert-bordered {
+    -fx-border-color: -color-primary-500;
+}
+.alert-danger.alert-bordered {
+    -fx-border-color: -color-danger-500;
+}
+.alert-success.alert-bordered {
+    -fx-border-color: -color-success-500;
+}
+.alert-warning.alert-bordered {
+    -fx-border-color: -color-warning-500;
+}
+.alert-info.alert-bordered {
+    -fx-border-color: -color-info-500;
+}
 
 /* Variantes Dashed */
-.alert-dashed { -fx-border-width: 1px; -fx-border-style: dashed; }
-.alert-primary.alert-dashed  { -fx-border-color: -color-primary-500; }
-.alert-danger.alert-dashed   { -fx-border-color: -color-danger-500; }
-.alert-success.alert-dashed  { -fx-border-color: -color-success-500; }
-.alert-warning.alert-dashed  { -fx-border-color: -color-warning-500; }
-.alert-info.alert-dashed     { -fx-border-color: -color-info-500; }
+.alert-dashed {
+    -fx-border-width: 1px;
+    -fx-border-style: dashed;
+}
+.alert-primary.alert-dashed {
+    -fx-border-color: -color-primary-500;
+}
+.alert-danger.alert-dashed {
+    -fx-border-color: -color-danger-500;
+}
+.alert-success.alert-dashed {
+    -fx-border-color: -color-success-500;
+}
+.alert-warning.alert-dashed {
+    -fx-border-color: -color-warning-500;
+}
+.alert-info.alert-dashed {
+    -fx-border-color: -color-info-500;
+}
 
 /* ─── TOAST ──────────────────────────────────────────────────────────────────── */
 .j-toast {
@@ -218,8 +295,14 @@
     -fx-text-fill: -color-info-700;
 }
 
-.j-toast-title   { -fx-font-weight: bold; -fx-font-size: 14px; }
-.j-toast-message { -fx-font-size: 13px; -fx-opacity: 0.8; }
+.j-toast-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+.j-toast-message {
+    -fx-font-size: 13px;
+    -fx-opacity: 0.8;
+}
 
 .j-toast-close {
     -fx-background-color: transparent;

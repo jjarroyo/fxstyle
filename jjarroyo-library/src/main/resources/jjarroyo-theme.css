@@ -1,35 +1,14 @@
+@import 'variables.css';
+@import 'dark.css';
+@import 'utilities.css';
+@import 'buttons-badges.css';
+@import 'cards-alerts-toasts.css';
+@import 'form-controls.css';
+@import 'navigation.css';
+@import 'data-display.css';
+@import 'overlays.css';
+@import 'special-components.css';
+
 /* ==========================================================================
    JJARROYO THEME - Punto de entrada principal
-   Importa todos los archivos parciales en orden.
    ========================================================================== */
-
-/* 1. Variables de color, tipografía y tokens semánticos (Light Mode) */
-@import 'variables.css';
-
-/* 2. Overrides para Dark Mode (.root.dark) */
-/*@import "dark.css";*/
-
-/* 3. Clases utilitarias: spacing, sizing, typography, colors, borders */
-@import 'utilities.css';
-
-/* 4. Botones y Badges */
-@import 'buttons-badges.css';
-
-/* 5. Cards, Alerts y Toasts */
-@import 'cards-alerts-toasts.css';
-
-/* 6. Form Controls: inputs, selects, checkboxes, radios, switches, textarea, slider */
-@import 'form-controls.css';
-
-/* 7. Navegación: sidebar, nav items, header, tabs */
-@import 'navigation.css';
-
-/* 8. Data Display: tablas, listas, paginación, scrollbars */
-@import 'data-display.css';
-
-/* 9. Overlays: modal, popover, date picker */
-@import 'overlays.css';
-
-/* 10. Componentes Especiales: file uploader, accordion, progress bar,
-       circular progress, zoom, design canvas, SQL editor */
-@import 'special-components.css';

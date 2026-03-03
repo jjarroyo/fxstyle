@@ -185,6 +185,7 @@ public class MainLayout extends javafx.scene.layout.StackPane {
 
     private VBox createContentArea() {
         contentArea = new VBox();
+        contentArea.getStyleClass().add("j-content-area"); 
         contentArea.setPadding(new Insets(30)); 
         contentArea.setSpacing(30);
         return contentArea;
@@ -222,7 +223,7 @@ public class MainLayout extends javafx.scene.layout.StackPane {
         header.addMenuDropdown("Apps", appsMenu);
         
         // Theme Toggle
-       /* Label themeBtn = new Label();
+        Label themeBtn = new Label();
         themeBtn.setGraphic(com.jjarroyo.components.JIcon.MOON.view());
         themeBtn.getStyleClass().add("j-header-menu-item");
         themeBtn.setStyle("-fx-cursor: hand; -fx-padding: 8px;");
@@ -231,7 +232,7 @@ public class MainLayout extends javafx.scene.layout.StackPane {
             boolean isDark = getStyleClass().contains("dark");
             themeBtn.setGraphic((isDark ? com.jjarroyo.components.JIcon.SUN : com.jjarroyo.components.JIcon.MOON).view());
         });
-        header.addToolbarItem(themeBtn);*/
+        header.addToolbarItem(themeBtn);
         
         // Profile
         header.setUserProfile("Sean Bean", "sean@jjarroyo.com", "S");
