@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JTreeView - JJArroyo Theme</title>
+    <!-- Use locally downloaded CSS instead of CDN to avoid reliance on network -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Using CDN for highlights to ensure code formatting works initially -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --surface: #ffffff;
+            --background: #f8fafc;
+            --border: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+        }
+
+        /* Sidebar simple */
+        .sidebar {
+            background-color: var(--surface);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+
+        .sidebar-brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: #eff6ff;
+            color: var(--primary);
+        }
+
+        /* Content area */
+        .main-content {
+            margin-left: 250px;
+            padding: 0 3rem;
+        }
+
+        /* Card styles */
+        .component-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .method-table th {
+            background-color: #f8fafc;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .method-signature {
+            font-family: 'Consolas', monospace;
+            color: #d946ef;
+            background: #fdf4ff;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .property-type {
+            color: #0ea5e9;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <a href="../index.html" class="sidebar-brand">JJArroyo Theme</a>
+        <div class="nav flex-column">
+            <div class="text-uppercase text-muted small fw-bold mb-2 px-3 mt-4">Componentes</div>
+            <a href="JButton.html" class="nav-link">JButton</a>
+            <a href="JInput.html" class="nav-link">JInput</a>
+            <a href="JCard.html" class="nav-link">JCard</a>
+            <a href="JModal.html" class="nav-link">JModal</a>
+            <a href="JDrawer.html" class="nav-link">JDrawer</a>
+            <a href="JConfirmDialog.html" class="nav-link">JConfirmDialog</a>
+            <a href="JTreeView.html" class="nav-link active">JTreeView</a>
+            <a href="JAlert.html" class="nav-link">JAlert</a>
+            <!-- Más componentes listados aquí luego -->
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="display-5 fw-bold mb-2">JTreeView</h1>
+                <p class="lead text-muted">Componente de árbol jerárquico que permite mostrar estructuras de datos complejas de forma visual.</p>
+            </div>
+            <span class="badge bg-primary fs-6 py-2 px-3 rounded-pill">Component</span>
+        </div>
+
+        <!-- Descripción -->
+        <div class="component-card">
+            <h2 class="card-title">✨ Características</h2>
+            <ul>
+                <li>Animaciones de despliegue suaves en el ícono de "folder" (chevron rotativo).</li>
+                <li>Integración nativa con <code class="method-signature">JIcon</code> para personalización individual de nodos (ej. carpeta vs archivo).</li>
+                <li>Soporte integrado para casillas de verificación (<code class="method-signature">JCheckBox</code>).</li>
+                <li>API fluida y manejo de eventos fácil mediante listeners.</li>
+            </ul>
+        </div>
+
+        <!-- Ejemplo de Código: Básico -->
+        <div class="component-card">
+            <h2 class="card-title">💻 Ejemplo: Árbol de Archivos</h2>
+            <p>Implementación recomendada utilizando la clase interna <code class="method-signature">JTreeItem</code> para soporte de iconos.</p>
+            
+<pre><code class="language-java">JTreeView&lt;String&gt; treeView = new JTreeView&lt;&gt;();
+
+// Nodo raíz
+JTreeItem&lt;String&gt; root = new JTreeItem&lt;&gt;("Proyecto Demo", JIcon.FOLDER);
+root.setExpanded(true);
+
+// Hijos
+JTreeItem&lt;String&gt; srcFolder = new JTreeItem&lt;&gt;("src", JIcon.FOLDER);
+srcFolder.getChildren().addAll(
+    new JTreeItem&lt;&gt;("Main.java", JIcon.FILE),
+    new JTreeItem&lt;&gt;("utils.java", JIcon.FILE)
+);
+
+JTreeItem&lt;String&gt; readme = new JTreeItem&lt;&gt;("README.md", JIcon.FILE_TEXT);
+
+root.getChildren().addAll(srcFolder, readme);
+treeView.setRoot(root);</code></pre>
+        </div>
+
+        <!-- Ejemplo de Código: Checkboxes -->
+        <div class="component-card">
+            <h2 class="card-title">☑️ Ejemplo: Árbol con Checkboxes</h2>
+            <p>Habilitar checkboxes automáticamente enlaza la interfaz de usuario con la propiedad <code>checkedProperty</code> de los <code class="method-signature">JTreeItem</code>.</p>
+            
+<pre><code class="language-java">JTreeView&lt;String&gt; checkTree = new JTreeView&lt;&gt;();
+checkTree.setShowCheckboxes(true);
+
+JTreeItem&lt;String&gt; root = new JTreeItem&lt;&gt;("Permisos", JIcon.SETTINGS);
+JTreeItem&lt;String&gt; editUser = new JTreeItem&lt;&gt;("Editar Usuario", JIcon.PERSON);
+
+root.getChildren().add(editUser);
+checkTree.setRoot(root);
+
+// Escuchar los eventos de checkbox individualmente en todo el árbol
+checkTree.setOnCheckAction(item -> {
+    System.out.println("Nodo interactuado: " + item.getValue());
+    System.out.println("Está seleccionado: " + item.isChecked());
+});</code></pre>
+        </div>
+
+        <!-- API Reference -->
+        <div class="component-card">
+            <h2 class="card-title">⚙️ API Reference (JTreeView)</h2>
+            <div class="table-responsive">
+                <table class="table method-table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Método</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="method-signature">setShowCheckboxes(boolean)</span></td>
+                            <td><span class="property-type">void</span></td>
+                            <td>Habilita o deshabilita la visualización de los checkboxes en todo el árbol.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-signature">setOnCheckAction(Consumer&lt;JTreeItem&lt;T&gt;&gt;)</span></td>
+                            <td><span class="property-type">void</span></td>
+                            <td>Establece un listener invocado al marcar/desmarcar un checkbox. La lambda provee acceso al <code class="method-signature">JTreeItem</code> interactuado.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-signature">showCheckboxesProperty()</span></td>
+                            <td><span class="property-type">BooleanProperty</span></td>
+                            <td>Propiedad observable de la visibilidad de los checkboxes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="mt-5 mb-3">⚙️ API Reference (JTreeItem)</h3>
+            <div class="table-responsive">
+                <table class="table method-table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Método</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="method-signature">setIcon(JIcon)</span></td>
+                            <td><span class="property-type">void</span></td>
+                            <td>Asigna un icono SVG desde la enumeración <code>JIcon</code> al nodo para mostrar junto a la etiqueta.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-signature">setChecked(boolean)</span></td>
+                            <td><span class="property-type">void</span></td>
+                            <td>Establece programáticamente si el checkbox de este nodo está marcado o no.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-signature">isChecked()</span></td>
+                            <td><span class="property-type">boolean</span></td>
+                            <td>Retorna verdadero si este nodo está marcado.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="method-signature">checkedProperty()</span></td>
+                            <td><span class="property-type">BooleanProperty</span></td>
+                            <td>La propiedad observable enlazada directamente al <code>JCheckBox</code> del nodo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-3 text-muted"><small>Nota: Hereda de <code class="method-signature">javafx.scene.control.TreeView</code> y <code class="method-signature">javafx.scene.control.TreeItem</code>, por lo que toda la API estándar de JavaFX está disponible (ej. getSelectionModel().getSelectedItem(), setExpanded(true), etc).</small></p>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-java.min.js"></script>
+</body>
+</html>

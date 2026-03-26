@@ -5,18 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jjarroyo</groupId>
-    <artifactId>jjarroyo-fx-theme-parent</artifactId>
-    <version>1.3.0</version>
+    <artifactId>fxstyle-parent</artifactId>
+    <version>2.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>jjarroyo-library</module>
-        <module>jjarroyo-demo</module>
+        <module>fxstyle-css</module>
+        <module>fxstyle-demo</module>
     </modules>
 
-    <name>JJArroyo JavaFX Theme</name>
-    <description>A modern, customizable JavaFX theme library.</description>
-    <url>https://github.com/jjarroyo/javafx-jjarroyo-theme</url>
+    <name>FxStyle - JavaFX Design System</name>
+    <description>A modern, Tailwind-inspired CSS design system for JavaFX applications.</description>
+    <url>https://github.com/jjarroyo/fxstyle</url>
 
     <licenses>
         <license>
@@ -35,9 +35,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/jjarroyo/javafx-jjarroyo-theme.git</connection>
-        <developerConnection>scm:git:ssh://github.com:jjarroyo/javafx-jjarroyo-theme.git</developerConnection>
-        <url>https://github.com/jjarroyo/javafx-jjarroyo-theme/tree/master</url>
+        <connection>scm:git:git://github.com/jjarroyo/fxstyle.git</connection>
+        <developerConnection>scm:git:ssh://github.com:jjarroyo/fxstyle.git</developerConnection>
+        <url>https://github.com/jjarroyo/fxstyle/tree/master</url>
     </scm>
 
     <properties>

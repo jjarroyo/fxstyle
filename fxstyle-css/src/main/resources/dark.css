@@ -1,0 +1,181 @@
+/* ==========================================================================
+   DARK MODE - Variables semánticas para modo oscuro (.root.dark)
+   ========================================================================== */
+
+.root.dark {
+    /* ─── TOKENS SEMÁNTICOS (SISTEMA) ───────────────────────────────────── */
+    -color-bg-body: #0f172a; /* Slate 900 */
+    -color-bg-surface: #1e293b; /* Slate 800 */
+    -color-bg-surface-hover: #334155; /* Slate 700 */
+    -color-bg-subtle: #1e293b; /* Slate 800 */
+
+    -color-text-primary: #f8fafc; /* Slate 50 */
+    -color-text-secondary: #cbd5e1; /* Slate 300 */
+    -color-text-muted: #94a3b8; /* Slate 400 */
+    -color-text-inverted: #0f172a; /* Slate 900 */
+
+    -color-border-default: #334155; /* Slate 700 */
+    -color-border-subtle: #1e293b; /* Slate 800 */
+    -color-border-highlight: -color-primary-400;
+
+    /* ─── INVERTIR PALETA NEUTRAL (SLATE) ───────────────────────────────── */
+    -color-slate-50: #0f172a; /* 900 */
+    -color-slate-100: #1e293b; /* 800 */
+    -color-slate-200: #334155; /* 700 */
+    -color-slate-300: #475569; /* 600 */
+    -color-slate-400: #64748b; /* 500 */
+    -color-slate-500: #94a3b8; /* 400 */
+    -color-slate-600: #cbd5e1; /* 300 */
+    -color-slate-700: #e2e8f0; /* 200 */
+    -color-slate-800: #f1f5f9; /* 100 */
+    -color-slate-900: #f8fafc; /* 50 */
+
+    /* Re-aplicar overrides de sistema */
+    -fx-background-color: -color-bg-body;
+    -fx-text-fill: -color-text-primary;
+
+    /* Compatibilidad heredada */
+    -color-fg-default: -color-text-primary;
+    -color-fg-subtle: -color-text-secondary;
+    -color-fg-muted: -color-text-muted;
+
+    /* ─── SQL EDITOR TOKENS (DARK) ─────────────────────────────────────── */
+    -sql-surface: -color-slate-900;
+    -sql-border: -color-slate-700;
+    -sql-border-focus: -color-primary-500;
+    -sql-gutter-bg: -color-slate-800;
+    -sql-gutter-border: -color-slate-700;
+    -sql-line-num: -color-slate-500;
+    -sql-line-num-hover: -color-slate-300;
+    -sql-text: -color-slate-200;
+    -sql-selection: #2563eb;
+    -sql-status-bg: -color-slate-800;
+    -sql-status-border: -color-slate-700;
+    -sql-status-text: -color-slate-400;
+}
+
+/* ───────────────────────────────────────────────────────────────────────── 
+   EXPLICIT COMPONENT OVERRIDES PARA DARK MODE (JAVAFX WORKAROUND)
+   ───────────────────────────────────────────────────────────────────────── */
+/* JavaFX CSS variable reassignment bug forces explicit backgrounds on containers */
+.root.dark .j-content-area {
+    -fx-background-color: -color-bg-body;
+}
+
+.root.dark .j-sidebar.light {
+    /* No forzar background aquí, dejar que herede o use la lógica corregida */
+}
+.root.dark .j-header {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+}
+.root.dark .j-header-logo-text,
+.root.dark .j-header-user-name {
+    -fx-text-fill: -color-text-primary;
+}
+.root.dark .j-header-menu-item {
+    -fx-text-fill: -color-text-secondary;
+}
+.root.dark .j-header-menu-item:hover {
+    -fx-text-fill: -color-text-primary;
+}
+
+.root.dark .card {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+}
+.root.dark .card-title,
+.root.dark .card-subtitle {
+    -fx-text-fill: -color-text-primary;
+}
+.root.dark .card-header-line,
+.root.dark .card-footer {
+    -fx-border-color: transparent transparent -color-border-default transparent;
+}
+
+/* ─── SIDEBAR DEFAULT (siempre oscuro) ────────────────────────────── */
+.root.dark .j-sidebar.sidebar-default {
+    -fx-background-color: #0f172a; /* Slate 900 real */
+}
+.root.dark .j-sidebar.sidebar-default .j-sidebar-header {
+    -fx-border-color: transparent transparent rgba(255, 255, 255, 0.1)
+        transparent;
+}
+.root.dark .j-sidebar-item:hover {
+    -fx-background-color: rgba(148, 163, 184, 0.08);
+}
+.root.dark .j-sidebar-item:hover .label {
+    -fx-text-fill: white;
+}
+.root.dark .j-sidebar-item:hover .j-icon {
+    -fx-fill: #cbd5e1; /* Slate 300 real */
+}
+.root.dark .j-sidebar-item.active {
+    -fx-background-color: rgba(59, 130, 246, 0.15);
+}
+.root.dark .j-sidebar-item.active .label {
+    -fx-text-fill: #93c5fd; /* Primary 300 */
+    -fx-font-weight: 600;
+}
+.root.dark .j-sidebar-item .label {
+    -fx-text-fill: #94a3b8; /* Slate 400 real */
+}
+.root.dark .j-sidebar-item .j-icon {
+    -fx-fill: #64748b; /* Slate 500 real */
+}
+.root.dark .j-sidebar-toggle:hover {
+    -fx-background-color: #1e293b;
+}
+/* User profile hover en dark */
+.root.dark .j-header-user-profile:hover {
+    -fx-background-color: #334155; /* Slate 700 real */
+}
+
+/* ─── TABLE EMPTY STATE (DARK) ─────────────────────────────────── */
+.root.dark .j-table-empty-state .label {
+    -fx-text-fill: rgba(255, 255, 255, 0.6);
+}
+
+/* ─── TABLE COLUMN BORDERS (DARK) ──────────────────────────────── */
+.root.dark .j-table-view .column-header {
+    -fx-border-color: transparent transparent #334155 transparent;
+}
+.root.dark .j-table-view .table-row-cell {
+    -fx-border-color: transparent transparent #1e293b transparent;
+}
+.root.dark .j-table-view .table-cell {
+    -fx-border-color: transparent;
+}
+.root.dark .j-table-view .table-row-cell:selected {
+    -fx-background-color: rgba(59, 130, 246, 0.15);
+}
+.root.dark .j-table-view .table-row-cell:selected .table-cell {
+    -fx-border-color: transparent;
+    -fx-text-fill: #f8fafc;
+}
+
+/* ─── MODAL (DARK) ─────────────────────────────────────────────── */
+.root.dark .j-modal-dialog {
+    -fx-background-color: #1e293b; /* Slate 800 */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 20, 0, 0, 10);
+}
+
+/* ─── J-TITLEBAR (DARK) ────────────────────────────────────────── */
+.root.dark .j-titlebar-container {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 20, 0, 0, 8);
+}
+.root.dark .j-titlebar-container.j-titlebar-maximized {
+    -fx-effect: null;
+}
+.root.dark .j-titlebar {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: transparent transparent -color-border-subtle transparent;
+}
+.root.dark .j-titlebar-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.root.dark .j-titlebar-btn-close:hover {
+    -fx-background-color: #e81123;
+}

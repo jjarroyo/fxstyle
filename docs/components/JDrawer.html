@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JDrawer - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JDrawer</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Panel lateral deslizable para contenido contextual, formularios de edición y detalles.
+                        Soporta posiciones LEFT/RIGHT, múltiples tamaños, header/body/footer y animaciones slide.
+                    </p>
+                </header>
+
+                <!-- Uso Básico -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Uso Básico</h2>
+                    <p class="text-slate-600 mb-4">Un drawer simple con título y contenido.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">JDrawer drawer = new JDrawer();
+drawer.setTitle("Detalles");
+drawer.setBody(new Label("Contenido del drawer"));
+drawer.show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Constructor directo -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Constructor con Contenido</h2>
+                    <p class="text-slate-600 mb-4">Pasa el contenido directamente al constructor.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">new JDrawer("Mi Drawer", new Label("Contenido")).show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Posiciones -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Posiciones</h2>
+                    <p class="text-slate-600 mb-4">El drawer puede deslizarse desde la derecha (default) o la izquierda.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-100 text-center">
+                            <h3 class="font-semibold text-blue-800">Position.RIGHT</h3>
+                            <p class="text-sm text-blue-600">Por defecto</p>
+                        </div>
+                        <div class="p-4 bg-purple-50 rounded-lg border border-purple-100 text-center">
+                            <h3 class="font-semibold text-purple-800">Position.LEFT</h3>
+                            <p class="text-sm text-purple-600">Menús, filtros</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">new JDrawer()
+    .setTitle("Panel Izquierdo")
+    .setBody(content)
+    .setPosition(JDrawer.Position.LEFT)
+    .show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Tamaños -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Tamaños</h2>
+
+                    <div class="grid grid-cols-4 gap-4 mb-4">
+                        <div class="p-3 bg-slate-100 rounded-lg text-center">
+                            <p class="font-semibold text-slate-800">SMALL</p>
+                            <p class="text-sm text-slate-500">300px</p>
+                        </div>
+                        <div class="p-3 bg-slate-100 rounded-lg text-center">
+                            <p class="font-semibold text-slate-800">MEDIUM</p>
+                            <p class="text-sm text-slate-500">420px</p>
+                        </div>
+                        <div class="p-3 bg-slate-100 rounded-lg text-center">
+                            <p class="font-semibold text-slate-800">LARGE</p>
+                            <p class="text-sm text-slate-500">600px</p>
+                        </div>
+                        <div class="p-3 bg-slate-100 rounded-lg text-center">
+                            <p class="font-semibold text-slate-800">FULL</p>
+                            <p class="text-sm text-slate-500">100%</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">new JDrawer()
+    .setTitle("Panel Grande")
+    .setBody(content)
+    .setSize(JDrawer.Size.LARGE)
+    .show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Con Footer -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Con Header, Body y Footer</h2>
+                    <p class="text-slate-600 mb-4">Estructura completa con botones de acción en el footer.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">JButton saveBtn = new JButton("Guardar");
+saveBtn.addClass("btn-success");
+
+JButton cancelBtn = new JButton("Cancelar");
+cancelBtn.addClass("btn-light-danger");
+
+JDrawer drawer = new JDrawer()
+    .setTitle("Editar Usuario")
+    .setBody(formLayout)
+    .setSize(JDrawer.Size.LARGE);
+
+saveBtn.setOnAction(e -> {
+    drawer.close();
+    guardarDatos();
+});
+cancelBtn.setOnAction(e -> drawer.close());
+
+drawer.setFooter(cancelBtn, saveBtn);
+drawer.show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Opciones avanzadas -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Opciones Avanzadas</h2>
+                    <p class="text-slate-600 mb-4">Deshabitar cierre por backdrop y callback al cerrar.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">new JDrawer()
+    .setTitle("Formulario Obligatorio")
+    .setBody(form)
+    .setCloseOnBackdropClick(false)   // Solo cierra con botón X
+    .setOnClose(() -> System.out.println("Drawer cerrado"))
+    .show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">API Reference</h2>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3">Constructores</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-6">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Constructor</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JDrawer()</td>
+                                <td class="px-6 py-4 text-slate-500">Drawer vacío.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JDrawer(Node body)</td>
+                                <td class="px-6 py-4 text-slate-500">Con contenido directo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JDrawer(String title, Node body)</td>
+                                <td class="px-6 py-4 text-slate-500">Con título y contenido.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3">Métodos (Fluent API)</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setTitle(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el título del header.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setBody(Node)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el contenido del body (scrollable).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setFooter(Node...)</td>
+                                <td class="px-6 py-4 text-slate-500">Agrega nodos al footer (botones de acción).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setPosition(Position)</td>
+                                <td class="px-6 py-4 text-slate-500">LEFT o RIGHT (default: RIGHT).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setSize(Size)</td>
+                                <td class="px-6 py-4 text-slate-500">SMALL, MEDIUM, LARGE o FULL.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setCloseOnBackdropClick(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Habilitar cierre al clic en backdrop (default: true).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setShowHeader(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Mostrar/ocultar header completo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnClose(Runnable)</td>
+                                <td class="px-6 py-4 text-slate-500">Callback ejecutado al cerrar.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">addClass(String...)</td>
+                                <td class="px-6 py-4 text-slate-500">Agrega clases CSS al panel.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">show()</td>
+                                <td class="px-6 py-4 text-slate-500">Muestra el drawer con animación slide.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">close()</td>
+                                <td class="px-6 py-4 text-slate-500">Cierra el drawer con animación slide.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Enums -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Enums</h2>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-800 mb-2">JDrawer.Position</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li><code class="text-blue-600">LEFT</code> — Desliza desde la izquierda</li>
+                                <li><code class="text-blue-600">RIGHT</code> — Desliza desde la derecha (default)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-slate-800 mb-2">JDrawer.Size</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li><code class="text-blue-600">SMALL</code> — 300px</li>
+                                <li><code class="text-blue-600">MEDIUM</code> — 420px</li>
+                                <li><code class="text-blue-600">LARGE</code> — 600px</li>
+                                <li><code class="text-blue-600">FULL</code> — 100% del ancho</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

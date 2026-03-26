@@ -1,0 +1,469 @@
+/* ==========================================================================
+   CARDS, ALERTS & TOASTS
+   ========================================================================== */
+
+/* ─── CARD ───────────────────────────────────────────────────────────────────── */
+.card {
+    -fx-background-color: -color-bg-surface;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 4);
+    -fx-padding: 24px;
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+    -fx-padding: 0 0 16px 0;
+}
+
+.card-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-text-secondary;
+    -fx-font-weight: normal;
+}
+
+.card-header {
+    -fx-padding: 0 0 24px 0;
+    -fx-alignment: center-left;
+    -fx-spacing: 12px;
+}
+
+.card-header-line {
+    -fx-border-color: transparent transparent -color-slate-200 transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.card-title-box {
+    -fx-alignment: center-left;
+    -fx-spacing: 4px;
+}
+
+.card-toolbar {
+    -fx-alignment: center-right;
+    -fx-spacing: 8px;
+}
+
+.card-body {
+    -fx-padding: 0;
+}
+
+.card-footer {
+    -fx-padding: 24px 0 0 0;
+    -fx-border-color: -color-slate-200 transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-alignment: center-right;
+    -fx-spacing: 12px;
+}
+
+/* Chevron para Card colapsable */
+.card-chevron {
+    -fx-fill: -color-slate-400;
+    -fx-cursor: hand;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-max-width: 20px;
+    -fx-max-height: 20px;
+}
+.card-chevron:hover {
+    -fx-fill: -color-primary;
+}
+
+/* ─── CARD VARIANTS ──────────────────────────────────────────────────────────── */
+.card-bordered {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 1px;
+    -fx-effect: null;
+}
+
+.card-flush {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-effect: null;
+    -fx-padding: 0;
+}
+.card-flush .card-header {
+    -fx-border-width: 0;
+    -fx-padding: 0 0 16px 0;
+}
+.card-flush .card-footer {
+    -fx-border-width: 0;
+    -fx-padding: 16px 0 0 0;
+}
+
+.card-stretch {
+    /* To be used with VBox.vgrow in JavaFX */
+}
+
+.card-scroll {
+    -fx-background-color: transparent;
+}
+
+/* ─── ALERT ──────────────────────────────────────────────────────────────────── */
+.alert {
+    -fx-padding: 16px 24px;
+    -fx-background-radius: 8px;
+    -fx-spacing: 16px;
+    -fx-min-height: 50px;
+    -fx-alignment: center-left;
+}
+
+.alert-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.alert-description {
+    -fx-font-size: 13px;
+    -fx-opacity: 0.8;
+}
+
+.alert-icon-container {
+    -fx-alignment: center;
+    -fx-min-width: 24px;
+}
+
+.alert-icon {
+    -fx-fill: -color-slate-600;
+}
+.alert-close-icon {
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+    -fx-fill: -color-slate-500;
+}
+
+.alert-dismiss-btn {
+    -fx-padding: 8px;
+    -fx-background-radius: 4px;
+}
+.alert-dismiss-btn:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Variantes Light */
+.alert-primary.alert-light {
+    -fx-background-color: -color-primary-50;
+}
+.alert-primary.alert-light .alert-title,
+.alert-primary.alert-light .alert-description {
+    -fx-text-fill: -color-primary-700;
+}
+.alert-primary.alert-light .alert-icon {
+    -fx-fill: -color-primary-500;
+}
+.alert-primary.alert-light .alert-close-icon {
+    -fx-fill: -color-primary-500;
+}
+
+.alert-success.alert-light {
+    -fx-background-color: #ecfdf5;
+}
+.alert-success.alert-light .alert-title,
+.alert-success.alert-light .alert-description {
+    -fx-text-fill: -color-success-600;
+}
+.alert-success.alert-light .alert-icon {
+    -fx-fill: -color-success-500;
+}
+.alert-success.alert-light .alert-close-icon {
+    -fx-fill: -color-success-600;
+}
+
+.alert-danger.alert-light {
+    -fx-background-color: #fef2f2;
+}
+.alert-danger.alert-light .alert-title,
+.alert-danger.alert-light .alert-description {
+    -fx-text-fill: -color-danger-600;
+}
+.alert-danger.alert-light .alert-icon {
+    -fx-fill: -color-danger-500;
+}
+.alert-danger.alert-light .alert-close-icon {
+    -fx-fill: -color-danger-600;
+}
+
+.alert-warning.alert-light {
+    -fx-background-color: #fffbeb;
+}
+.alert-warning.alert-light .alert-title,
+.alert-warning.alert-light .alert-description {
+    -fx-text-fill: -color-warning-600;
+}
+.alert-warning.alert-light .alert-icon {
+    -fx-fill: -color-warning-500;
+}
+.alert-warning.alert-light .alert-close-icon {
+    -fx-fill: -color-warning-600;
+}
+
+.alert-info.alert-light {
+    -fx-background-color: -color-info-50;
+}
+.alert-info.alert-light .alert-title,
+.alert-info.alert-light .alert-description {
+    -fx-text-fill: -color-info-600;
+}
+.alert-info.alert-light .alert-icon {
+    -fx-fill: -color-info-500;
+}
+.alert-info.alert-light .alert-close-icon {
+    -fx-fill: -color-info-600;
+}
+
+/* Variantes Bordered */
+.alert-bordered {
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+}
+.alert-primary.alert-bordered {
+    -fx-border-color: -color-primary-500;
+}
+.alert-danger.alert-bordered {
+    -fx-border-color: -color-danger-500;
+}
+.alert-success.alert-bordered {
+    -fx-border-color: -color-success-500;
+}
+.alert-warning.alert-bordered {
+    -fx-border-color: -color-warning-500;
+}
+.alert-info.alert-bordered {
+    -fx-border-color: -color-info-500;
+}
+
+/* Variantes Dashed */
+.alert-dashed {
+    -fx-border-width: 1px;
+    -fx-border-style: dashed;
+}
+.alert-primary.alert-dashed {
+    -fx-border-color: -color-primary-500;
+}
+.alert-danger.alert-dashed {
+    -fx-border-color: -color-danger-500;
+}
+.alert-success.alert-dashed {
+    -fx-border-color: -color-success-500;
+}
+.alert-warning.alert-dashed {
+    -fx-border-color: -color-warning-500;
+}
+.alert-info.alert-dashed {
+    -fx-border-color: -color-info-500;
+}
+
+/* ─── TOAST ──────────────────────────────────────────────────────────────────── */
+.j-toast {
+    -fx-background-color: -color-bg-surface;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);
+    -fx-padding: 12px 16px;
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-text-primary;
+    -fx-min-width: 250px;
+    -fx-max-width: 400px;
+    -fx-spacing: 12px;
+    -fx-alignment: center-left;
+    -fx-opacity: 0.95;
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 1px;
+}
+
+.j-toast-success {
+    -fx-background-color: -color-success-50;
+    -fx-border-color: -color-success-200;
+    -fx-text-fill: -color-success-700;
+}
+
+.j-toast-danger {
+    -fx-background-color: -color-danger-50;
+    -fx-border-color: -color-danger-200;
+    -fx-text-fill: -color-danger-700;
+}
+
+.j-toast-warning {
+    -fx-background-color: -color-warning-50;
+    -fx-border-color: -color-warning-200;
+    -fx-text-fill: -color-warning-700;
+}
+
+.j-toast-info {
+    -fx-background-color: -color-info-50;
+    -fx-border-color: -color-info-200;
+    -fx-text-fill: -color-info-700;
+}
+
+.j-toast-title {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+.j-toast-message {
+    -fx-font-size: 13px;
+    -fx-opacity: 0.8;
+}
+
+.j-toast-close {
+    -fx-background-color: transparent;
+    -fx-padding: 4px;
+    -fx-cursor: hand;
+    -fx-text-fill: inherit;
+    -fx-opacity: 0.6;
+}
+.j-toast-close:hover {
+    -fx-opacity: 1;
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-background-radius: 4px;
+}
+
+/* ==========================================================================
+   COMPONENTES EXTENDIDOS (Tailwind-style)
+   ========================================================================== */
+
+/* ─── CARD SIZES ─────────────────────────────────────────────────────────────── */
+.card-sm {
+    -fx-padding: 12px;
+    -fx-background-radius: 6px;
+}
+.card-lg {
+    -fx-padding: 32px;
+    -fx-background-radius: 12px;
+}
+.card-xl {
+    -fx-padding: 40px;
+    -fx-background-radius: 16px;
+}
+
+/* ─── CARD ELEVATED (sombra fuerte, sin borde) ───────────────────────────────── */
+.card-elevated {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: transparent;
+    -fx-background-radius: 12px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 20, 0, 0, 8);
+}
+
+/* ─── CARD COLORED ───────────────────────────────────────────────────────────── */
+.card-colored-blue {
+    -fx-background-color: #eff6ff;
+    -fx-border-color: #bfdbfe;
+    -fx-border-width: 1px;
+}
+.card-colored-green {
+    -fx-background-color: #f0fdf4;
+    -fx-border-color: #bbf7d0;
+    -fx-border-width: 1px;
+}
+.card-colored-red {
+    -fx-background-color: #fef2f2;
+    -fx-border-color: #fecaca;
+    -fx-border-width: 1px;
+}
+.card-colored-yellow {
+    -fx-background-color: #fffbeb;
+    -fx-border-color: #fde68a;
+    -fx-border-width: 1px;
+}
+.card-colored-purple {
+    -fx-background-color: #faf5ff;
+    -fx-border-color: #e9d5ff;
+    -fx-border-width: 1px;
+}
+
+/* ─── PANEL ──────────────────────────────────────────────────────────────────── */
+.panel {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 0;
+}
+.panel-header {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-style: solid;
+    -fx-border-color: -color-border-default;
+    -fx-padding: 12px 16px;
+    -fx-background-radius: 8px 8px 0 0;
+}
+.panel-body {
+    -fx-padding: 16px;
+}
+.panel-footer {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-width: 1px 0 0 0;
+    -fx-border-style: solid;
+    -fx-border-color: -color-border-default;
+    -fx-padding: 12px 16px;
+    -fx-background-radius: 0 0 8px 8px;
+}
+
+/* ─── SEPARATOR ──────────────────────────────────────────────────────────────── */
+.separator {
+    -fx-background-color: -color-border-default;
+    -fx-opacity: 1;
+}
+.separator-muted {
+    -fx-background-color: -color-slate-100;
+}
+.separator-strong {
+    -fx-background-color: -color-slate-400;
+}
+
+/* ─── TOOLTIP ────────────────────────────────────────────────────────────────── */
+.tooltip {
+    -fx-background-color: -color-slate-900;
+    -fx-text-fill: #f9fafb;
+    -fx-font-size: 12px;
+    -fx-padding: 6px 10px;
+    -fx-background-radius: 6px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 2);
+}
+.tooltip-light {
+    -fx-background-color: -color-bg-surface;
+    -fx-text-fill: -color-text-primary;
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 1px;
+    -fx-background-radius: 6px;
+}
+.tooltip-info {
+    -fx-background-color: -color-info-700;
+    -fx-text-fill: white;
+}
+.tooltip-success {
+    -fx-background-color: -color-success-700;
+    -fx-text-fill: white;
+}
+.tooltip-danger {
+    -fx-background-color: -color-danger-700;
+    -fx-text-fill: white;
+}
+
+/* ─── ALERT ACCENT (borde izquierdo) ─────────────────────────────────────────── */
+.alert-accent {
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0 8px 8px 0;
+}
+.alert-primary.alert-accent {
+    -fx-background-color: -color-primary-50;
+    -fx-border-color: -color-primary-500;
+}
+.alert-success.alert-accent {
+    -fx-background-color: -color-success-50;
+    -fx-border-color: -color-success-500;
+}
+.alert-warning.alert-accent {
+    -fx-background-color: -color-warning-50;
+    -fx-border-color: -color-warning-500;
+}
+.alert-danger.alert-accent {
+    -fx-background-color: -color-danger-50;
+    -fx-border-color: -color-danger-500;
+}
+.alert-info.alert-accent {
+    -fx-background-color: -color-info-50;
+    -fx-border-color: -color-info-500;
+}

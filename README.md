@@ -1,6 +1,6 @@
-# JavaFX Metronic Theme v1.3.0
+# FxStyle - JavaFX Design System v2.0.0
 
-A modern, responsive JavaFX theme library inspired by the Metronic design system, implementing Tailwind CSS concepts for JavaFX applications.
+A modern, responsive JavaFX design system implementing Tailwind CSS concepts for JavaFX applications.
 
 🌟 **Documentación y Tutoriales:** Visita nuestro blog oficial en [https://javafx-blog-page.vercel.app/](https://javafx-blog-page.vercel.app/) para guías de uso, componentes y ejemplos.
 
@@ -9,7 +9,7 @@ A modern, responsive JavaFX theme library inspired by the Metronic design system
 To test the demo application and see all components in action, run the following command from the root directory:
 
 ```bash
-java -jar "jjarroyo-demo/target/jjarroyo-demo-1.3.0.jar"
+java -jar "fxstyle-demo/target/fxstyle-demo-2.0.0.jar"
 ```
 
 ## Screenshots
@@ -31,11 +31,11 @@ java -jar "jjarroyo-demo/target/jjarroyo-demo-1.3.0.jar"
 
 ## Component Library
 
-The core of this project is the `jjarroyo-library` which provides a set of custom controls and styles for JavaFX.
+The core of this project is `fxstyle-css` which provides a set of custom controls and styles for JavaFX.
 
 ## Demo Application
 
-A demonstration application is included in `jjarroyo-demo` to showcase the components and theme capabilities.
+A demonstration application is included in `fxstyle-demo` to showcase the components and theme capabilities.
 
 ## Documentation
 

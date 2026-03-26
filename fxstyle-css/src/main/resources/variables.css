@@ -1,0 +1,169 @@
+/* ==========================================================================
+   VARIABLES - Paleta de colores, tipografía y variables semánticas (Light)
+   ========================================================================== */
+
+.root {
+    /* ─── PALETA DE COLORES ─────────────────────────────────────────────── */
+
+    /* Blue (Primary) */
+    -color-primary-50: #eff6ff;
+    -color-primary-100: #dbeafe;
+    -color-primary-200: #bfdbfe;
+    -color-primary-300: #60a5fa;
+    -color-primary-400: #60a5fa;
+    -color-primary-500: #3b82f6;
+    -color-primary-600: #2563eb;
+    -color-primary-700: #1d4ed8;
+
+    /* Slate (Neutral) */
+    -color-slate-50: #f8fafc;
+    -color-slate-100: #f1f5f9;
+    -color-slate-200: #e2e8f0;
+    -color-slate-300: #cbd5e1;
+    -color-slate-400: #94a3b8;
+    -color-slate-500: #64748b;
+    -color-slate-600: #475569;
+    -color-slate-700: #334155;
+    -color-slate-800: #1e293b;
+    -color-slate-900: #0f172a;
+
+    /* Emerald (Success) */
+    -color-success-50: #ecfdf5;
+    -color-success-100: #d1fae5;
+    -color-success-200: #a7f3d0;
+    -color-success-500: #10b981;
+    -color-success-600: #059669;
+    -color-success-700: #047857;
+
+    /* Red (Danger) */
+    -color-danger-50: #fef2f2;
+    -color-danger-100: #fee2e2;
+    -color-danger-200: #fecaca;
+    -color-danger-500: #ef4444;
+    -color-danger-600: #dc2626;
+    -color-danger-700: #b91c1c;
+
+    /* Amber (Warning) */
+    -color-warning-50: #fffbeb;
+    -color-warning-200: #fde68a;
+    -color-warning-500: #f59e0b;
+    -color-warning-600: #d97706;
+    -color-warning-700: #b45309;
+
+    /* Violet (Info) */
+    -color-info-50: #f5f3ff;
+    -color-info-100: #ede9fe;
+    -color-info-200: #ddd6fe;
+    -color-info-500: #8b5cf6;
+    -color-info-600: #7c3aed;
+    -color-info-700: #6d28d9;
+
+    /* Secondary / Aliases */
+    -color-primary: -color-primary-600;
+    -color-primary-light: -color-primary-50;
+    -color-secondary-50: -color-slate-50;
+    -color-secondary-200: -color-slate-200;
+    -color-secondary-300: -color-slate-300;
+    -color-secondary-600: -color-slate-600;
+    -color-secondary-700: -color-slate-700;
+
+    /* ─── TIPOGRAFÍA GLOBAL ─────────────────────────────────────────────── */
+    -fx-font-family:
+        'Segoe UI',
+        system-ui,
+        -apple-system,
+        sans-serif;
+    -fx-font-size: 14;
+
+    /* ─── TOKENS SEMÁNTICOS (SISTEMA) ───────────────────────────────────── */
+    -color-bg-body: -color-slate-50;
+    -color-bg-surface: #ffffff;
+    -color-bg-surface-hover: -color-slate-50;
+    -color-bg-subtle: -color-slate-100;
+
+    -color-text-primary: -color-slate-800;
+    -color-text-secondary: -color-slate-500;
+    -color-text-muted: -color-slate-400;
+    -color-text-inverted: #ffffff;
+
+    -color-border-default: -color-slate-200;
+    -color-border-subtle: -color-slate-100;
+    -color-border-highlight: -color-primary-500;
+
+    /* Compatibilidad heredada */
+    -color-fg-default: -color-text-primary;
+    -color-fg-subtle: -color-text-secondary;
+    -color-fg-muted: -color-text-muted;
+    -fx-background-color: -color-bg-body;
+    -fx-text-fill: -color-text-primary;
+
+    /* ─── SQL EDITOR TOKENS ─────────────────────────────────────────────── */
+    -sql-surface: #ffffff;
+    -sql-border: -color-slate-200;
+    -sql-border-focus: -color-primary-500;
+    -sql-radius: 8;
+    -sql-gutter-bg: -color-slate-50;
+    -sql-gutter-border: -color-slate-200;
+    -sql-gutter-width: 45;
+    -sql-font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    -sql-font-size: 13;
+    -sql-line-height: 22;
+    -sql-line-num: -color-slate-400;
+    -sql-line-num-hover: -color-slate-600;
+    -sql-line-num-error: -color-danger-500;
+    -sql-err-gutter-w: 24;
+    -sql-error-dot: -color-danger-500;
+    -sql-text: -color-slate-800;
+    -sql-selection: #dbeafe;
+    -sql-caret: -color-primary-600;
+    -sql-placeholder: -color-slate-400;
+    -sql-status-bg: -color-slate-50;
+    -sql-status-border: -color-slate-200;
+    -sql-status-height: 32;
+    -sql-status-text: -color-slate-500;
+    -sql-status-ok: -color-success-600;
+    -sql-status-err: -color-danger-600;
+
+    /* Syntax Highlighting */
+    -sql-hl-keyword: #2563eb; /* Blue 600 */
+    -sql-hl-type: #9333ea; /* Purple 600 */
+    -sql-hl-comment: #94a3b8; /* Slate 400 */
+    -sql-hl-string: #059669; /* Emerald 600 */
+    -sql-hl-number: #d97706; /* Amber 600 */
+}
+
+/* ─── LABEL & HEADINGS ─────────────────────────────────────────────────── */
+.j-label {
+    -fx-text-fill: -color-text-primary;
+}
+
+.h1 {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}
+.h2 {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}
+.h3 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}
+.h4 {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}
+.h5 {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}
+.h6 {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}

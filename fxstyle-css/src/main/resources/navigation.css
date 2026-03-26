@@ -1,0 +1,1149 @@
+/* ==========================================================================
+   NAVIGATION - Sidebar, Nav Items, Header, Tabs
+   ========================================================================== */
+
+/* ─── SIDEBAR (simple) ───────────────────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: -color-slate-900;
+    -fx-padding: 0;
+    -fx-min-width: 250px;
+}
+.sidebar-header {
+    -fx-padding: 24px;
+    -fx-border-color: transparent transparent rgba(255, 255, 255, 0.1)
+        transparent;
+    -fx-border-width: 1px;
+}
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ─── NAV ITEMS (simple) ─────────────────────────────────────────────────────── */
+.nav-item {
+    -fx-padding: 12px 24px;
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-slate-400;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+    -fx-spacing: 12px;
+}
+.nav-item:hover {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.nav-item-active {
+    -fx-text-fill: -color-primary-500;
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* ─── J-SIDEBAR ──────────────────────────────────────────────────────────────── */
+.j-sidebar {
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: transparent -color-border-default transparent transparent;
+    -fx-border-width: 0 1px 0 0;
+}
+.j-sidebar.sidebar-default {
+    -fx-background-color: -color-slate-900;
+}
+.j-sidebar.light {
+    -fx-background-color: -color-bg-surface;
+}
+
+.j-sidebar-header {
+    -fx-padding: 0 16px 0 24px;
+    -fx-alignment: center-left;
+    -fx-min-height: 64px;
+    -fx-pref-height: 64px;
+    -fx-border-color: transparent transparent -color-border-default transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.j-sidebar-brand {
+    -fx-alignment: center-left;
+    -fx-spacing: 12px;
+}
+
+.j-sidebar-brand-text {
+    -fx-text-fill: -color-text-primary;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Default Dark Sidebar Overrides */
+.j-sidebar.sidebar-default .j-sidebar-brand-text {
+    -fx-text-fill: white;
+}
+.j-sidebar.sidebar-default .j-sidebar-header {
+    -fx-border-color: transparent transparent rgba(255, 255, 255, 0.1)
+        transparent;
+}
+
+/* Scrollbar oculto por defecto, visible en light o hover */
+.j-sidebar-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.j-sidebar-scroll .viewport {
+    -fx-background-color: transparent;
+}
+.j-sidebar-scroll .scroll-bar:vertical,
+.j-sidebar-scroll .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+.j-sidebar.light .j-sidebar-scroll .scroll-bar:vertical {
+    -fx-background-color: #f8fafc;
+    -fx-opacity: 1;
+    -fx-pref-width: 6px;
+}
+.j-sidebar.light .j-sidebar-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 10;
+}
+.j-sidebar-scroll .corner {
+    -fx-background-color: transparent;
+}
+
+/* Toggle Button */
+.j-sidebar-toggle {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-slate-500;
+    -fx-cursor: hand;
+    -fx-padding: 8px;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+}
+.j-sidebar-toggle:hover {
+    -fx-background-color: -color-slate-800;
+    -fx-text-fill: white;
+}
+.j-sidebar-toggle .j-icon {
+    -fx-fill: -color-slate-500;
+}
+.j-sidebar-toggle:hover .j-icon {
+    -fx-fill: white;
+}
+
+/* Sidebar Item */
+.j-sidebar-item {
+    -fx-padding: 12px 20px;
+    -fx-spacing: 12px;
+    -fx-cursor: hand;
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-transition: background-color 0.2s;
+}
+.j-sidebar-item .label {
+    -fx-text-fill: -color-slate-400;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+}
+.j-sidebar-item .j-icon {
+    -fx-fill: -color-slate-500;
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+}
+
+.j-sidebar-item:hover {
+    -fx-background-color: rgba(148, 163, 184, 0.08);
+}
+.j-sidebar-item:hover .label {
+    -fx-text-fill: -color-slate-600;
+}
+.j-sidebar-item:hover .j-icon {
+    -fx-fill: -color-slate-600;
+}
+
+.j-sidebar-item.active {
+    -fx-background-color: rgba(59, 130, 246, 0.12);
+    -fx-border-color: -color-primary-500;
+    -fx-border-width: 0 0 0 3px;
+}
+.j-sidebar-item.active .label {
+    -fx-text-fill: -color-primary-400;
+    -fx-font-weight: 600;
+}
+.j-sidebar-item.active .j-icon {
+    -fx-fill: -color-primary-400;
+}
+
+/* Light Variant Items */
+.j-sidebar.light .j-sidebar-item:hover {
+    -fx-background-color: #f1f5f9;
+}
+.j-sidebar.light .j-sidebar-item:hover .label {
+    -fx-text-fill: -color-slate-900;
+}
+.j-sidebar.light .j-sidebar-item.active {
+    -fx-background-color: #eff6ff;
+    -fx-border-color: -color-primary-500;
+}
+.j-sidebar.light .j-sidebar-item.active .label {
+    -fx-text-fill: -color-primary-700;
+}
+.j-sidebar.light .j-sidebar-item .label {
+    -fx-text-fill: -color-slate-600;
+}
+
+/* Compact Mode */
+.j-sidebar.compact .j-sidebar-item {
+    -fx-padding: 12px;
+    -fx-alignment: center;
+}
+.j-sidebar.compact .j-sidebar-item .label {
+    visibility: hidden;
+    -fx-max-width: 0;
+    -fx-pref-width: 0;
+    -fx-min-width: 0;
+}
+
+/* ─── J-HEADER ───────────────────────────────────────────────────────────────── */
+.j-header {
+    -fx-background-color: -color-bg-surface;
+    -fx-pref-height: 64px;
+    -fx-min-height: 64px;
+    -fx-padding: 0 24px;
+    -fx-alignment: center-left;
+    -fx-spacing: 24px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 4);
+    -fx-border-color: -color-border-default;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.j-header-brand {
+    -fx-alignment: center-left;
+    -fx-spacing: 12px;
+}
+.j-header-logo-text {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-primary;
+}
+
+.j-header-menu {
+    -fx-alignment: center-left;
+    -fx-spacing: 4px;
+}
+.j-header-menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text-secondary;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+.j-header-menu-item:hover {
+    -fx-background-color: -color-bg-subtle;
+    -fx-text-fill: -color-primary-600;
+}
+
+.j-header-toolbar {
+    -fx-alignment: center-right;
+    -fx-spacing: 16px;
+}
+
+.j-header-user-profile {
+    -fx-alignment: center-right;
+    -fx-spacing: 12px;
+    -fx-cursor: hand;
+    -fx-padding: 4px 8px;
+    -fx-background-radius: 6px;
+}
+.j-header-user-profile:hover {
+    -fx-background-color: -color-slate-50;
+}
+
+.j-header-user-info {
+    -fx-alignment: center-right;
+    -fx-spacing: 2px;
+}
+.j-header-user-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-text-primary;
+}
+.j-header-user-email {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-text-muted;
+}
+
+.j-header-avatar {
+    -fx-background-color: -color-primary-100;
+    -fx-background-radius: 50%;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-alignment: center;
+}
+.j-header-avatar-text {
+    -fx-text-fill: -color-primary-600;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* ─── J-TABS ─────────────────────────────────────────────────────────────────── */
+.j-tabs {
+    -fx-background-color: transparent;
+}
+.j-tabs-content {
+    -fx-padding: 20px 0 0 0;
+}
+
+/* Line Tabs */
+.tabs-line.j-tabs-header, .tabs-line > .j-tabs-header, .tabs-line .j-tabs-header {
+    -fx-background-color: transparent;
+    -fx-border-color: -color-slate-200;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 0 0 4px 0;
+    -fx-spacing: 24px;
+}
+.tabs-line .j-tab {
+    -fx-cursor: hand;
+    -fx-padding: 0 4px 10px 4px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+.tabs-line .j-tab:hover {
+    -fx-border-color: -color-primary-200;
+}
+.tabs-line .j-tab.selected {
+    -fx-border-color: -color-primary-500;
+}
+.tabs-line .tab-title {
+    -fx-text-fill: -color-slate-500;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-alignment: center;
+}
+.tabs-line .j-tab.selected .tab-title {
+    -fx-text-fill: -color-primary-500;
+    -fx-font-weight: 600;
+}
+.tabs-line .tab-description {
+    -fx-text-fill: -color-slate-400;
+    -fx-font-size: 11px;
+    -fx-alignment: center;
+}
+
+/* Pills Tabs */
+.tabs-pills > .j-tabs-header, .tabs-pills .j-tabs-header {
+    -fx-padding: 0 20px 0 0;
+    -fx-spacing: 8px;
+}
+.tabs-pills .j-tab {
+    -fx-cursor: hand;
+    -fx-padding: 12px 16px;
+    -fx-background-radius: 8px;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+.tabs-pills .j-tab:hover {
+    -fx-background-color: -color-slate-100;
+}
+.tabs-pills .j-tab.selected {
+    -fx-background-color: -color-success-100;
+}
+.tabs-pills .tab-title {
+    -fx-text-fill: -color-slate-700;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+.tabs-pills .j-tab.selected .tab-title {
+    -fx-text-fill: -color-success-700;
+}
+.tabs-pills .tab-description {
+    -fx-text-fill: -color-slate-400;
+    -fx-font-size: 12px;
+}
+.tabs-pills .j-tab.selected .tab-description {
+    -fx-text-fill: -color-success-500;
+}
+
+/* ─── J-AVATAR ───────────────────────────────────────────────────────────────── */
+.j-avatar {
+    -fx-alignment: center;
+    -fx-cursor: hand;
+}
+
+.j-avatar-text {
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-primary-600;
+}
+
+/* Color Variants */
+.j-avatar-color-primary .j-avatar-bg {
+    -fx-fill: #e0e7ff;
+}
+.j-avatar-color-primary .j-avatar-text {
+    -fx-text-fill: #4f46e5;
+}
+
+.j-avatar-color-success .j-avatar-bg {
+    -fx-fill: #dcfce7;
+}
+.j-avatar-color-success .j-avatar-text {
+    -fx-text-fill: #16a34a;
+}
+
+.j-avatar-color-danger .j-avatar-bg {
+    -fx-fill: #fee2e2;
+}
+.j-avatar-color-danger .j-avatar-text {
+    -fx-text-fill: #dc2626;
+}
+
+.j-avatar-color-warning .j-avatar-bg {
+    -fx-fill: #fef3c7;
+}
+.j-avatar-color-warning .j-avatar-text {
+    -fx-text-fill: #d97706;
+}
+
+.j-avatar-color-info .j-avatar-bg {
+    -fx-fill: #dbeafe;
+}
+.j-avatar-color-info .j-avatar-text {
+    -fx-text-fill: #2563eb;
+}
+
+.j-avatar-color-slate .j-avatar-bg {
+    -fx-fill: #f1f5f9;
+}
+.j-avatar-color-slate .j-avatar-text {
+    -fx-text-fill: #475569;
+}
+
+/* Group */
+.j-avatar-group {
+    -fx-alignment: center-left;
+    -fx-spacing: 0;
+}
+
+/* ─── J-BREADCRUMB ───────────────────────────────────────────────────────────── */
+.j-breadcrumb {
+    -fx-alignment: center-left;
+    -fx-padding: 8px 0;
+}
+
+.j-breadcrumb-separator {
+    -fx-text-fill: -color-slate-400;
+    -fx-padding: 0 8px;
+    -fx-font-size: 12px;
+}
+
+.j-breadcrumb-item {
+    -fx-cursor: hand;
+    -fx-padding: 2px 4px;
+    -fx-background-radius: 4px;
+}
+.j-breadcrumb-item:hover {
+    -fx-background-color: -color-slate-100;
+}
+
+.j-breadcrumb-link {
+    -fx-text-fill: -color-slate-500;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+.j-breadcrumb-item:hover .j-breadcrumb-link {
+    -fx-text-fill: -color-slate-700;
+}
+
+.j-breadcrumb-active {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+/* Color Variants for active item */
+.j-breadcrumb-color-primary .j-breadcrumb-active {
+    -fx-text-fill: -color-primary-600;
+}
+.j-breadcrumb-color-success .j-breadcrumb-active {
+    -fx-text-fill: -color-success-600;
+}
+.j-breadcrumb-color-danger .j-breadcrumb-active {
+    -fx-text-fill: -color-danger-600;
+}
+.j-breadcrumb-color-warning .j-breadcrumb-active {
+    -fx-text-fill: #d97706;
+}
+.j-breadcrumb-color-info .j-breadcrumb-active {
+    -fx-text-fill: #2563eb;
+}
+.j-breadcrumb-color-slate .j-breadcrumb-active {
+    -fx-text-fill: -color-slate-800;
+}
+
+/* ─── J-CHIP ─────────────────────────────────────────────────────────────────── */
+.j-chip {
+    -fx-alignment: center;
+    -fx-spacing: 4;
+    -fx-background-radius: 999;
+    -fx-padding: 4 12;
+    -fx-font-size: 12px;
+}
+
+/* Sizes */
+.j-chip-size-sm {
+    -fx-padding: 2 8;
+    -fx-font-size: 11px;
+}
+.j-chip-size-md {
+    -fx-padding: 4 12;
+    -fx-font-size: 12px;
+}
+.j-chip-size-lg {
+    -fx-padding: 6 16;
+    -fx-font-size: 13px;
+}
+
+.j-chip-text {
+    -fx-font-weight: 600;
+}
+.j-chip-size-sm .j-chip-text {
+    -fx-font-size: 11px;
+}
+.j-chip-size-md .j-chip-text {
+    -fx-font-size: 12px;
+}
+.j-chip-size-lg .j-chip-text {
+    -fx-font-size: 13px;
+}
+
+/* Dismiss button */
+.j-chip-dismiss {
+    -fx-cursor: hand;
+    -fx-font-size: 10px;
+    -fx-padding: 0 0 0 4;
+    -fx-opacity: 0.7;
+}
+.j-chip-dismiss:hover {
+    -fx-opacity: 1;
+}
+
+/* ── SOFT Variant (default) ── */
+.j-chip-variant-soft.j-chip-color-primary {
+    -fx-background-color: #e0e7ff;
+}
+.j-chip-variant-soft.j-chip-color-primary .j-chip-text {
+    -fx-text-fill: #4338ca;
+}
+.j-chip-variant-soft.j-chip-color-primary .j-chip-dismiss {
+    -fx-text-fill: #4338ca;
+}
+
+.j-chip-variant-soft.j-chip-color-success {
+    -fx-background-color: #dcfce7;
+}
+.j-chip-variant-soft.j-chip-color-success .j-chip-text {
+    -fx-text-fill: #16a34a;
+}
+.j-chip-variant-soft.j-chip-color-success .j-chip-dismiss {
+    -fx-text-fill: #16a34a;
+}
+
+.j-chip-variant-soft.j-chip-color-danger {
+    -fx-background-color: #fee2e2;
+}
+.j-chip-variant-soft.j-chip-color-danger .j-chip-text {
+    -fx-text-fill: #dc2626;
+}
+.j-chip-variant-soft.j-chip-color-danger .j-chip-dismiss {
+    -fx-text-fill: #dc2626;
+}
+
+.j-chip-variant-soft.j-chip-color-warning {
+    -fx-background-color: #fef3c7;
+}
+.j-chip-variant-soft.j-chip-color-warning .j-chip-text {
+    -fx-text-fill: #d97706;
+}
+.j-chip-variant-soft.j-chip-color-warning .j-chip-dismiss {
+    -fx-text-fill: #d97706;
+}
+
+.j-chip-variant-soft.j-chip-color-info {
+    -fx-background-color: #dbeafe;
+}
+.j-chip-variant-soft.j-chip-color-info .j-chip-text {
+    -fx-text-fill: #2563eb;
+}
+.j-chip-variant-soft.j-chip-color-info .j-chip-dismiss {
+    -fx-text-fill: #2563eb;
+}
+
+.j-chip-variant-soft.j-chip-color-slate {
+    -fx-background-color: #f1f5f9;
+}
+.j-chip-variant-soft.j-chip-color-slate .j-chip-text {
+    -fx-text-fill: #475569;
+}
+.j-chip-variant-soft.j-chip-color-slate .j-chip-dismiss {
+    -fx-text-fill: #475569;
+}
+
+/* ── FILLED Variant ── */
+.j-chip-variant-filled.j-chip-color-primary {
+    -fx-background-color: #4f46e5;
+}
+.j-chip-variant-filled.j-chip-color-primary .j-chip-text {
+    -fx-text-fill: white;
+}
+.j-chip-variant-filled.j-chip-color-primary .j-chip-dismiss {
+    -fx-text-fill: white;
+}
+
+.j-chip-variant-filled.j-chip-color-success {
+    -fx-background-color: #16a34a;
+}
+.j-chip-variant-filled.j-chip-color-success .j-chip-text {
+    -fx-text-fill: white;
+}
+.j-chip-variant-filled.j-chip-color-success .j-chip-dismiss {
+    -fx-text-fill: white;
+}
+
+.j-chip-variant-filled.j-chip-color-danger {
+    -fx-background-color: #dc2626;
+}
+.j-chip-variant-filled.j-chip-color-danger .j-chip-text {
+    -fx-text-fill: white;
+}
+.j-chip-variant-filled.j-chip-color-danger .j-chip-dismiss {
+    -fx-text-fill: white;
+}
+
+.j-chip-variant-filled.j-chip-color-warning {
+    -fx-background-color: #d97706;
+}
+.j-chip-variant-filled.j-chip-color-warning .j-chip-text {
+    -fx-text-fill: white;
+}
+.j-chip-variant-filled.j-chip-color-warning .j-chip-dismiss {
+    -fx-text-fill: white;
+}
+
+.j-chip-variant-filled.j-chip-color-info {
+    -fx-background-color: #2563eb;
+}
+.j-chip-variant-filled.j-chip-color-info .j-chip-text {
+    -fx-text-fill: white;
+}
+.j-chip-variant-filled.j-chip-color-info .j-chip-dismiss {
+    -fx-text-fill: white;
+}
+
+.j-chip-variant-filled.j-chip-color-slate {
+    -fx-background-color: #475569;
+}
+.j-chip-variant-filled.j-chip-color-slate .j-chip-text {
+    -fx-text-fill: white;
+}
+.j-chip-variant-filled.j-chip-color-slate .j-chip-dismiss {
+    -fx-text-fill: white;
+}
+
+/* ── OUTLINED Variant ── */
+.j-chip-variant-outlined {
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 999;
+}
+.j-chip-variant-outlined.j-chip-color-primary {
+    -fx-border-color: #4f46e5;
+}
+.j-chip-variant-outlined.j-chip-color-primary .j-chip-text {
+    -fx-text-fill: #4f46e5;
+}
+.j-chip-variant-outlined.j-chip-color-primary .j-chip-dismiss {
+    -fx-text-fill: #4f46e5;
+}
+
+.j-chip-variant-outlined.j-chip-color-success {
+    -fx-border-color: #16a34a;
+}
+.j-chip-variant-outlined.j-chip-color-success .j-chip-text {
+    -fx-text-fill: #16a34a;
+}
+.j-chip-variant-outlined.j-chip-color-success .j-chip-dismiss {
+    -fx-text-fill: #16a34a;
+}
+
+.j-chip-variant-outlined.j-chip-color-danger {
+    -fx-border-color: #dc2626;
+}
+.j-chip-variant-outlined.j-chip-color-danger .j-chip-text {
+    -fx-text-fill: #dc2626;
+}
+.j-chip-variant-outlined.j-chip-color-danger .j-chip-dismiss {
+    -fx-text-fill: #dc2626;
+}
+
+.j-chip-variant-outlined.j-chip-color-warning {
+    -fx-border-color: #d97706;
+}
+.j-chip-variant-outlined.j-chip-color-warning .j-chip-text {
+    -fx-text-fill: #d97706;
+}
+.j-chip-variant-outlined.j-chip-color-warning .j-chip-dismiss {
+    -fx-text-fill: #d97706;
+}
+
+.j-chip-variant-outlined.j-chip-color-info {
+    -fx-border-color: #2563eb;
+}
+.j-chip-variant-outlined.j-chip-color-info .j-chip-text {
+    -fx-text-fill: #2563eb;
+}
+.j-chip-variant-outlined.j-chip-color-info .j-chip-dismiss {
+    -fx-text-fill: #2563eb;
+}
+
+.j-chip-variant-outlined.j-chip-color-slate {
+    -fx-border-color: #94a3b8;
+}
+.j-chip-variant-outlined.j-chip-color-slate .j-chip-text {
+    -fx-text-fill: #475569;
+}
+.j-chip-variant-outlined.j-chip-color-slate .j-chip-dismiss {
+    -fx-text-fill: #475569;
+}
+
+/* ─── J-NUMBER-INPUT ─────────────────────────────────────────────────────────── */
+.j-number-input {
+    -fx-alignment: center;
+    -fx-spacing: 0;
+    -fx-max-width: 180;
+}
+
+.j-number-btn {
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-max-width: 36;
+    -fx-max-height: 36;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-slate-600;
+    -fx-background-color: -color-slate-100;
+    -fx-border-color: -color-slate-300;
+    -fx-border-width: 1;
+}
+.j-number-btn:hover {
+    -fx-background-color: -color-slate-200;
+    -fx-text-fill: -color-slate-800;
+}
+.j-number-btn-left {
+    -fx-background-radius: 6 0 0 6;
+    -fx-border-radius: 6 0 0 6;
+}
+.j-number-btn-right {
+    -fx-background-radius: 0 6 6 0;
+    -fx-border-radius: 0 6 6 0;
+}
+
+.j-number-field {
+    -fx-min-height: 36;
+    -fx-max-height: 36;
+    -fx-pref-width: 70;
+    -fx-alignment: center;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-background-color: white;
+    -fx-border-color: -color-slate-300;
+    -fx-border-width: 1 0 1 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 0 4;
+}
+.j-number-field:focused {
+    -fx-border-color: -color-primary-400;
+}
+
+/* ─── J-SKELETON ─────────────────────────────────────────────────────────────── */
+.j-skeleton {
+    -fx-background-color: #e2e8f0;
+    -fx-background-radius: 4;
+}
+.j-skeleton-line {
+    -fx-background-radius: 6;
+}
+.j-skeleton-rect {
+    -fx-background-radius: 8;
+}
+.j-skeleton-avatar {
+    -fx-background-radius: 999;
+}
+.j-skeleton-card {
+    -fx-padding: 16;
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+/* ─── J-SEARCH-INPUT ─────────────────────────────────────────────────────────── */
+.j-search-input {
+    -fx-background-color: white;
+    -fx-border-color: #cbd5e1;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 0 12;
+    -fx-spacing: 8;
+    -fx-min-height: 38;
+    -fx-max-height: 38;
+}
+.j-search-input:focused-within {
+    -fx-border-color: -color-primary-400;
+}
+.j-search-icon {
+    -fx-fill: #94a3b8;
+    -fx-min-width: 18;
+    -fx-min-height: 18;
+    -fx-max-width: 18;
+    -fx-max-height: 18;
+    -fx-padding: 0;
+}
+.j-search-clear {
+    -fx-fill: #94a3b8;
+    -fx-min-width: 16;
+    -fx-min-height: 16;
+    -fx-max-width: 16;
+    -fx-max-height: 16;
+    -fx-padding: 0;
+    -fx-cursor: hand;
+}
+.j-search-clear:hover {
+    -fx-fill: #475569;
+}
+.j-search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-font-size: 13px;
+    -fx-text-fill: #334155;
+}
+.j-search-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.j-search-popup-scroll {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.j-search-popup-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+.j-search-popup-box {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-padding: 4 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 4);
+}
+.j-search-popup-item {
+    -fx-padding: 8 16;
+    -fx-font-size: 13px;
+    -fx-text-fill: #334155;
+    -fx-cursor: hand;
+}
+.j-search-popup-item:hover,
+.j-search-popup-item:focused {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: -color-primary-600;
+}
+
+/* ─── J-STEPPER ──────────────────────────────────────────────────────────── */
+.j-stepper {
+    -fx-background-color: transparent;
+}
+.j-stepper-header {
+    -fx-padding: 0 0 16 0;
+}
+.j-stepper-step-box {
+    -fx-min-width: 60;
+}
+.j-stepper-icon-pane {
+    -fx-alignment: center;
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+    -fx-max-width: 32;
+    -fx-max-height: 32;
+}
+.j-stepper-circle {
+    -fx-fill: white;
+    -fx-stroke: #cbd5e1;
+    -fx-stroke-width: 2;
+}
+.j-stepper-circle.active {
+    -fx-fill: -color-primary-500;
+    -fx-stroke: -color-primary-500;
+}
+.j-stepper-circle.completed {
+    -fx-fill: -color-primary-500;
+    -fx-stroke: -color-primary-500;
+}
+.j-stepper-number {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.j-stepper-number.active,
+.j-stepper-number.completed {
+    -fx-text-fill: white;
+}
+.j-stepper-number.completed > .j-icon {
+    -fx-fill: white;
+}
+.j-stepper-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: bold;
+}
+.j-stepper-title.active,
+.j-stepper-title.completed {
+    -fx-text-fill: #0f172a;
+}
+.j-stepper-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94a3b8;
+}
+.j-stepper-line {
+    -fx-background-color: #e2e8f0;
+    -fx-min-height: 2px;
+    -fx-max-height: 2px;
+}
+.j-stepper-line.completed {
+    -fx-background-color: -color-primary-500;
+}
+.j-stepper-content {
+    -fx-padding: 24 0;
+}
+.j-stepper-footer {
+    -fx-padding: 16 0 0 0;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ─── J-TIMELINE ───────── */
+.j-timeline {
+    -fx-padding: 16;
+}
+
+.j-timeline-event {
+    -fx-background-color: transparent;
+}
+
+/* Vertical specific */
+.j-timeline-vertical .j-timeline-event {
+    -fx-min-height: 80px;
+}
+.j-timeline-vertical .j-timeline-indicator-block {
+    -fx-min-width: 40px;
+}
+.j-timeline-vertical .j-timeline-line {
+    -fx-background-color: #e2e8f0;
+    -fx-min-width: 2px;
+    -fx-max-width: 2px;
+}
+
+/* Horizontal specific */
+.j-timeline-horizontal .j-timeline-event {
+    -fx-min-width: 150px;
+}
+.j-timeline-horizontal .j-timeline-indicator-block {
+    -fx-min-height: 40px;
+}
+.j-timeline-horizontal .j-timeline-line {
+    -fx-background-color: #e2e8f0;
+    -fx-min-height: 2px;
+    -fx-max-height: 2px;
+}
+
+/* Shared components */
+.j-timeline-icon-pane {
+    -fx-alignment: center;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
+    -fx-background-color: white;
+}
+
+.j-timeline-circle {
+    -fx-fill: #94a3b8;
+}
+
+/* Colored States */
+.j-timeline-circle.primary {
+    -fx-fill: -color-primary-500;
+}
+.j-timeline-line.primary {
+    -fx-background-color: -color-primary-500;
+}
+.j-timeline-icon-pane.primary > .j-icon {
+    -fx-fill: -color-primary-500;
+}
+
+.j-timeline-circle.success {
+    -fx-fill: -color-success-500;
+}
+.j-timeline-line.success {
+    -fx-background-color: -color-success-500;
+}
+.j-timeline-icon-pane.success > .j-icon {
+    -fx-fill: -color-success-500;
+}
+
+.j-timeline-circle.danger {
+    -fx-fill: -color-danger-500;
+}
+.j-timeline-line.danger {
+    -fx-background-color: -color-danger-500;
+}
+.j-timeline-icon-pane.danger > .j-icon {
+    -fx-fill: -color-danger-500;
+}
+
+.j-timeline-circle.warning {
+    -fx-fill: -color-warning-500;
+}
+.j-timeline-line.warning {
+    -fx-background-color: -color-warning-500;
+}
+.j-timeline-icon-pane.warning > .j-icon {
+    -fx-fill: -color-warning-500;
+}
+
+.j-timeline-circle.info {
+    -fx-fill: -color-info-500;
+}
+.j-timeline-line.info {
+    -fx-background-color: -color-info-500;
+}
+.j-timeline-icon-pane.info > .j-icon {
+    -fx-fill: -color-info-500;
+}
+
+.j-timeline-circle.slate {
+    -fx-fill: -color-slate-500;
+}
+.j-timeline-line.slate {
+    -fx-background-color: -color-slate-500;
+}
+.j-timeline-icon-pane.slate > .j-icon {
+    -fx-fill: -color-slate-500;
+}
+
+/* Text Blocks */
+.j-timeline-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e293b;
+    -fx-font-weight: bold;
+}
+.j-timeline-time {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+}
+.j-timeline-desc {
+    -fx-font-size: 14px;
+    -fx-text-fill: #475569;
+}
+
+/* ─── J-STATCARD ───────── */
+.j-stat-card {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.02), 4, 0, 0, 2);
+}
+
+.j-stat-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: bold;
+}
+
+.j-stat-value {
+    -fx-font-size: 28px;
+    -fx-text-fill: #0f172a;
+    -fx-font-weight: bold;
+}
+
+.j-stat-trend {
+    -fx-font-size: 13px;
+    -fx-text-fill: #94a3b8;
+}
+
+.j-stat-trend.positive {
+    -fx-text-fill: -color-success-600;
+    -fx-font-weight: bold;
+}
+
+.j-stat-trend.negative {
+    -fx-text-fill: -color-danger-600;
+    -fx-font-weight: bold;
+}
+
+.j-stat-icon-pane {
+    -fx-alignment: center;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-max-width: 40px;
+    -fx-max-height: 40px;
+    -fx-background-radius: 8;
+    -fx-background-color: #f1f5f9;
+}
+.j-stat-icon-pane > .j-icon {
+    -fx-fill: #64748b;
+}
+
+.j-stat-icon-pane.primary {
+    -fx-background-color: -color-primary-50;
+}
+.j-stat-icon-pane.primary > .j-icon {
+    -fx-fill: -color-primary-600;
+}
+
+.j-stat-icon-pane.success {
+    -fx-background-color: -color-success-50;
+}
+.j-stat-icon-pane.success > .j-icon {
+    -fx-fill: -color-success-600;
+}
+
+.j-stat-icon-pane.danger {
+    -fx-background-color: -color-danger-50;
+}
+.j-stat-icon-pane.danger > .j-icon {
+    -fx-fill: -color-danger-600;
+}
+
+.j-stat-icon-pane.warning {
+    -fx-background-color: -color-warning-50;
+}
+.j-stat-icon-pane.warning > .j-icon {
+    -fx-fill: -color-warning-600;
+}
+
+.j-stat-icon-pane.info {
+    -fx-background-color: -color-info-50;
+}
+.j-stat-icon-pane.info > .j-icon {
+    -fx-fill: -color-info-600;
+}

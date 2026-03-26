@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JConfirmDialog - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JConfirmDialog</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Diálogo de confirmación reutilizable con variantes de tipo (INFO, SUCCESS, WARNING, DANGER),
+                        iconos automáticos, callbacks síncronos/asíncronos y loading state.
+                    </p>
+                </header>
+
+                <!-- Uso Básico -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Uso Básico (una línea)</h2>
+                    <p class="text-slate-600 mb-4">La forma más simple: un título y un callback.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// Confirmación simple
+JConfirmDialog.show("¿Estás seguro?", () -> {
+    System.out.println("Confirmado!");
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Con Mensaje -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Con Mensaje Descriptivo</h2>
+                    <p class="text-slate-600 mb-4">Agrega un mensaje de contexto debajo del título.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">JConfirmDialog.show(
+    "¿Guardar cambios?",
+    "Los datos modificados se guardarán permanentemente.",
+    () -> guardarDatos()
+);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Variantes de Tipo -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Variantes de Tipo</h2>
+                    <p class="text-slate-600 mb-4">Cada tipo tiene un icono y color automático.</p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                            <h3 class="font-semibold text-blue-800 mb-1">Type.INFO</h3>
+                            <p class="text-sm text-blue-600">Icono: ℹ️ Info — Botón azul</p>
+                        </div>
+                        <div class="p-4 bg-emerald-50 rounded-lg border border-emerald-100">
+                            <h3 class="font-semibold text-emerald-800 mb-1">Type.SUCCESS</h3>
+                            <p class="text-sm text-emerald-600">Icono: ✓ Check — Botón verde</p>
+                        </div>
+                        <div class="p-4 bg-amber-50 rounded-lg border border-amber-100">
+                            <h3 class="font-semibold text-amber-800 mb-1">Type.WARNING</h3>
+                            <p class="text-sm text-amber-600">Icono: ⚠ Warning — Botón amarillo</p>
+                        </div>
+                        <div class="p-4 bg-red-50 rounded-lg border border-red-100">
+                            <h3 class="font-semibold text-red-800 mb-1">Type.DANGER</h3>
+                            <p class="text-sm text-red-600">Icono: 🗑 Delete — Botón rojo</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// Con tipo DANGER
+JConfirmDialog.show(
+    "¿Eliminar registro?",
+    "Esta acción no se puede deshacer.",
+    JConfirmDialog.Type.DANGER,
+    () -> eliminarRegistro()
+);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Shortcut Delete -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Shortcut: showDelete</h2>
+                    <p class="text-slate-600 mb-4">Método estático pre-configurado para eliminaciones (DANGER + icono de papelera).</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">JConfirmDialog.showDelete(
+    "¿Eliminar el usuario 'Juan'?",
+    () -> deleteUser(userId)
+);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Fluent API -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Fluent API (Personalización completa)</h2>
+                    <p class="text-slate-600 mb-4">Para control total sobre cada aspecto del diálogo.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">new JConfirmDialog()
+    .setTitle("Enviar reporte")
+    .setMessage("El reporte mensual se enviará a gerencia@empresa.com")
+    .setType(JConfirmDialog.Type.SUCCESS)
+    .setIcon(JIcon.EMAIL)            // Icono personalizado
+    .setConfirmText("Enviar ahora")  // Texto del botón confirmar
+    .setCancelText("Más tarde")      // Texto del botón cancelar
+    .setOnConfirm(() -> enviarReporte())
+    .setOnCancel(() -> System.out.println("Cancelado"))
+    .show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- Async -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Acción Asíncrona (Loading State)</h2>
+                    <p class="text-slate-600 mb-4">El botón muestra un spinner mientras la acción se ejecuta en background.</p>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">new JConfirmDialog()
+    .setTitle("¿Eliminar usuario?")
+    .setType(JConfirmDialog.Type.DANGER)
+    .setConfirmText("Eliminar")
+    .setOnConfirmAsync(
+        () -> userService.delete(userId),   // Se ejecuta en hilo background
+        success -> {                         // Callback en hilo JavaFX
+            if (success) refreshTable();
+        }
+    )
+    .show();</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">API Reference</h2>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 mt-6">Constructores</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-6">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Constructor</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JConfirmDialog()</td>
+                                <td class="px-6 py-4 text-slate-500">Crea un diálogo vacío con título por defecto.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JConfirmDialog(String title)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea un diálogo con título.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JConfirmDialog(String title, String message)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea un diálogo con título y mensaje.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3">Métodos estáticos</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-6">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">show(title, onConfirm)</td>
+                                <td class="px-6 py-4 text-slate-500">Confirmación básica.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">show(title, message, onConfirm)</td>
+                                <td class="px-6 py-4 text-slate-500">Con mensaje descriptivo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">show(title, message, type, onConfirm)</td>
+                                <td class="px-6 py-4 text-slate-500">Con tipo de variante.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">showDelete(message, onConfirm)</td>
+                                <td class="px-6 py-4 text-slate-500">Pre-configurado para eliminar (DANGER).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3">Métodos de instancia (Fluent API)</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setTitle(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el título.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setMessage(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el mensaje descriptivo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setType(Type)</td>
+                                <td class="px-6 py-4 text-slate-500">INFO, SUCCESS, WARNING o DANGER.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setIcon(JIcon)</td>
+                                <td class="px-6 py-4 text-slate-500">Icono personalizado (sobreescribe el del tipo).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setConfirmText(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Texto del botón de confirmación.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setCancelText(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Texto del botón de cancelar.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnConfirm(Runnable)</td>
+                                <td class="px-6 py-4 text-slate-500">Callback al confirmar.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnCancel(Runnable)</td>
+                                <td class="px-6 py-4 text-slate-500">Callback al cancelar.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnConfirmAsync(Supplier, Consumer)</td>
+                                <td class="px-6 py-4 text-slate-500">Acción asíncrona con loading state.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setShowCancelButton(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Mostrar/ocultar botón cancelar.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">show()</td>
+                                <td class="px-6 py-4 text-slate-500">Muestra el diálogo con animación.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">close()</td>
+                                <td class="px-6 py-4 text-slate-500">Cierra el diálogo con animación.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

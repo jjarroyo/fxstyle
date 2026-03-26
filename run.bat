@@ -6,7 +6,7 @@ set "MAVEN_HOME=%~dp0maven\apache-maven-3.9.12"
 set "PATH=%MAVEN_HOME%\bin;%JAVA_HOME%\bin;%PATH%"
 
 echo ==========================================
-echo Building and Running JJArroyo Demo App
+echo Building and Running FxStyle Demo App v2.0.0
 echo ==========================================
 
 rem Build the entire project (Library + Demo)
@@ -23,7 +23,7 @@ echo Running Demo Application...
 echo ==========================================
 
 rem Run the Demo JAR
-java -jar jjarroyo-demo/target/jjarroyo-demo-1.3.0.jar
+java -jar fxstyle-demo/target/fxstyle-demo-2.0.0.jar
 if %ERRORLEVEL% NEQ 0 (
     echo Application execution failed!
     pause
@@ -32,5 +32,4 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo Application finished.
-pause-path "%JAVAFX_PATH%" --add-modules javafx.controls,javafx.fxml -cp bin com.jjarroyo.demo.App
 pause

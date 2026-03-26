@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JTitleBar - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Layout</span>
+                        <h1 class="text-3xl font-bold text-slate-900">
+                            JTitleBar
+                        </h1>
+                    </div>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Componente que reemplaza la barra de título nativa del sistema operativo, permitiendo un diseño inmersivo y personalizado con soporte automático para modo claro y oscuro.
+                    </p>
+                </header>
+
+                <!-- Features Section -->
+                <section class="mb-12">
+                     <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Características
+                    </h2>
+                    <ul class="list-disc list-inside text-slate-700 space-y-2 mb-6">
+                        <li>Arrastre de ventana fluido.</li>
+                        <li>Doble clic en la barra para maximizar/restaurar.</li>
+                        <li>Botones integrados de minimizar, maximizar y cerrar con íconos vectoriales al estilo Windows 11.</li>
+                        <li><strong>Animación fluida Scale+Translate</strong> al maximizar o restaurar, evitando el <i>flash</i> o estiramiento de contenido de JavaFX por defecto.</li>
+                        <li>Soporte nativo para <code>.root.dark</code>.</li>
+                        <li>Zona derecha personalizable para añadir perfiles, barras de búsqueda o botones propios antes de los controles de la ventana.</li>
+                    </ul>
+                </section>
+
+                <!-- Example Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Ejemplo de Uso Rápido
+                    </h2>
+
+                    <div
+                        class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4"
+                    >
+                        <p class="text-sm text-slate-500 mb-4">La forma más sencilla de utilizar <code>JTitleBar</code> es usando su factory estático <code>install()</code>, el cual asume el control del <code>Stage</code>, lo configura como <code>TRANSPARENT</code> e inyecta las sombras y bordes redondeados necesarios.</p>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+<pre><code class="text-slate-300 font-mono text-sm">import com.jjarroyo.components.JTitleBar;
+import com.jjarroyo.components.JIcon;
+
+@Override
+public void start(Stage primaryStage) {
+    // 1. Crear el contenido principal
+    VBox myAppContent = new VBox(new Label("Hola Mundo"));
+    
+    // 2. Instanciar y configurar el JTitleBar
+    JTitleBar titleBar = new JTitleBar()
+        .setTitle("Mi Aplicación JavaFX")
+        .setIcon(new JIcon(JIcon.APPS))
+        .setOnCloseRequest(() -> {
+            System.out.println("Guardando datos antes de salir...");
+            Platform.exit();
+        });
+
+    // 3. Opcional: Agregar nodos custom (ej. un input de búsqueda) a la derecha
+    titleBar.addRightNode(new JSearchInput());
+
+    // 4. Instalar en el Stage (esto creará la Scene y ajustará el Stage)
+    JTitleBar.install(primaryStage, titleBar, myAppContent, 1024, 768);
+
+    primaryStage.show();
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Referencia de API (Fluent Builder)
+                    </h2>
+                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+                        <table class="min-w-full text-left text-sm whitespace-nowrap">
+                            <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Método</th>
+                                    <th scope="col" class="px-6 py-4">Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 bg-white">
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600 text-sm">setTitle(String title)</td>
+                                    <td class="px-6 py-4 text-slate-600">Establece el texto del título de la ventana.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600 text-sm">setIcon(Node icon)</td>
+                                    <td class="px-6 py-4 text-slate-600">Añade un nodo o ícono a la izquierda del texto del título.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600 text-sm">addRightNode(Node node)</td>
+                                    <td class="px-6 py-4 text-slate-600">Agrega un nodo en el espacio a la derecha, justo antes de los botones de la ventana.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600 text-sm">setOnCloseRequest(Runnable action)</td>
+                                    <td class="px-6 py-4 text-slate-600">Acción a realizar al pulsar el botón "X". Por defecto hace <code>Platform.exit()</code>.</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600 text-sm">setAnimated(boolean value)</td>
+                                    <td class="px-6 py-4 text-slate-600">Habilita (true) o deshabilita (false) la animación de maximizado y minimizado.</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="px-6 py-4 font-mono text-purple-600 font-bold text-sm">JTitleBar.install(...) <span class="text-xs text-slate-400 ml-2">(static)</span></td>
+                                    <td class="px-6 py-4 text-slate-600">Configura el <code>Stage</code> (Style TRANSPARENT), asocia el título, el contenido y la escena.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Architecture Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Detalles de Implementación
+                    </h2>
+                    <div class="prose prose-slate max-w-none text-slate-600">
+                        <p>A diferencia de las barras de título custom tradicionales en JavaFX que sufren durante el redimensionamiento, <strong>JTitleBar</strong> utiliza un enfoque de <code class="bg-slate-100 px-1 rounded text-slate-800">Scale + Translate</code>.</p>
+                        <p>Al maximizar la ventana, el <code>Stage</code> toma el tamaño del sistema instantáneamente permitiendo un <i>layout</i> a máxima resolución. Visualmente, el contenedor principal de la aplicación es escalado hacia abajo para simular su tamaño previo, y luego animado con un <code>ScaleTransition</code> hacia un scale de <code>1.0</code> usando una curva de tipo <i>cubic-ease-out</i>.</p>
+                        <p>Esto asegura que todo vector y texto se vea nítido durante toda la transición, replicando la sensación de las aplicaciones nativas en Windows.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>
