@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>com.jjarroyo</groupId>
-            <artifactId>fxstyle-css</artifactId>
+            <artifactId>fxstyle-library</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

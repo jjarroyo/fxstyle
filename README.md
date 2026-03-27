@@ -31,7 +31,7 @@ java -jar "fxstyle-demo/target/fxstyle-demo-2.0.0.jar"
 
 ## Component Library
 
-The core of this project is `fxstyle-css` which provides a set of custom controls and styles for JavaFX.
+The core of this project is `fxstyle-library` which provides a set of custom controls and styles for JavaFX.
 
 ## Demo Application
 

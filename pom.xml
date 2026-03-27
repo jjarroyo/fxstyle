@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>fxstyle-css</module>
+        <module>fxstyle-library</module>
         <module>fxstyle-demo</module>
     </modules>
 

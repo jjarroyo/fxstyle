@@ -9,7 +9,7 @@
         <version>2.0.0</version>
     </parent>
 
-    <artifactId>fxstyle-css</artifactId>
+    <artifactId>fxstyle-library</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -146,53 +146,64 @@
                     <target>21</target>
                 </configuration>
             </plugin>
-
-            <!-- ── Fat JAR con maven-shade ── -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.6.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <excludes>
-                                    <!-- JavaFX la provee el runtime, no la incluyas en el fat JAR -->
-                                    <exclude>org.openjfx:*</exclude>
-                                </excludes>
-                            </artifactSet>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <!-- Excluir firmas para evitar SecurityException al correr el fat JAR -->
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                        <!-- Evitar duplicado de module-info al hacer shade -->
-                                        <exclude>module-info.class</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                            <!-- Transformers para merge correcto de recursos duplicados -->
-                            <transformers>
-                                <!-- Merge ServiceLoader registries (necesario para POI, logback) -->
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                                <!-- Merge MANIFEST -->
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
-                                <!-- Merge notices/licenses de Apache -->
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
-                                    <addHeader>false</addHeader>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>fat-jar</id>
+            <build>
+                <plugins>
+                    <!-- Solo usar este perfil cuando quieras un artefacto autocontenido -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>3.6.0</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                                <configuration>
+                                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                                    <shadedClassifierName>all</shadedClassifierName>
+                                    <artifactSet>
+                                        <excludes>
+                                            <!-- JavaFX la provee el runtime, no la incluyas en el fat JAR -->
+                                            <exclude>org.openjfx:*</exclude>
+                                        </excludes>
+                                    </artifactSet>
+                                    <filters>
+                                        <filter>
+                                            <artifact>*:*</artifact>
+                                            <excludes>
+                                                <!-- Excluir firmas para evitar SecurityException al correr el fat JAR -->
+                                                <exclude>META-INF/*.SF</exclude>
+                                                <exclude>META-INF/*.DSA</exclude>
+                                                <exclude>META-INF/*.RSA</exclude>
+                                                <!-- Evitar duplicado de module-info al hacer shade -->
+                                                <exclude>module-info.class</exclude>
+                                            </excludes>
+                                        </filter>
+                                    </filters>
+                                    <!-- Transformers para merge correcto de recursos duplicados -->
+                                    <transformers>
+                                        <!-- Merge ServiceLoader registries (necesario para POI, logback) -->
+                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                        <!-- Merge MANIFEST -->
+                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+                                        <!-- Merge notices/licenses de Apache -->
+                                        <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheNoticeResourceTransformer">
+                                            <addHeader>false</addHeader>
+                                        </transformer>
+                                    </transformers>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
