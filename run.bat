@@ -1,5 +1,5 @@
 @echo off
-set JAVAFX_PATH=E:\Java\javafx-sdk-24.0.1\lib
+set JAVAFX_PATH=E:\Java\javafx-sdk-26\lib
 
 @echo off
 set "MAVEN_HOME=%~dp0maven\apache-maven-3.9.12"
