@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JNotification - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            /* Simulation of JNotification using Tailwind */
+            .notification-trigger {
+                @apply relative inline-flex p-2 text-slate-500 hover:text-slate-700 transition-colors cursor-pointer;
+            }
+            .notification-badge {
+                @apply absolute top-1 right-1.5 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border-2 border-white transform translate-x-1 -translate-y-1;
+            }
+            .notification-panel {
+                @apply w-80 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden;
+            }
+            .notification-header {
+                @apply px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-white;
+            }
+            .notification-item {
+                @apply flex gap-3 p-4 border-b border-slate-50 hover:bg-slate-50 transition-colors cursor-pointer;
+            }
+            .notification-item.unread {
+                @apply bg-blue-50/50 hover:bg-blue-50;
+            }
+            .avatar {
+                @apply w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-sm flex-shrink-0;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full uppercase tracking-wider">Nuevo</span>
+                        <h1 class="text-3xl font-bold text-slate-900">JNotification</h1>
+                    </div>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Un componente de notificaciones avanzado que incluye un disparador con badge dinámico y un panel desplegable detallado para una experiencia de usuario premium.
+                    </p>
+                </header>
+
+                <!-- Preview -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Vista Previa</h2>
+                    <div class="bg-slate-200 p-12 rounded-xl flex flex-col items-center gap-8 justify-center min-h-[400px] border border-slate-300">
+                        <!-- Trigger Preview -->
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="notification-trigger bg-white rounded-lg shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <span class="notification-badge">3</span>
+                            </div>
+                            <span class="text-xs text-slate-500 font-medium italic">Disparador (Trigger)</span>
+                        </div>
+
+                        <!-- Panel Preview -->
+                        <div class="notification-panel shadow-2xl">
+                            <div class="notification-header text-sm">
+                                <span class="font-bold text-slate-800">Notificaciones</span>
+                                <button class="text-blue-600 hover:underline font-medium text-xs">Marcar todo leído</button>
+                            </div>
+                            
+                            <div class="max-h-[300px] overflow-y-auto">
+                                <div class="notification-item unread">
+                                    <div class="avatar bg-blue-100 text-blue-600">A</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex justify-between items-start mb-0.5">
+                                            <h4 class="text-xs font-bold text-slate-800 truncate">Actualización Disponible</h4>
+                                            <span class="text-[10px] text-slate-400 whitespace-nowrap">Hace 5m</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">Hay una nueva versión de FxStyle lista para descargar.</p>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="avatar bg-emerald-100 text-emerald-600">S</div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex justify-between items-start mb-0.5">
+                                            <h4 class="text-xs font-bold text-slate-800 truncate">Venta Realizada</h4>
+                                            <span class="text-[10px] text-slate-400">Hace 1h</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">Has recibido un pago de $500.00 de un cliente nuevo.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-3 border-t border-slate-100 text-center">
+                                <button class="text-xs font-bold text-blue-600 hover:text-blue-700">Ver todas las notificaciones</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Configuration -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Uso Básico</h2>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4">
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm">// 1. Instanciar el componente
+JNotification jNotification = new JNotification();
+
+// 2. Crear y añadir notificaciones
+JNotificationItem item = new JNotificationItem(
+    "Actualización Disponible",
+    "Hay una nueva versión de FxStyle disponible para descargar.",
+    "/path/to/icon.png",
+    LocalDateTime.now().minusMinutes(5)
+);
+
+jNotification.addNotification(item);
+
+// 3. Integrar en tu layout (ej. Header)
+jHeader.setRight(jNotification);</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Details -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Características</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-blue-600 mb-2">Badge Dinámico</h4>
+                            <p class="text-sm text-slate-600">El badge contador se actualiza automáticamente al añadir notificaciones y desaparece cuando el conteo es cero.</p>
+                        </div>
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-blue-600 mb-2">Tiempo Relativo</h4>
+                            <p class="text-sm text-slate-600">Formatea automáticamente las fechas a texto legible como "Hace 2m", "Ayer", etc.</p>
+                        </div>
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-blue-600 mb-2">Scrollable Body</h4>
+                            <p class="text-sm text-slate-600">El panel principal incluye un ScrollPane estilizado para manejar largas listas de notificaciones sin afectar el layout.</p>
+                        </div>
+                        <div class="p-5 bg-white rounded-lg border border-slate-200 shadow-sm">
+                            <h4 class="font-bold text-blue-600 mb-2">Clean Overlay</h4>
+                            <p class="text-sm text-slate-600">Utiliza JPopover internamente para un despliegue con animaciones de Fade y Scale.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">API Reference</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-left text-sm whitespace-nowrap">
+                            <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Método</th>
+                                    <th scope="col" class="px-6 py-4">Descripción</th>
+                                    <th scope="col" class="px-6 py-4">Parámetros</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 bg-white">
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600">addNotification(JNotificationItem item)</td>
+                                    <td class="px-6 py-4 text-slate-500">Añade una nueva notificación al inicio de la lista.</td>
+                                    <td class="px-6 py-4 text-slate-500">JNotificationItem</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600">clearNotifications()</td>
+                                    <td class="px-6 py-4 text-slate-500">Elimina todas las notificaciones de la lista.</td>
+                                    <td class="px-6 py-4 text-slate-500">Ninguno</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600">markAllAsRead()</td>
+                                    <td class="px-6 py-4 text-slate-500">Cambia el estado de todas las notificaciones a leídas.</td>
+                                    <td class="px-6 py-4 text-slate-500">Ninguno</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-mono text-blue-600">setOnViewAll(Runnable callback)</td>
+                                    <td class="px-6 py-4 text-slate-500">Establece la acción para el botón "Ver todas".</td>
+                                    <td class="px-6 py-4 text-slate-500">Runnable</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

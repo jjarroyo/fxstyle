@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 /**
  * JTable — Enterprise-grade table component with checkboxes, search/filter,
- * row actions, custom cell renderers, bulk actions, CSV export, and more.
+ * row actions, custom cell renderers, bulk actions, CSV export, inline editing and more.
  *
  * <pre>
  * JTable&lt;User&gt; table = new JTable&lt;&gt;();
@@ -34,6 +34,10 @@ import java.util.stream.Collectors;
  * table.addColumn("Role", "role", user -&gt; new JChip(user.getRole()));
  * table.setRowActions((user, box) -&gt; { ... });
  * table.setItems(data);
+ *
+ * // Editable mode (DataGrid):
+ * table.setEditable(true);
+ * table.addEditableColumn("Name", "name", (user, val) -&gt; user.nameProperty().set(val));
  * </pre>
  */
 public class JTable<T> extends VBox {
@@ -85,6 +89,10 @@ public class JTable<T> extends VBox {
     private boolean statusBarEnabled = false;
     private Label statusLabel;
     private HBox statusBar;
+
+    // ─── Editable Mode (DataGrid) ────────────────────────────────────────────────
+    private boolean editable = false;
+    private BiConsumer<T, String> onCellEdit;
 
     // ─── Visual Modes ────────────────────────────────────────────────────────────
     private boolean striped = false;
@@ -368,6 +376,278 @@ public class JTable<T> extends VBox {
         searchProperties.add(property);
         columnInfos.add(new ColumnInfo(title, property));
         return col;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════════
+    // 2b. EDITABLE COLUMNS (DataGrid Mode)
+    // ═══════════════════════════════════════════════════════════════════════════════
+
+    /**
+     * Enable or disable inline cell editing (DataGrid mode).
+     * When enabled, columns added via addEditableColumn() will allow double-click editing.
+     */
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+        tableView.setEditable(editable);
+        if (editable) {
+            tableView.getStyleClass().add("j-table-editable");
+        } else {
+            tableView.getStyleClass().remove("j-table-editable");
+        }
+    }
+
+    public boolean isEditable() { return editable; }
+
+    /**
+     * Callback fired when any cell is edited. Receives the row item and the column property name.
+     */
+    public void setOnCellEdit(BiConsumer<T, String> handler) {
+        this.onCellEdit = handler;
+    }
+
+    /**
+     * Add an editable text column. Double-click to edit, Enter to commit, Escape to cancel.
+     *
+     * @param title    Column header text
+     * @param property JavaFX bean property name (for PropertyValueFactory)
+     * @param setter   Lambda to write the new value back to the model: (item, newValue) -> ...
+     */
+    public TableColumn<T, String> addEditableColumn(String title, String property, BiConsumer<T, String> setter) {
+        return addEditableColumn(title, property, setter, true);
+    }
+
+    /**
+     * Add an editable text column with sortability control.
+     */
+    public TableColumn<T, String> addEditableColumn(String title, String property, BiConsumer<T, String> setter, boolean sortable) {
+        TableColumn<T, String> col = new TableColumn<>(title);
+        col.setCellValueFactory(new PropertyValueFactory<>(property));
+        col.setSortable(sortable);
+        col.setEditable(true);
+
+        col.setCellFactory(column -> new EditableTextCell<>(setter, property, this));
+
+        tableView.getColumns().add(col);
+        searchProperties.add(property);
+        columnInfos.add(new ColumnInfo(title, property));
+        return col;
+    }
+
+    /**
+     * Add an editable column with a dropdown (ComboBox) for predefined options.
+     *
+     * @param title    Column header text
+     * @param property JavaFX bean property name
+     * @param setter   Lambda to write the new value back to the model
+     * @param options  Available options for the dropdown
+     */
+    public TableColumn<T, String> addEditableColumn(String title, String property, BiConsumer<T, String> setter, String... options) {
+        TableColumn<T, String> col = new TableColumn<>(title);
+        col.setCellValueFactory(new PropertyValueFactory<>(property));
+        col.setSortable(true);
+        col.setEditable(true);
+
+        col.setCellFactory(column -> new EditableComboCell<>(setter, property, this, options));
+
+        tableView.getColumns().add(col);
+        searchProperties.add(property);
+        columnInfos.add(new ColumnInfo(title, property));
+        return col;
+    }
+
+    // ─── Editable Text Cell ───────────────────────────────────────────────────────
+
+    private static class EditableTextCell<T> extends TableCell<T, String> {
+        private TextField textField;
+        private final BiConsumer<T, String> setter;
+        private final String property;
+        private final JTable<T> table;
+
+        EditableTextCell(BiConsumer<T, String> setter, String property, JTable<T> table) {
+            this.setter = setter;
+            this.property = property;
+            this.table = table;
+            getStyleClass().add("j-table-editable-cell");
+        }
+
+        @Override
+        public void startEdit() {
+            if (!isEditable() || !getTableView().isEditable() || !getTableColumn().isEditable()) return;
+            super.startEdit();
+
+            if (textField == null) {
+                textField = new TextField(getItem() != null ? getItem() : "");
+                textField.getStyleClass().add("j-table-edit-field");
+
+                // Commit on Enter
+                textField.setOnAction(e -> commitEdit(textField.getText()));
+
+                // Cancel on Escape
+                textField.setOnKeyPressed(e -> {
+                    if (e.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
+                        cancelEdit();
+                    }
+                    // Tab to next cell
+                    if (e.getCode() == javafx.scene.input.KeyCode.TAB) {
+                        commitEdit(textField.getText());
+                        // Move focus to next column
+                        TableColumn<T, ?> nextCol = getNextColumn(!e.isShiftDown());
+                        if (nextCol != null) {
+                            getTableView().edit(getTableRow().getIndex(), nextCol);
+                        }
+                    }
+                });
+
+                // Cancel on focus lost
+                textField.focusedProperty().addListener((obs, wasFocused, isFocused) -> {
+                    if (!isFocused && isEditing()) {
+                        commitEdit(textField.getText());
+                    }
+                });
+            }
+
+            textField.setText(getItem() != null ? getItem() : "");
+            setText(null);
+            setGraphic(textField);
+            textField.selectAll();
+            textField.requestFocus();
+        }
+
+        @Override
+        public void cancelEdit() {
+            super.cancelEdit();
+            setText(getItem());
+            setGraphic(null);
+        }
+
+        @Override
+        public void commitEdit(String newValue) {
+            super.commitEdit(newValue);
+            T item = getTableRow() != null ? getTableRow().getItem() : null;
+            if (item != null && setter != null) {
+                setter.accept(item, newValue);
+                if (table.onCellEdit != null) {
+                    table.onCellEdit.accept(item, property);
+                }
+            }
+            setText(newValue);
+            setGraphic(null);
+        }
+
+        @Override
+        protected void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+                setText(null);
+                setGraphic(null);
+            } else if (isEditing()) {
+                if (textField != null) {
+                    textField.setText(item != null ? item : "");
+                }
+                setText(null);
+                setGraphic(textField);
+            } else {
+                setText(item);
+                setGraphic(null);
+            }
+        }
+
+        @SuppressWarnings("unchecked")
+        private TableColumn<T, ?> getNextColumn(boolean forward) {
+            var columns = getTableView().getVisibleLeafColumns();
+            if (columns.size() < 2) return null;
+            int currentIndex = columns.indexOf(getTableColumn());
+            int nextIndex = currentIndex + (forward ? 1 : -1);
+            if (nextIndex < 0 || nextIndex >= columns.size()) return null;
+            return (TableColumn<T, ?>) columns.get(nextIndex);
+        }
+    }
+
+    // ─── Editable ComboBox Cell ───────────────────────────────────────────────────
+
+    private static class EditableComboCell<T> extends TableCell<T, String> {
+        private ComboBox<String> comboBox;
+        private final BiConsumer<T, String> setter;
+        private final String property;
+        private final JTable<T> table;
+        private final String[] options;
+
+        EditableComboCell(BiConsumer<T, String> setter, String property, JTable<T> table, String... options) {
+            this.setter = setter;
+            this.property = property;
+            this.table = table;
+            this.options = options;
+            getStyleClass().add("j-table-editable-cell");
+        }
+
+        @Override
+        public void startEdit() {
+            if (!isEditable() || !getTableView().isEditable() || !getTableColumn().isEditable()) return;
+            super.startEdit();
+
+            if (comboBox == null) {
+                comboBox = new ComboBox<>(FXCollections.observableArrayList(options));
+                comboBox.getStyleClass().add("j-table-edit-combo");
+                comboBox.setMaxWidth(Double.MAX_VALUE);
+
+                comboBox.setOnAction(e -> {
+                    String selected = comboBox.getValue();
+                    if (selected != null) {
+                        commitEdit(selected);
+                    }
+                });
+
+                comboBox.setOnKeyPressed(e -> {
+                    if (e.getCode() == javafx.scene.input.KeyCode.ESCAPE) {
+                        cancelEdit();
+                    }
+                });
+            }
+
+            comboBox.setValue(getItem());
+            setText(null);
+            setGraphic(comboBox);
+            comboBox.show();
+        }
+
+        @Override
+        public void cancelEdit() {
+            super.cancelEdit();
+            setText(getItem());
+            setGraphic(null);
+        }
+
+        @Override
+        public void commitEdit(String newValue) {
+            super.commitEdit(newValue);
+            T item = getTableRow() != null ? getTableRow().getItem() : null;
+            if (item != null && setter != null) {
+                setter.accept(item, newValue);
+                if (table.onCellEdit != null) {
+                    table.onCellEdit.accept(item, property);
+                }
+            }
+            setText(newValue);
+            setGraphic(null);
+        }
+
+        @Override
+        protected void updateItem(String item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+                setText(null);
+                setGraphic(null);
+            } else if (isEditing()) {
+                if (comboBox != null) {
+                    comboBox.setValue(item);
+                }
+                setText(null);
+                setGraphic(comboBox);
+            } else {
+                setText(item);
+                setGraphic(null);
+            }
+        }
     }
 
     // ═══════════════════════════════════════════════════════════════════════════════

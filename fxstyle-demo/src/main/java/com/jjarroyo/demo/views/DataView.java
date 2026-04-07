@@ -35,10 +35,24 @@ public class DataView extends ScrollPane {
         }
 
         public String getName() { return name.get(); }
+        public void setName(String v) { name.set(v); }
+        public SimpleStringProperty nameProperty() { return name; }
+
         public String getEmail() { return email.get(); }
+        public void setEmail(String v) { email.set(v); }
+        public SimpleStringProperty emailProperty() { return email; }
+
         public String getRole() { return role.get(); }
+        public void setRole(String v) { role.set(v); }
+        public SimpleStringProperty roleProperty() { return role; }
+
         public String getStatus() { return status.get(); }
+        public void setStatus(String v) { status.set(v); }
+        public SimpleStringProperty statusProperty() { return status; }
+
         public String getDepartment() { return department.get(); }
+        public void setDepartment(String v) { department.set(v); }
+        public SimpleStringProperty departmentProperty() { return department; }
 
         @Override
         public String toString() {
@@ -99,12 +113,22 @@ public class DataView extends ScrollPane {
         content.getChildren().add(createProTable());
 
         // ═══════════════════════════════════════════════════════════════════
-        // 7. JLIST EXAMPLE (existing)
+        // 7. EDITABLE TABLE (DataGrid Mode)
+        // ═══════════════════════════════════════════════════════════════════
+        content.getChildren().add(createEditableTable());
+
+        // ═══════════════════════════════════════════════════════════════════
+        // 8. EDITABLE TABLE WITH COMBOS
+        // ═══════════════════════════════════════════════════════════════════
+        content.getChildren().add(createEditableComboTable());
+
+        // ═══════════════════════════════════════════════════════════════════
+        // 9. JLIST EXAMPLE (existing)
         // ═══════════════════════════════════════════════════════════════════
         content.getChildren().add(createListExample());
 
         // ═══════════════════════════════════════════════════════════════════
-        // 8. STANDALONE PAGINATION
+        // 10. STANDALONE PAGINATION
         // ═══════════════════════════════════════════════════════════════════
         content.getChildren().add(createPaginationExample());
 
@@ -422,7 +446,131 @@ public class DataView extends ScrollPane {
         return card;
     }
 
-    // ─── 7. JList Example ────────────────────────────────────────────────────────
+    // ─── 7. Editable Table ───────────────────────────────────────────────────────
+
+    private JCard createEditableTable() {
+        JCard card = new JCard("Tabla Editable ✏️",
+            "Doble clic en cualquier celda para editar. Enter para confirmar, Escape para cancelar, Tab para siguiente.");
+
+        VBox body = new VBox(12);
+
+        ObservableList<User> editableData = FXCollections.observableArrayList(
+            new User("Carlos García", "carlos@empresa.com", "Admin", "Activo", "Ingeniería"),
+            new User("María López", "maria@empresa.com", "Editor", "Activo", "Marketing"),
+            new User("Juan Rodríguez", "juan@empresa.com", "User", "Pendiente", "Ventas"),
+            new User("Ana Martínez", "ana@empresa.com", "Viewer", "Inactivo", "Soporte"),
+            new User("Pedro Sánchez", "pedro@empresa.com", "Admin", "Activo", "Finanzas")
+        );
+
+        JTable<User> table = new JTable<>();
+        table.setEditable(true);
+        table.setStriped(true);
+
+        // Editable columns
+        table.addEditableColumn("Nombre", "name",
+            (user, val) -> user.setName(val));
+
+        table.addEditableColumn("Email", "email",
+            (user, val) -> user.setEmail(val));
+
+        table.addEditableColumn("Departamento", "department",
+            (user, val) -> user.setDepartment(val));
+
+        // Non-editable column
+        table.addColumn("Rol", "role");
+
+        // Edit callback
+        Label lastEditLabel = new Label("Último cambio: ninguno");
+        lastEditLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: -color-slate-500;");
+
+        table.setOnCellEdit((user, prop) -> {
+            lastEditLabel.setText("✅ Editado: " + user.getName() + " → campo '" + prop + "'");
+        });
+
+        table.setItems(editableData);
+        table.setItemsPerPage(5);
+
+        body.getChildren().addAll(lastEditLabel, table);
+        card.setBody(body);
+        return card;
+    }
+
+    // ─── 8. Editable Table with ComboBox ─────────────────────────────────────────
+
+    private JCard createEditableComboTable() {
+        JCard card = new JCard("Tabla Editable con Combo ⚡",
+            "Columnas de texto libre y columnas con opciones predefinidas (ComboBox).");
+
+        VBox body = new VBox(12);
+
+        ObservableList<User> comboData = FXCollections.observableArrayList(
+            new User("Roberto Castro", "roberto@empresa.com", "Admin", "Activo", "Ingeniería"),
+            new User("Isabella Ramos", "isabella@empresa.com", "Editor", "Pendiente", "Marketing"),
+            new User("Fernando Ortiz", "fernando@empresa.com", "User", "Inactivo", "Ventas"),
+            new User("Lucía Jiménez", "lucia@empresa.com", "Moderator", "Activo", "RRHH"),
+            new User("Gabriel Mendoza", "gabriel@empresa.com", "Viewer", "Suspendido", "Finanzas")
+        );
+
+        JTable<User> table = new JTable<>();
+        table.setEditable(true);
+        table.setSearchable(true);
+        table.setSearchPlaceholder("Buscar en tabla editable...");
+        table.setStatusBarEnabled(true);
+
+        // Text editable
+        table.addEditableColumn("Nombre", "name",
+            (user, val) -> user.setName(val));
+
+        table.addEditableColumn("Email", "email",
+            (user, val) -> user.setEmail(val));
+
+        // ComboBox editable - Role
+        table.addEditableColumn("Rol", "role",
+            (user, val) -> user.setRole(val),
+            "Admin", "Editor", "User", "Viewer", "Moderator");
+
+        // ComboBox editable - Status
+        table.addEditableColumn("Estado", "status",
+            (user, val) -> user.setStatus(val),
+            "Activo", "Inactivo", "Pendiente", "Suspendido");
+
+        // ComboBox editable - Department
+        table.addEditableColumn("Departamento", "department",
+            (user, val) -> user.setDepartment(val),
+            "Ingeniería", "Marketing", "Ventas", "Soporte", "RRHH", "Finanzas");
+
+        // Edit change log
+        VBox logBox = new VBox(4);
+        logBox.setStyle("-fx-padding: 8; -fx-background-color: -color-bg-subtle; -fx-background-radius: 6;");
+        Label logTitle = new Label("📝 Log de cambios:");
+        logTitle.setStyle("-fx-font-size: 13px; -fx-font-weight: 700; -fx-text-fill: -color-slate-700;");
+        Label logContent = new Label("Sin cambios todavía...");
+        logContent.setStyle("-fx-font-size: 12px; -fx-text-fill: -color-slate-500;");
+        logBox.getChildren().addAll(logTitle, logContent);
+
+        final int[] editCount = {0};
+        table.setOnCellEdit((user, prop) -> {
+            editCount[0]++;
+            String value = "";
+            switch (prop) {
+                case "name": value = user.getName(); break;
+                case "email": value = user.getEmail(); break;
+                case "role": value = user.getRole(); break;
+                case "status": value = user.getStatus(); break;
+                case "department": value = user.getDepartment(); break;
+            }
+            logContent.setText("[" + editCount[0] + "] " + prop + " → \"" + value + "\"  (" + user.getName() + ")");
+        });
+
+        table.setItems(comboData);
+        table.setItemsPerPage(5);
+
+        body.getChildren().addAll(logBox, table);
+        card.setBody(body);
+        return card;
+    }
+
+    // ─── 9. JList Example ────────────────────────────────────────────────────────
 
     private JCard createListExample() {
         JCard card = new JCard("Users List", "Card-style rows with infinite scroll.");
@@ -476,7 +624,7 @@ public class DataView extends ScrollPane {
         return card;
     }
 
-    // ─── 8. Standalone Pagination ────────────────────────────────────────────────
+    // ─── 10. Standalone Pagination ────────────────────────────────────────────────
 
     private JCard createPaginationExample() {
         JCard card = new JCard("Paginación Standalone", "Componente JPagination independiente.");

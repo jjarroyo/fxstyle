@@ -118,6 +118,41 @@
     -fx-size: 36px;
 }
 
+/* ─── J-TABLE EDITABLE MODE ──────────────────────────────────────────────────── */
+.j-table-editable .table-row-cell:hover {
+    -fx-cursor: hand;
+}
+.j-table-editable-cell {
+    -fx-cursor: text;
+}
+.j-table-editable-cell:hover {
+    -fx-background-color: -color-primary-50;
+}
+.j-table-edit-field {
+    -fx-background-color: white;
+    -fx-border-color: -color-primary-400;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 4px 8px;
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-text-primary;
+    -fx-effect: dropshadow(three-pass-box, rgba(59, 130, 246, 0.2), 4, 0, 0, 0);
+}
+.j-table-edit-field:focused {
+    -fx-border-color: -color-primary-500;
+    -fx-effect: dropshadow(three-pass-box, rgba(59, 130, 246, 0.35), 6, 0, 0, 0);
+}
+.j-table-edit-combo {
+    -fx-background-color: white;
+    -fx-border-color: -color-primary-400;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 2px 4px;
+    -fx-font-size: 14px;
+}
+
 /* ─── J-TABLE BULK ACTIONS BAR ───────────────────────────────────────────────── */
 .j-table-bulk-bar {
     -fx-background-color: -color-primary-50;

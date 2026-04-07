@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JRating - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            .star-filled { color: #f59e0b; }
+            .star-empty { color: #cbd5e1; }
+            .star-demo {
+                font-size: 28px;
+                cursor: pointer;
+                transition: transform 0.15s ease;
+                display: inline-block;
+            }
+            .star-demo:hover { transform: scale(1.2); }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">
+                        JRating
+                    </h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Componente interactivo de calificación con estrellas. Soporta múltiples tamaños, variantes de color, modo solo lectura, medias estrellas y binding de propiedades.
+                    </p>
+                </header>
+
+                <!-- Basic Example -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Uso Básico
+                    </h2>
+
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4">
+                        <p class="text-sm text-slate-500 mb-3">Vista previa interactiva (HTML simulado):</p>
+                        <div class="flex items-center gap-1" id="basic-demo">
+                            <span class="star-demo star-filled" onclick="setRating('basic-demo', 1)">★</span>
+                            <span class="star-demo star-filled" onclick="setRating('basic-demo', 2)">★</span>
+                            <span class="star-demo star-filled" onclick="setRating('basic-demo', 3)">★</span>
+                            <span class="star-demo star-empty" onclick="setRating('basic-demo', 4)">★</span>
+                            <span class="star-demo star-empty" onclick="setRating('basic-demo', 5)">★</span>
+                            <span class="ml-3 text-lg font-semibold text-amber-500" id="basic-demo-val">3.0 / 5.0</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// Rating básico de 5 estrellas
+JRating rating = new JRating();
+
+// Rating con valor inicial
+JRating rating = new JRating(5, 3);
+
+// Escuchar cambios
+rating.setOnRatingChanged(value -> {
+    System.out.println("Rating: " + value);
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Sizes -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Tamaños</h2>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4 space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-semibold text-slate-500 w-16">Small</span>
+                            <span class="star-filled" style="font-size: 16px;">★ ★ ★ ★ ☆</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-semibold text-slate-500 w-16">Medium</span>
+                            <span class="star-filled" style="font-size: 24px;">★ ★ ★ ★ ☆</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm font-semibold text-slate-500 w-16">Large</span>
+                            <span class="star-filled" style="font-size: 36px;">★ ★ ★ ★ ☆</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// Tamaño pequeño
+JRating sm = new JRating(5, 4).withSize("rating-sm");
+
+// Tamaño mediano (default)
+JRating md = new JRating(5, 4);
+
+// Tamaño grande
+JRating lg = new JRating(5, 4).withSize("rating-lg");</code></pre>
+                    </div>
+                </section>
+
+                <!-- Color Variants -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Variantes de Color</h2>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Default (Gold)</p>
+                                <span style="color: #f59e0b; font-size: 22px;">★ ★ ★ ★ ☆</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Primary</p>
+                                <span style="color: #3b82f6; font-size: 22px;">★ ★ ★ ★ ☆</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Danger</p>
+                                <span style="color: #ef4444; font-size: 22px;">★ ★ ★ ★ ☆</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Success</p>
+                                <span style="color: #10b981; font-size: 22px;">★ ★ ★ ★ ☆</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Info</p>
+                                <span style="color: #8b5cf6; font-size: 22px;">★ ★ ★ ★ ☆</span>
+                            </div>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-400 mb-1">Dark</p>
+                                <span style="color: #1e293b; font-size: 22px;">★ ★ ★ ★ ☆</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">JRating rating = new JRating(5, 4);
+rating.withColor("rating-primary");   // Azul
+rating.withColor("rating-danger");    // Rojo
+rating.withColor("rating-success");   // Verde
+rating.withColor("rating-info");      // Violeta
+rating.withColor("rating-dark");      // Oscuro</code></pre>
+                    </div>
+                </section>
+
+                <!-- Read Only -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Solo Lectura</h2>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="font-semibold text-sm">Laptop Pro X1</span>
+                            <span style="color: #f59e0b; font-size: 18px;">★ ★ ★ ★ ☆</span>
+                            <span class="text-xs text-slate-400">4.0 (128 reseñas)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="font-semibold text-sm">Auriculares BT</span>
+                            <span style="color: #f59e0b; font-size: 18px;">★ ★ ★ ★ ★</span>
+                            <span class="text-xs text-slate-400">5.0 (2340 reseñas)</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">JRating rating = new JRating(5, 4);
+rating.setReadOnly(true); // Deshabilita interacción</code></pre>
+                    </div>
+                </section>
+
+                <!-- Feedback Example -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Rating con Feedback</h2>
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4">
+                        <div class="flex items-center gap-4" id="feedback-demo">
+                            <span class="star-demo star-filled" onclick="setFeedback(1)">★</span>
+                            <span class="star-demo star-filled" onclick="setFeedback(2)">★</span>
+                            <span class="star-demo star-filled" onclick="setFeedback(3)">★</span>
+                            <span class="star-demo star-empty" onclick="setFeedback(4)">★</span>
+                            <span class="star-demo star-empty" onclick="setFeedback(5)">★</span>
+                            <span class="text-lg font-semibold text-amber-500" id="feedback-text">Regular 😐</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">String[] feedbacks = {"Terrible 😡", "Malo 😞", "Regular 😐", "Bueno 😊", "Excelente 🤩"};
+
+JRating rating = new JRating(5, 0);
+rating.setOnRatingChanged(value -> {
+    int i = (int) Math.ceil(value) - 1;
+    feedbackLabel.setText(feedbacks[i]);
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Custom Count -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Cantidad Personalizada</h2>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// 3 estrellas
+JRating r3 = new JRating(3, 2);
+
+// 7 estrellas
+JRating r7 = new JRating(7, 5);
+
+// 10 estrellas pequeñas
+JRating r10 = new JRating(10, 7).withSize("rating-sm");</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JRating()</td>
+                                <td class="px-6 py-4 text-slate-500">Constructor por defecto: 5 estrellas, valor 0.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JRating(int maxStars)</td>
+                                <td class="px-6 py-4 text-slate-500">Constructor con número personalizado de estrellas.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JRating(int maxStars, double initialRating)</td>
+                                <td class="px-6 py-4 text-slate-500">Constructor con estrellas y valor inicial.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setRating(double)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el valor del rating programáticamente.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">getRating()</td>
+                                <td class="px-6 py-4 text-slate-500">Obtiene el valor actual del rating.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">ratingProperty()</td>
+                                <td class="px-6 py-4 text-slate-500">Propiedad observable para binding bidireccional.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setMaxStars(int)</td>
+                                <td class="px-6 py-4 text-slate-500">Cambia el número máximo de estrellas.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setReadOnly(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Activa/desactiva el modo solo lectura.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setAllowHalf(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Habilita calificaciones en incrementos de 0.5.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnRatingChanged(Consumer&lt;Double&gt;)</td>
+                                <td class="px-6 py-4 text-slate-500">Callback que se ejecuta al cambiar el rating.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withSize(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Tamaño: "rating-sm", "rating-md", "rating-lg".</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withColor(String)</td>
+                                <td class="px-6 py-4 text-slate-500">Color: "rating-primary", "rating-danger", "rating-success", "rating-info", "rating-dark".</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withStyle(String...)</td>
+                                <td class="px-6 py-4 text-slate-500">Agrega una o más clases CSS personalizadas.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- CSS Classes -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Clases CSS</h2>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Clase</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">.j-rating</td>
+                                <td class="px-6 py-4 text-slate-500">Contenedor principal del componente.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">.j-rating-star</td>
+                                <td class="px-6 py-4 text-slate-500">Cada estrella individual.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">.rating-sm / .rating-lg</td>
+                                <td class="px-6 py-4 text-slate-500">Variantes de tamaño.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">.rating-primary, .rating-danger, etc.</td>
+                                <td class="px-6 py-4 text-slate-500">Variantes de color.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">.rating-readonly</td>
+                                <td class="px-6 py-4 text-slate-500">Modo solo lectura (aplicado automáticamente).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+
+        <script>
+            function setRating(containerId, value) {
+                const container = document.getElementById(containerId);
+                const stars = container.querySelectorAll('.star-demo');
+                stars.forEach((star, index) => {
+                    star.classList.toggle('star-filled', index < value);
+                    star.classList.toggle('star-empty', index >= value);
+                });
+                const valEl = document.getElementById(containerId + '-val');
+                if (valEl) valEl.textContent = value + '.0 / 5.0';
+            }
+
+            const feedbacks = ['Terrible 😡', 'Malo 😞', 'Regular 😐', 'Bueno 😊', 'Excelente 🤩'];
+            function setFeedback(value) {
+                const container = document.getElementById('feedback-demo');
+                const stars = container.querySelectorAll('.star-demo');
+                stars.forEach((star, index) => {
+                    star.classList.toggle('star-filled', index < value);
+                    star.classList.toggle('star-empty', index >= value);
+                });
+                document.getElementById('feedback-text').textContent = feedbacks[value - 1];
+            }
+        </script>
+    </body>
+</html>

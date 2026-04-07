@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JCalendar - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+
+            /* ── Simulación visual del JCalendar ── */
+            .j-calendar-demo {
+                @apply bg-white border border-slate-200 rounded-xl p-4 shadow-sm inline-block w-80;
+            }
+            .j-calendar-header-demo {
+                @apply flex items-center justify-between mb-4;
+            }
+            .j-calendar-grid-demo {
+                @apply grid grid-cols-7 gap-1;
+            }
+            .j-calendar-day-header-demo {
+                @apply text-center text-[10px] font-bold text-slate-400 py-1;
+            }
+            .j-calendar-day-demo {
+                @apply flex items-center justify-center aspect-square text-xs font-medium text-slate-700 rounded-lg hover:bg-slate-50 cursor-pointer transition-all;
+            }
+            .j-calendar-day-other-demo {
+                @apply text-slate-300;
+            }
+            .j-calendar-day-today-demo {
+                @apply bg-blue-50 border border-blue-400 text-blue-600 font-bold;
+            }
+            .j-calendar-day-selected-demo {
+                @apply bg-blue-500 text-white font-bold hover:bg-blue-600;
+            }
+            .j-calendar-day-highlighted-demo {
+                @apply bg-emerald-50 text-emerald-700 font-semibold;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <!-- Header -->
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <h1 class="text-3xl font-bold text-slate-900">
+                            JCalendar
+                        </h1>
+                        <span
+                            class="bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-full"
+                            >v1.0</span
+                        >
+                    </div>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Calendario mensual interactivo e inline. Ideal para selección de fechas, visualización de eventos y dashboards.
+                    </p>
+                </header>
+
+                <!-- Vista Previa -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Vista Previa
+                    </h2>
+                    <div
+                        class="bg-white p-8 rounded-lg border border-slate-200 shadow-sm mb-4 flex justify-center"
+                    >
+                        <div class="j-calendar-demo">
+                            <div class="j-calendar-header-demo">
+                                <button class="text-slate-400 hover:text-slate-600">◀</button>
+                                <span class="font-bold text-slate-800">Abril 2026</span>
+                                <button class="text-slate-400 hover:text-slate-600">▶</button>
+                            </div>
+                            <div class="j-calendar-grid-demo">
+                                <div class="j-calendar-day-header-demo">LUN</div>
+                                <div class="j-calendar-day-header-demo">MAR</div>
+                                <div class="j-calendar-day-header-demo">MIE</div>
+                                <div class="j-calendar-day-header-demo">JUE</div>
+                                <div class="j-calendar-day-header-demo">VIE</div>
+                                <div class="j-calendar-day-header-demo text-red-400">SAB</div>
+                                <div class="j-calendar-day-header-demo text-red-400">DOM</div>
+                                
+                                <div class="j-calendar-day-demo j-calendar-day-other-demo">30</div>
+                                <div class="j-calendar-day-demo j-calendar-day-other-demo">31</div>
+                                <div class="j-calendar-day-demo">1</div>
+                                <div class="j-calendar-day-demo">2</div>
+                                <div class="j-calendar-day-demo">3</div>
+                                <div class="j-calendar-day-demo">4</div>
+                                <div class="j-calendar-day-demo">5</div>
+                                
+                                <div class="j-calendar-day-demo j-calendar-day-today-demo">6</div>
+                                <div class="j-calendar-day-demo">7</div>
+                                <div class="j-calendar-day-demo j-calendar-day-highlighted-demo">8</div>
+                                <div class="j-calendar-day-demo">9</div>
+                                <div class="j-calendar-day-demo j-calendar-day-selected-demo">10</div>
+                                <div class="j-calendar-day-demo">11</div>
+                                <div class="j-calendar-day-demo">12</div>
+                                
+                                <div class="j-calendar-day-demo">...</div>
+                                <div class="j-calendar-day-demo">...</div>
+                                <div class="j-calendar-day-demo">...</div>
+                                <div class="j-calendar-day-demo">...</div>
+                                <div class="j-calendar-day-demo">...</div>
+                                <div class="j-calendar-day-demo j-calendar-day-other-demo">1</div>
+                                <div class="j-calendar-day-demo j-calendar-day-other-demo">2</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-slate-400">// Uso básico</span>
+JCalendar calendar = new JCalendar();
+
+<span class="text-slate-400">// Escuchar selección</span>
+calendar.setOnDateSelected(date -> {
+    System.out.println("Fecha: " + date);
+});
+
+<span class="text-slate-400">// Resaltar fechas de eventos</span>
+calendar.setHighlightedDates(Set.of(
+    LocalDate.now(),
+    LocalDate.of(2026, 4, 15)
+));</code></pre>
+                    </div>
+                </section>
+
+                <!-- Características -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Características Principales
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+                            <h3 class="font-semibold text-slate-800 mb-2">Navegación Fluida</h3>
+                            <p class="text-sm text-slate-500">Botones integrados para cambiar de mes y botón "Hoy" para retorno rápido.</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+                            <h3 class="font-semibold text-slate-800 mb-2">Gestión de Eventos</h3>
+                            <p class="text-sm text-slate-500">Capacidad para resaltar múltiples fechas de forma visual (ej: citas, tareas).</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+                            <h3 class="font-semibold text-slate-800 mb-2">Totalmente Observable</h3>
+                            <p class="text-sm text-slate-500">Propiedad <code>selectedDate</code> para binding bidireccional y reactividad.</p>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-sm">
+                            <h3 class="font-semibold text-slate-800 mb-2">Personalización CSS</h3>
+                            <p class="text-sm text-slate-500">Control total sobre el aspecto de cada día (hoy, seleccionado, otros meses, fines de semana).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Clases CSS -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Clases CSS
+                    </h2>
+                    <table class="min-w-full text-left text-sm border border-slate-200 rounded-lg overflow-hidden">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th class="px-6 py-4">Clase</th>
+                                <th class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">j-calendar</td>
+                                <td class="px-6 py-4 text-slate-500">Contenedor raíz del componente.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">j-calendar-day-today</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo para el día actual.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">j-calendar-day-selected</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo para el día seleccionado por el usuario.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">j-calendar-day-highlighted</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo para fechas marcadas como eventos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">j-calendar-day-weekend</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo específico para sábados y domingos.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table class="min-w-full text-left text-sm border border-slate-200 rounded-lg overflow-hidden">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th class="px-6 py-4">Método</th>
+                                <th class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">selectedDateProperty()</td>
+                                <td class="px-6 py-4 text-slate-500">Retorna la propiedad observable de la fecha seleccionada.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnDateSelected(Consumer&lt;LocalDate&gt;)</td>
+                                <td class="px-6 py-4 text-slate-500">Define una acción a ejecutar cuando se hace clic en una fecha.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setHighlightedDates(Set&lt;LocalDate&gt;)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el conjunto de fechas a resaltar visualmente.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setSelectedDate(LocalDate)</td>
+                                <td class="px-6 py-4 text-slate-500">Cambia la fecha seleccionada y navega al mes correspondiente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

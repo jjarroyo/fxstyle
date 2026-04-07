@@ -261,6 +261,85 @@ table.setOnScrollBottom(() -> loadMoreData());</code></pre>
                         </tbody>
                     </table>
                 </section>
+
+                <!-- Editable Mode (DataGrid) -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span class="text-2xl">✏️</span>
+                        Modo Editable (DataGrid)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Activa la edición inline con <code class="bg-blue-50 text-blue-700 px-1 rounded">setEditable(true)</code>.
+                        Las celdas se editan con doble clic, <kbd class="px-1 py-0.5 bg-slate-100 rounded text-xs font-mono">Enter</kbd> para confirmar,
+                        <kbd class="px-1 py-0.5 bg-slate-100 rounded text-xs font-mono">Escape</kbd> para cancelar,
+                        <kbd class="px-1 py-0.5 bg-slate-100 rounded text-xs font-mono">Tab</kbd> para navegar a la siguiente celda.
+                    </p>
+
+                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+                        <p class="text-amber-800 text-sm"><strong>💡 Tip:</strong> Usa <code>addEditableColumn()</code> en vez de <code>addColumn()</code> para las columnas que quieras hacer editables. Las columnas normales permanecen de solo lectura.</p>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Edición con TextField</h3>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm">JTable&lt;User&gt; table = new JTable&lt;&gt;();
+<span class="text-emerald-400">table.setEditable(true);</span>
+
+<span class="text-blue-400">// Columna editable con setter lambda</span>
+table.addEditableColumn("Nombre", "name",
+    (user, val) -> user.setName(val));
+
+table.addEditableColumn("Email", "email",
+    (user, val) -> user.setEmail(val));
+
+<span class="text-blue-400">// Columna de solo lectura (normal)</span>
+table.addColumn("Rol", "role");
+
+<span class="text-blue-400">// Callback cuando se edita cualquier celda</span>
+table.setOnCellEdit((user, prop) -> {
+    System.out.println("Editado: " + prop);
+});</code></pre>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Edición con ComboBox</h3>
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// ComboBox con opciones predefinidas</span>
+table.addEditableColumn("Rol", "role",
+    (user, val) -> user.setRole(val),
+    <span class="text-emerald-400">"Admin", "Editor", "User", "Viewer"</span>);
+
+table.addEditableColumn("Estado", "status",
+    (user, val) -> user.setStatus(val),
+    <span class="text-emerald-400">"Activo", "Inactivo", "Pendiente"</span>);</code></pre>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">API de Edición</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setEditable(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Activa/desactiva el modo edición.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">addEditableColumn(title, prop, setter)</td>
+                                <td class="px-6 py-4 text-slate-500">Columna editable con TextField inline.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">addEditableColumn(title, prop, setter, options...)</td>
+                                <td class="px-6 py-4 text-slate-500">Columna editable con ComboBox.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setOnCellEdit(BiConsumer&lt;T, String&gt;)</td>
+                                <td class="px-6 py-4 text-slate-500">Callback cuando se edita cualquier celda.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
             </div>
         </div>
     </body>

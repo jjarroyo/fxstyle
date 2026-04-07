@@ -21,6 +21,7 @@ public class JPopover extends Popup {
     private final VBox container;
     private final Polygon arrow;
     private final VBox contentBox;
+    private final java.util.List<String> externalStyleClasses = new java.util.ArrayList<>();
     
     private Position position = Position.TOP;
     
@@ -114,6 +115,10 @@ public class JPopover extends Popup {
         return this;
     }
 
+    public java.util.List<String> getStyleClass() {
+        return externalStyleClasses;
+    }
+
     public void show(Node target) {
         // 1. Re-assemble container based on orientation
         // We need the correct container type (VBox for Vertical, HBox for Horizontal)
@@ -178,6 +183,9 @@ public class JPopover extends Popup {
             }
             activeContainer = hBox;
         }
+
+        // Apply external style classes
+        activeContainer.getStyleClass().addAll(externalStyleClasses);
         
         // 2. Prepare style context BEFORE adding to scene
         if (target != null && target.getScene() != null) {

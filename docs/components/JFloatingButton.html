@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JFloatingButton - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">
+                        JFloatingButton
+                    </h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Un Floating Action Button (FAB) que se posiciona automáticamente dentro de su contenedor padre. Soporta múltiples posiciones (ej. abajo-derecha, centro, arriba-izquierda) y estilos adaptables (circular redondo o píldora extendida con texto e ícono).
+                    </p>
+                </header>
+
+                <!-- Example Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Ejemplo de Uso
+                    </h2>
+
+                    <div
+                        class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4 relative"
+                        style="height: 250px;"
+                    >
+                        <!-- Visual representation/placeholder -->
+                        <div class="p-4 text-center text-gray-400 h-full flex items-center justify-center border border-dashed border-gray-300 rounded">
+                            Vista Previa: JFloatingButton en Bottom-Right (Imagina el botón flotando aquí abajo)
+                        </div>
+                        
+                        <div class="absolute bottom-4 right-4 w-14 h-14 bg-indigo-600 rounded-full shadow-lg flex justify-center items-center text-white cursor-pointer hover:-translate-y-1 transition transform" style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// 1. Botón FAB básico redondo (Abajo Derecha)
+JFloatingButton fabBasic = new JFloatingButton(JIcon.ADD);
+fabBasic.setPosition(JFloatingButton.Position.BOTTOM_RIGHT);
+fabBasic.addClass("btn-primary");
+
+// 2. Botón FAB extendido con texto (Arriba Izquierda)
+JFloatingButton fabExtended = new JFloatingButton("Crear Tarea", JIcon.EDIT);
+fabExtended.setPosition(JFloatingButton.Position.TOP_LEFT);
+fabExtended.addClass("btn-success");
+
+// Añadir a un Pane (AnchorPane, StackPane, Region...)
+StackPane container = new StackPane();
+container.getChildren().addAll(fabBasic, fabExtended);</code></pre>
+                    </div>
+                </section>
+                
+                <!-- Positioning Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Posiciones Disponibles</h2>
+                    <p class="mb-4 text-slate-600">El botón escucha al contenedor padre y se ajusta dinámicamente usando <code>JFloatingButton.Position</code>:</p>
+                    <ul class="list-disc pl-5 text-slate-700 bg-white p-6 rounded border border-slate-200">
+                        <li><code>TOP_LEFT</code></li>
+                        <li><code>TOP_CENTER</code></li>
+                        <li><code>TOP_RIGHT</code></li>
+                        <li><code>CENTER_LEFT</code></li>
+                        <li><code>CENTER</code></li>
+                        <li><code>CENTER_RIGHT</code></li>
+                        <li><code>BOTTOM_LEFT</code></li>
+                        <li><code>BOTTOM_CENTER</code></li>
+                        <li><code>BOTTOM_RIGHT</code></li>
+                    </ul>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table
+                        class="min-w-full text-left text-sm whitespace-nowrap"
+                    >
+                        <thead
+                            class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600"
+                        >
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    JFloatingButton()
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Constructor básico vacío.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    JFloatingButton(JIcon)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Crea un botón circular sólo con icono.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    JFloatingButton(String, JIcon)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Crea un botón extendido (Píldora) con texto e icono.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setPosition(Position)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Define la posición del botón respecto a los bordes de su contenedor.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setMargin(double)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Establece el margen (espaciado) de separación con los bordes (por defecto 20px).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setExtended(boolean)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Habilita u oculta el formato extendido del FAB de ser circular a píldora.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

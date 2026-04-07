@@ -721,3 +721,308 @@
     -fx-text-fill: -color-text-muted;
     -fx-padding: 0 2px;
 }
+
+/* ─── RATING ─────────────────────────────────────────────────────────────────── */
+.j-rating {
+    -fx-spacing: 2px;
+    -fx-alignment: center-left;
+    -fx-cursor: hand;
+}
+
+.j-rating-star {
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-pref-width: 24px;
+    -fx-pref-height: 24px;
+    -fx-max-width: 24px;
+    -fx-max-height: 24px;
+    -fx-background-color: -color-slate-300;
+    -fx-cursor: hand;
+}
+
+/* Filled Star */
+.j-rating-star.j-rating-star-filled {
+    -fx-background-color: -color-warning-500;
+}
+
+/* Half Star */
+.j-rating-star.j-rating-star-half {
+    -fx-background-color: -color-warning-500;
+}
+
+/* Empty Star */
+.j-rating-star.j-rating-star-empty {
+    -fx-background-color: -color-slate-300;
+}
+
+/* Hover Effect */
+.j-rating-star.j-rating-star-hover {
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+}
+.j-rating-star.j-rating-star-hover.j-rating-star-filled,
+.j-rating-star.j-rating-star-hover.j-rating-star-half {
+    -fx-background-color: -color-warning-600;
+}
+.j-rating-star.j-rating-star-hover.j-rating-star-empty {
+    -fx-background-color: -color-slate-400;
+}
+
+/* ── Sizes ────────────────────────────────────────────────────────────── */
+.j-rating.rating-sm .j-rating-star {
+    -fx-min-width: 16px;
+    -fx-min-height: 16px;
+    -fx-pref-width: 16px;
+    -fx-pref-height: 16px;
+    -fx-max-width: 16px;
+    -fx-max-height: 16px;
+}
+
+.j-rating.rating-lg .j-rating-star {
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-pref-width: 36px;
+    -fx-pref-height: 36px;
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+}
+
+/* ── Color Variants ───────────────────────────────────────────────────── */
+
+/* Primary (Blue) */
+.j-rating.rating-primary .j-rating-star-filled {
+    -fx-background-color: -color-primary-500;
+}
+.j-rating.rating-primary .j-rating-star-half {
+    -fx-background-color: -color-primary-500;
+}
+.j-rating.rating-primary .j-rating-star-hover.j-rating-star-filled,
+.j-rating.rating-primary .j-rating-star-hover.j-rating-star-half {
+    -fx-background-color: -color-primary-600;
+}
+
+/* Danger (Red) */
+.j-rating.rating-danger .j-rating-star-filled {
+    -fx-background-color: -color-danger-500;
+}
+.j-rating.rating-danger .j-rating-star-half {
+    -fx-background-color: -color-danger-500;
+}
+.j-rating.rating-danger .j-rating-star-hover.j-rating-star-filled,
+.j-rating.rating-danger .j-rating-star-hover.j-rating-star-half {
+    -fx-background-color: -color-danger-600;
+}
+
+/* Success (Green) */
+.j-rating.rating-success .j-rating-star-filled {
+    -fx-background-color: -color-success-500;
+}
+.j-rating.rating-success .j-rating-star-half {
+    -fx-background-color: -color-success-500;
+}
+.j-rating.rating-success .j-rating-star-hover.j-rating-star-filled,
+.j-rating.rating-success .j-rating-star-hover.j-rating-star-half {
+    -fx-background-color: -color-success-600;
+}
+
+/* Info (Purple) */
+.j-rating.rating-info .j-rating-star-filled {
+    -fx-background-color: -color-info-500;
+}
+.j-rating.rating-info .j-rating-star-half {
+    -fx-background-color: -color-info-500;
+}
+.j-rating.rating-info .j-rating-star-hover.j-rating-star-filled,
+.j-rating.rating-info .j-rating-star-hover.j-rating-star-half {
+    -fx-background-color: -color-info-600;
+}
+
+/* Dark */
+.j-rating.rating-dark .j-rating-star-filled {
+    -fx-background-color: -color-slate-800;
+}
+.j-rating.rating-dark .j-rating-star-half {
+    -fx-background-color: -color-slate-800;
+}
+.j-rating.rating-dark .j-rating-star-hover.j-rating-star-filled,
+.j-rating.rating-dark .j-rating-star-hover.j-rating-star-half {
+    -fx-background-color: -color-slate-900;
+}
+
+/* ── Read Only ────────────────────────────────────────────────────────── */
+.j-rating.rating-readonly {
+    -fx-cursor: default;
+}
+.j-rating.rating-readonly .j-rating-star {
+    -fx-cursor: default;
+}
+
+/* ── Disabled ─────────────────────────────────────────────────────────── */
+.j-rating:disabled .j-rating-star {
+    -fx-opacity: 0.45;
+    -fx-cursor: default;
+}
+
+/* ─── CALENDAR ───────────────────────────────────────────────────────────────── */
+.j-calendar {
+    -fx-background-color: -color-bg-surface;
+    -fx-background-radius: 12px;
+    -fx-border-color: -color-border-default;
+    -fx-border-radius: 12px;
+    -fx-border-width: 1px;
+    -fx-padding: 16px;
+    -fx-spacing: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 8, 0, 0, 2);
+    -fx-min-width: 320px;
+    -fx-pref-width: 340px;
+}
+
+.j-calendar-header {
+    -fx-padding: 0 4px 12px 4px;
+    -fx-alignment: center;
+    -fx-spacing: 8px;
+}
+
+.j-calendar-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text-primary;
+}
+
+.j-calendar-nav-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: -color-border-default;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-border-width: 1px;
+    -fx-text-fill: -color-text-secondary;
+    -fx-font-size: 12px;
+    -fx-padding: 4px 10px;
+    -fx-cursor: hand;
+    -fx-min-width: 32px;
+    -fx-min-height: 28px;
+}
+.j-calendar-nav-btn:hover {
+    -fx-background-color: -color-bg-subtle;
+    -fx-border-color: -color-primary-300;
+    -fx-text-fill: -color-primary-500;
+}
+.j-calendar-nav-btn:pressed {
+    -fx-background-color: -color-primary-100;
+}
+
+.j-calendar-today-btn {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-primary-500;
+    -fx-border-color: -color-primary-300;
+}
+.j-calendar-today-btn:hover {
+    -fx-background-color: -color-primary-50;
+    -fx-text-fill: -color-primary-600;
+}
+
+.j-calendar-grid {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.j-calendar-day-header {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text-muted;
+    -fx-padding: 8px 0;
+    -fx-alignment: center;
+    -fx-min-width: 40px;
+    -fx-pref-width: 44px;
+    -fx-min-height: 32px;
+    -fx-text-alignment: center;
+}
+.j-calendar-day-header.j-calendar-day-weekend {
+    -fx-text-fill: -color-danger-400;
+}
+
+.j-calendar-day {
+    -fx-background-color: transparent;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-min-width: 40px;
+    -fx-min-height: 36px;
+    -fx-pref-width: 44px;
+    -fx-pref-height: 38px;
+    -fx-padding: 2px;
+}
+.j-calendar-day-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -color-text-primary;
+    -fx-alignment: center;
+}
+
+.j-calendar-day:hover {
+    -fx-background-color: -color-bg-subtle;
+}
+
+/* Other month (dimmed) */
+.j-calendar-day-other-month .j-calendar-day-label {
+    -fx-text-fill: -color-text-muted;
+    -fx-opacity: 0.45;
+}
+
+/* Weekend */
+.j-calendar-day-weekend .j-calendar-day-label {
+    -fx-text-fill: -color-danger-400;
+}
+.j-calendar-day-other-month.j-calendar-day-weekend .j-calendar-day-label {
+    -fx-text-fill: -color-danger-300;
+    -fx-opacity: 0.35;
+}
+
+/* Today ring */
+.j-calendar-day-today {
+    -fx-background-color: -color-primary-50;
+    -fx-border-color: -color-primary-400;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1.5px;
+}
+.j-calendar-day-today .j-calendar-day-label {
+    -fx-text-fill: -color-primary-600;
+    -fx-font-weight: 700;
+}
+
+/* Selected — solid pill */
+.j-calendar-day-selected {
+    -fx-background-color: -color-primary-500;
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
+}
+.j-calendar-day-selected .j-calendar-day-label {
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+}
+.j-calendar-day-selected:hover {
+    -fx-background-color: -color-primary-600;
+}
+.j-calendar-day-selected.j-calendar-day-today {
+    -fx-border-color: transparent;
+}
+
+/* Highlighted (event marker) */
+.j-calendar-day-highlighted {
+    -fx-background-color: -color-success-50;
+}
+.j-calendar-day-highlighted .j-calendar-day-label {
+    -fx-text-fill: -color-success-700;
+    -fx-font-weight: 600;
+}
+.j-calendar-day-highlighted:hover {
+    -fx-background-color: -color-success-100;
+}
+/* Selected overrides highlighted */
+.j-calendar-day-selected.j-calendar-day-highlighted {
+    -fx-background-color: -color-primary-500;
+}
+.j-calendar-day-selected.j-calendar-day-highlighted .j-calendar-day-label {
+    -fx-text-fill: white;
+}

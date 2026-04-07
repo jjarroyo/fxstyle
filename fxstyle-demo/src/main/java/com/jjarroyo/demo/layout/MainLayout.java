@@ -1,6 +1,7 @@
 package com.jjarroyo.demo.layout;
 
 import com.jjarroyo.demo.views.ButtonsView;
+import com.jjarroyo.demo.views.FloatingButtonView;
 import com.jjarroyo.demo.views.LabelsView;
 import com.jjarroyo.demo.views.AlertsView;
 import com.jjarroyo.demo.views.SelectsView;
@@ -20,6 +21,8 @@ import com.jjarroyo.components.JHeader;
 import com.jjarroyo.components.JSidebar;
 import com.jjarroyo.components.JSidebarItem;
 import com.jjarroyo.components.JIcon;
+import com.jjarroyo.components.JNotification;
+import java.time.LocalDateTime;
 
 public class MainLayout extends javafx.scene.layout.StackPane {
     
@@ -82,15 +85,18 @@ public class MainLayout extends javafx.scene.layout.StackPane {
         sidebar.getItems().addAll(
             createItem("Dashboard", com.jjarroyo.components.JIcon.HOME.view()),
             createItem("Buttons", com.jjarroyo.components.JIcon.ROCKET.view()),
+            createItem("Floating Buttons", com.jjarroyo.components.JIcon.ROCKET.view()),
             createItem("Labels", com.jjarroyo.components.JIcon.FLAG.view()),
             createItem("Inputs", com.jjarroyo.components.JIcon.EDIT.view()),
             createItem("Cards", com.jjarroyo.components.JIcon.LAYERS.view()),
             createItem("Alerts", com.jjarroyo.components.JIcon.BELL.view()),
             createItem("Selects", com.jjarroyo.components.JIcon.LIST.view()),
             createItem("Sliders", com.jjarroyo.components.JIcon.SETTINGS.view()), // Using SETTINGS icon for sliders
+            createItem("Rating", com.jjarroyo.components.JIcon.STAR.view()),
             createItem("Accordions", com.jjarroyo.components.JIcon.LIST.view()),   // Formatting fixed
             createItem("Progress", com.jjarroyo.components.JIcon.REFRESH.view()),  // REFRESH icon for progress/loading
             createItem("Date Pickers", com.jjarroyo.components.JIcon.CALENDAR.view()), 
+            createItem("Calendars", com.jjarroyo.components.JIcon.CALENDAR.view()), 
             createItem("Files", com.jjarroyo.components.JIcon.FOLDER.view()), 
             createItem("Checks & Radios", com.jjarroyo.components.JIcon.CHECK_CIRCLE.view()),
             createItem("Tabs", com.jjarroyo.components.JIcon.LAYOUT.view()),
@@ -113,6 +119,7 @@ public class MainLayout extends javafx.scene.layout.StackPane {
             createItem("TitleBar", com.jjarroyo.components.JIcon.MONITOR.view()),
             createItem("Confirm Dialogs", com.jjarroyo.components.JIcon.CHECK_CIRCLE.view()),
             createItem("Drawers", com.jjarroyo.components.JIcon.LAYERS.view()),
+            createItem("Charts", com.jjarroyo.components.JIcon.BAR_CHART.view()),
             createItem("Avanzado", com.jjarroyo.components.JIcon.SETTINGS.view()),
             createItem("Tree View", com.jjarroyo.components.JIcon.FOLDER_OPEN.view())
         );
@@ -132,6 +139,7 @@ public class MainLayout extends javafx.scene.layout.StackPane {
     private void handleNavigation(String text) {
         if (text.equals("Dashboard")) navigate(new com.jjarroyo.demo.views.DashboardView());
         else if (text.equals("Buttons")) navigate(new ButtonsView());
+        else if (text.equals("Floating Buttons")) navigate(new FloatingButtonView());
         else if (text.equals("Labels")) navigate(new LabelsView());
         else if (text.equals("Inputs")) navigate(new InputsView());
         else if (text.equals("Cards")) navigate(new CardsView());
@@ -147,9 +155,11 @@ public class MainLayout extends javafx.scene.layout.StackPane {
         else if (text.equals("Icons")) navigate(new com.jjarroyo.demo.views.IconsView());
         else if (text.equals("Typography")) navigate(new com.jjarroyo.demo.views.TypographyView());
         else if (text.equals("Sliders")) navigate(new com.jjarroyo.demo.views.SlidersView());
+        else if (text.equals("Rating")) navigate(new com.jjarroyo.demo.views.RatingView());
         else if (text.equals("Accordions")) navigate(new com.jjarroyo.demo.views.AccordionsView());
         else if (text.equals("Progress")) navigate(new com.jjarroyo.demo.views.ProgressView());
         else if (text.equals("Date Pickers")) navigate(new com.jjarroyo.demo.views.DatePickersView());
+        else if (text.equals("Calendars")) navigate(new com.jjarroyo.demo.views.CalendarView());
         else if (text.equals("Dropdowns")) navigate(new com.jjarroyo.demo.views.DropdownsView());
         else if (text.equals("Avatars")) navigate(new com.jjarroyo.demo.views.AvatarView());
         else if (text.equals("Breadcrumbs")) navigate(new com.jjarroyo.demo.views.BreadcrumbView());
@@ -164,6 +174,7 @@ public class MainLayout extends javafx.scene.layout.StackPane {
         else if (text.equals("Confirm Dialogs")) navigate(new com.jjarroyo.demo.views.ConfirmDialogView());
         else if (text.equals("Drawers")) navigate(new com.jjarroyo.demo.views.DrawerView());
         else if (text.equals("Tree View")) navigate(new com.jjarroyo.demo.views.TreeViewView());
+        else if (text.equals("Charts")) navigate(new com.jjarroyo.demo.views.ChartView());
         else if (text.equals("Avanzado")) navigate(new com.jjarroyo.demo.views.AdvancedView());
         else {
             System.out.println("Navigating to " + text);
@@ -242,6 +253,13 @@ public class MainLayout extends javafx.scene.layout.StackPane {
             themeBtn.setGraphic((isDark ? com.jjarroyo.components.JIcon.SUN : com.jjarroyo.components.JIcon.MOON).view());
         });
         header.addToolbarItem(themeBtn);
+
+        // Notifications
+        JNotification notifications = new JNotification();
+        notifications.addNotification("Nueva Venta", "Se ha realizado una venta de $500.00", "https://avatar.iran.liara.run/public/job/operator/male", LocalDateTime.now().minusMinutes(5));
+        notifications.addNotification("Error de Sistema", "El servidor de base de datos no responde adecuadamente a las peticiones.", null, LocalDateTime.now().minusHours(2));
+        notifications.addNotification("Actualización Disponible", "Hay una nueva versión de FxStyle disponible para descargar.", "https://avatar.iran.liara.run/public/job/designer/female", LocalDateTime.now().minusDays(1));
+        header.addToolbarItem(notifications);
         
         // Profile
         header.setUserProfile("Sean Bean", "sean@jjarroyo.com", "S");

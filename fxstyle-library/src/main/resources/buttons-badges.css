@@ -532,3 +532,42 @@
     -fx-background-color: #9333ea;
     -fx-text-fill: white;
 }
+
+/* ==========================================================================
+   FLOATING ACTION BUTTONS (FAB)
+   ========================================================================== */
+.j-floating-button {
+    -fx-background-radius: 50%;
+    -fx-min-width: 56px;
+    -fx-min-height: 56px;
+    -fx-max-width: 56px;
+    -fx-max-height: 56px;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 4);
+    -fx-transition: -fx-background-color 0.2s, -fx-effect 0.2s, -fx-translate-y 0.2s;
+}
+
+.j-floating-button:hover {
+    -fx-translate-y: -3px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 14, 0, 0, 6);
+}
+
+.j-floating-button:pressed {
+    -fx-translate-y: 0px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 6, 0, 0, 2);
+}
+
+.j-floating-button .icon-svg {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+/* Extended FAB variant (Pill shape with Text + Icon) */
+.j-floating-button-extended {
+    -fx-background-radius: 28px;
+    -fx-min-width: USE_COMPUTED_SIZE;
+    -fx-max-width: USE_COMPUTED_SIZE;
+    -fx-padding: 0px 20px;
+    -fx-graphic-text-gap: 8px;
+}

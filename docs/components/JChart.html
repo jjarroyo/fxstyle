@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JChart - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body { font-family: 'Inter', sans-serif; }
+            .chart-demo {
+                background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+                border-radius: 12px;
+                padding: 24px;
+                border: 1px solid #e2e8f0;
+            }
+            .bar-anim { animation: barGrow 0.8s ease-out forwards; }
+            @keyframes barGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+            .pie-slice { transition: transform 0.2s ease; }
+            .pie-slice:hover { transform: scale(1.05); }
+            .color-dot {
+                display: inline-block;
+                width: 12px; height: 12px;
+                border-radius: 3px;
+                margin-right: 6px;
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-3xl">📊</span>
+                        <h1 class="text-3xl font-bold text-slate-900">JChart</h1>
+                    </div>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Componente de gráficos animados y profesionales para JavaFX. Soporta barras, líneas, pie, donut, área, dispersión y barras horizontales con una API ultra-simple.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full">Canvas-based</span>
+                        <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-full">Animated</span>
+                        <span class="px-3 py-1 bg-violet-50 text-violet-700 text-xs font-semibold rounded-full">7 tipos</span>
+                        <span class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full">5 paletas</span>
+                        <span class="px-3 py-1 bg-rose-50 text-rose-700 text-xs font-semibold rounded-full">Fluent API</span>
+                    </div>
+                </header>
+
+                <!-- Quick Start -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">🚀 Inicio Rápido</h2>
+                    <p class="text-slate-600 mb-4">Crear un gráfico es tan simple como una sola línea de código:</p>
+
+                    <div class="bg-slate-900 rounded-lg p-5 overflow-x-auto mb-4">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Gráfico de barras</span>
+JChart chart = JChart.bar("Ventas Mensuales",
+    <span class="text-emerald-400">new</span> String[]{"Ene", "Feb", "Mar", "Abr"},
+    <span class="text-emerald-400">new</span> double[]{120, 200, 150, 250});
+
+<span class="text-blue-400">// Agregarlo a cualquier layout</span>
+myContainer.getChildren().add(chart);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Chart Types -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">📊 Tipos de Gráficos</h2>
+
+                    <!-- BAR -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">📊</span>
+                            Barras (BAR)
+                        </h3>
+                        <div class="chart-demo mb-4">
+                            <div class="flex items-end justify-center gap-3 h-40">
+                                <div class="flex flex-col items-center gap-1">
+                                    <span class="text-xs font-bold text-slate-600">120</span>
+                                    <div class="w-12 bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-md bar-anim" style="height: 48%; transform-origin: bottom;"></div>
+                                    <span class="text-xs text-slate-500">Ene</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span class="text-xs font-bold text-slate-600">200</span>
+                                    <div class="w-12 bg-gradient-to-t from-emerald-600 to-emerald-400 rounded-t-md bar-anim" style="height: 80%; transform-origin: bottom; animation-delay: 0.1s;"></div>
+                                    <span class="text-xs text-slate-500">Feb</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span class="text-xs font-bold text-slate-600">150</span>
+                                    <div class="w-12 bg-gradient-to-t from-amber-600 to-amber-400 rounded-t-md bar-anim" style="height: 60%; transform-origin: bottom; animation-delay: 0.2s;"></div>
+                                    <span class="text-xs text-slate-500">Mar</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <span class="text-xs font-bold text-slate-600">250</span>
+                                    <div class="w-12 bg-gradient-to-t from-red-600 to-red-400 rounded-t-md bar-anim" style="height: 100%; transform-origin: bottom; animation-delay: 0.3s;"></div>
+                                    <span class="text-xs text-slate-500">Abr</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Barras simples</span>
+JChart chart = JChart.bar("Ventas",
+    new String[]{"Ene", "Feb", "Mar", "Abr"},
+    new double[]{120, 200, 150, 250});
+
+<span class="text-blue-400">// Barras agrupadas (multi-serie)</span>
+JChart grouped = JChart.bar("Ingresos vs Gastos",
+    new String[]{"Q1", "Q2", "Q3", "Q4"},
+    new double[][]{
+        {120, 180, 220, 160},  <span class="text-slate-500">// Ingresos</span>
+        {90, 140, 180, 130}    <span class="text-slate-500">// Gastos</span>
+    },
+    new String[]{"Ingresos", "Gastos"});</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- LINE -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">📈</span>
+                            Línea (LINE)
+                        </h3>
+                        <div class="chart-demo mb-4">
+                            <svg viewBox="0 0 300 120" class="w-full max-w-md mx-auto">
+                                <polyline points="20,90 70,50 120,65 170,30 220,40 270,15" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="20" cy="90" r="5" fill="white" stroke="#3b82f6" stroke-width="2.5"/>
+                                <circle cx="70" cy="50" r="5" fill="white" stroke="#3b82f6" stroke-width="2.5"/>
+                                <circle cx="120" cy="65" r="5" fill="white" stroke="#3b82f6" stroke-width="2.5"/>
+                                <circle cx="170" cy="30" r="5" fill="white" stroke="#3b82f6" stroke-width="2.5"/>
+                                <circle cx="220" cy="40" r="5" fill="white" stroke="#3b82f6" stroke-width="2.5"/>
+                                <circle cx="270" cy="15" r="5" fill="white" stroke="#3b82f6" stroke-width="2.5"/>
+                            </svg>
+                        </div>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Línea simple</span>
+JChart chart = JChart.line("Tráfico Web",
+    new String[]{"Lun", "Mar", "Mié", "Jue", "Vie"},
+    new double[]{12, 19, 15, 25, 22});
+
+<span class="text-blue-400">// Multi-línea</span>
+JChart multi = JChart.line("Comparativa",
+    new String[]{"Ene", "Feb", "Mar", "Abr"},
+    new double[][]{
+        {30, 45, 35, 50},
+        {20, 30, 40, 35}
+    },
+    new String[]{"Producto A", "Producto B"});</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- PIE -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600">🥧</span>
+                            Pastel (PIE)
+                        </h3>
+                        <div class="chart-demo mb-4">
+                            <div class="flex justify-center">
+                                <svg viewBox="0 0 200 200" class="w-48 h-48">
+                                    <circle cx="100" cy="100" r="90" fill="#3b82f6" class="pie-slice"/>
+                                    <path d="M100 100 L100 10 A90 90 0 0 1 188.5 135.5 Z" fill="#10b981" class="pie-slice"/>
+                                    <path d="M100 100 L188.5 135.5 A90 90 0 0 1 100 190 Z" fill="#f59e0b" class="pie-slice"/>
+                                    <path d="M100 100 L100 190 A90 90 0 0 1 35 155 Z" fill="#ef4444" class="pie-slice"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm">JChart chart = JChart.pie("Presupuesto",
+    new String[]{"Marketing", "Dev", "Ops", "RRHH"},
+    new double[]{35, 25, 20, 12});</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- DONUT -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center text-purple-600">🍩</span>
+                            Dona (DONUT)
+                        </h3>
+                        <div class="chart-demo mb-4">
+                            <div class="flex justify-center">
+                                <svg viewBox="0 0 200 200" class="w-48 h-48">
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#3b82f6" stroke-width="35" stroke-dasharray="200 503" stroke-dashoffset="-0" class="pie-slice"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="35" stroke-dasharray="150 553" stroke-dashoffset="-200" class="pie-slice"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="35" stroke-dasharray="100 603" stroke-dashoffset="-350" class="pie-slice"/>
+                                    <circle cx="100" cy="100" r="80" fill="none" stroke="#ef4444" stroke-width="35" stroke-dasharray="53 650" stroke-dashoffset="-450" class="pie-slice"/>
+                                    <text x="100" y="95" text-anchor="middle" font-size="20" font-weight="700" fill="#1e293b">100</text>
+                                    <text x="100" y="115" text-anchor="middle" font-size="12" fill="#94a3b8">Total</text>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm">JChart chart = JChart.donut("Estado de Tareas",
+    new String[]{"Completadas", "En Progreso", "Pendientes"},
+    new double[]{45, 25, 20});
+<span class="text-slate-500">// El centro muestra automáticamente el total</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- AREA -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-cyan-100 rounded-lg flex items-center justify-center text-cyan-600">🏔️</span>
+                            Área (AREA)
+                        </h3>
+                        <div class="chart-demo mb-4">
+                            <svg viewBox="0 0 300 120" class="w-full max-w-md mx-auto">
+                                <defs>
+                                    <linearGradient id="areaGrad" x1="0" x2="0" y1="0" y2="1">
+                                        <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.4"/>
+                                        <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="20,100 70,60 120,70 170,35 220,45 270,20 270,100" fill="url(#areaGrad)"/>
+                                <polyline points="20,100 70,60 120,70 170,35 220,45 270,20" fill="none" stroke="#8b5cf6" stroke-width="2.5"/>
+                            </svg>
+                        </div>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Área simple</span>
+JChart chart = JChart.area("Uso de CPU",
+    new String[]{"10:00", "10:30", "11:00", "11:30"},
+    new double[]{25, 42, 38, 65});
+
+<span class="text-blue-400">// Multi-área</span>
+JChart multi = JChart.area("Tráfico por Canal",
+    labels, multiValues, seriesNames);</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- HORIZONTAL BAR -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-rose-100 rounded-lg flex items-center justify-center text-rose-600">📏</span>
+                            Barras Horizontales (HORIZONTAL_BAR)
+                        </h3>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm">JChart chart = JChart.horizontalBar("Lenguajes",
+    new String[]{"Python", "JavaScript", "Java", "C#"},
+    new double[]{92, 88, 75, 63});</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- SCATTER -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 flex items-center gap-2">
+                            <span class="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center text-teal-600">✨</span>
+                            Dispersión (SCATTER)
+                        </h3>
+                        <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                            <pre><code class="text-slate-300 font-mono text-sm">JChart chart = JChart.scatter("Correlación",
+    new String[]{"P1", "P2", "P3", "P4", "P5"},
+    new double[]{30, 50, 70, 45, 85});
+
+<span class="text-blue-400">// Multi-serie</span>
+JChart multi = JChart.scatter("Análisis",
+    labels, multiValues, seriesNames);</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Palettes -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">🎨 Paletas de Colores</h2>
+                    <p class="text-slate-600 mb-4">5 paletas profesionales incluidas. Usa <code class="text-blue-600 bg-blue-50 px-1 rounded">.withPalette()</code> para cambiar los colores.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-sm mb-2">PALETTE_VIBRANT (default)</h4>
+                            <div class="flex gap-1">
+                                <div class="w-8 h-8 rounded" style="background:#3b82f6"></div>
+                                <div class="w-8 h-8 rounded" style="background:#10b981"></div>
+                                <div class="w-8 h-8 rounded" style="background:#f59e0b"></div>
+                                <div class="w-8 h-8 rounded" style="background:#ef4444"></div>
+                                <div class="w-8 h-8 rounded" style="background:#8b5cf6"></div>
+                                <div class="w-8 h-8 rounded" style="background:#ec4899"></div>
+                                <div class="w-8 h-8 rounded" style="background:#06b6d4"></div>
+                                <div class="w-8 h-8 rounded" style="background:#f97316"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-sm mb-2">PALETTE_OCEAN</h4>
+                            <div class="flex gap-1">
+                                <div class="w-8 h-8 rounded" style="background:#0ea5e9"></div>
+                                <div class="w-8 h-8 rounded" style="background:#06b6d4"></div>
+                                <div class="w-8 h-8 rounded" style="background:#14b8a6"></div>
+                                <div class="w-8 h-8 rounded" style="background:#3b82f6"></div>
+                                <div class="w-8 h-8 rounded" style="background:#6366f1"></div>
+                                <div class="w-8 h-8 rounded" style="background:#0284c7"></div>
+                                <div class="w-8 h-8 rounded" style="background:#0891b2"></div>
+                                <div class="w-8 h-8 rounded" style="background:#0d9488"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-sm mb-2">PALETTE_SUNSET</h4>
+                            <div class="flex gap-1">
+                                <div class="w-8 h-8 rounded" style="background:#f97316"></div>
+                                <div class="w-8 h-8 rounded" style="background:#ef4444"></div>
+                                <div class="w-8 h-8 rounded" style="background:#ec4899"></div>
+                                <div class="w-8 h-8 rounded" style="background:#f59e0b"></div>
+                                <div class="w-8 h-8 rounded" style="background:#e11d48"></div>
+                                <div class="w-8 h-8 rounded" style="background:#f43f5e"></div>
+                                <div class="w-8 h-8 rounded" style="background:#fb923c"></div>
+                                <div class="w-8 h-8 rounded" style="background:#fbbf24"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-sm mb-2">PALETTE_FOREST</h4>
+                            <div class="flex gap-1">
+                                <div class="w-8 h-8 rounded" style="background:#10b981"></div>
+                                <div class="w-8 h-8 rounded" style="background:#059669"></div>
+                                <div class="w-8 h-8 rounded" style="background:#14b8a6"></div>
+                                <div class="w-8 h-8 rounded" style="background:#0d9488"></div>
+                                <div class="w-8 h-8 rounded" style="background:#22c55e"></div>
+                                <div class="w-8 h-8 rounded" style="background:#16a34a"></div>
+                                <div class="w-8 h-8 rounded" style="background:#34d399"></div>
+                                <div class="w-8 h-8 rounded" style="background:#2dd4bf"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-semibold text-sm mb-2">PALETTE_SLATE</h4>
+                            <div class="flex gap-1">
+                                <div class="w-8 h-8 rounded" style="background:#334155"></div>
+                                <div class="w-8 h-8 rounded" style="background:#475569"></div>
+                                <div class="w-8 h-8 rounded" style="background:#64748b"></div>
+                                <div class="w-8 h-8 rounded" style="background:#94a3b8"></div>
+                                <div class="w-8 h-8 rounded" style="background:#cbd5e1"></div>
+                                <div class="w-8 h-8 rounded" style="background:#1e293b"></div>
+                                <div class="w-8 h-8 rounded" style="background:#0f172a"></div>
+                                <div class="w-8 h-8 rounded" style="background:#e2e8f0"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Usar paleta predefinida</span>
+chart.withPalette(JChart.PALETTE_OCEAN);
+chart.withPalette(JChart.PALETTE_SUNSET);
+chart.withPalette(JChart.PALETTE_FOREST);
+chart.withPalette(JChart.PALETTE_SLATE);
+
+<span class="text-blue-400">// Paleta personalizada</span>
+chart.withPalette(<span class="text-emerald-400">new</span> Color[]{
+    Color.web("#8b5cf6"),
+    Color.web("#ec4899"),
+    Color.web("#06b6d4")
+});</code></pre>
+                    </div>
+                </section>
+
+                <!-- Customization -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">⚙️ Personalización</h2>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-4">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Tamaño personalizado</span>
+chart.withSize(700, 350);
+
+<span class="text-blue-400">// Mostrar/ocultar leyenda</span>
+chart.withLegend(false);
+
+<span class="text-blue-400">// Mostrar/ocultar valores sobre las barras</span>
+chart.withValues(false);
+
+<span class="text-blue-400">// Mostrar/ocultar grid</span>
+chart.withGrid(false);
+
+<span class="text-blue-400">// Deshabilitar animación</span>
+chart.withAnimation(false);
+
+<span class="text-blue-400">// Actualizar datos dinámicamente</span>
+chart.setData(newLabels, newValues);
+chart.setData(newLabels, newMultiValues, newSeriesNames);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Dashboard Example -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">🎯 Ejemplo: Dashboard Completo</h2>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-4">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Dashboard con múltiples gráficos</span>
+HBox row1 = <span class="text-emerald-400">new</span> HBox(20);
+
+<span class="text-blue-400">// Donut de distribución</span>
+JChart cropDonut = JChart.donut("Cultivos",
+    <span class="text-emerald-400">new</span> String[]{"Café", "Caña", "Maíz"},
+    <span class="text-emerald-400">new</span> double[]{35, 25, 20});
+cropDonut.withSize(280, 240);
+cropDonut.withPalette(JChart.PALETTE_FOREST);
+
+<span class="text-blue-400">// Barras agrupadas de cosecha</span>
+JChart harvestBars = JChart.bar("Cosecha (ton)",
+    <span class="text-emerald-400">new</span> String[]{"Q1", "Q2", "Q3", "Q4"},
+    <span class="text-emerald-400">new</span> double[][]{
+        {220, 340, 280, 150},
+        {190, 310, 320, 180}
+    },
+    <span class="text-emerald-400">new</span> String[]{"2024", "2025"});
+
+row1.getChildren().addAll(cropDonut, harvestBars);
+
+<span class="text-blue-400">// Línea de precipitación</span>
+JChart rainLine = JChart.line("Lluvia (mm)",
+    months, rainData);
+rainLine.withPalette(JChart.PALETTE_OCEAN);
+
+<span class="text-blue-400">// Área de crecimiento</span>
+JChart growthArea = JChart.area("Crecimiento (cm)",
+    weeks, growthData);
+growthArea.withPalette(JChart.PALETTE_FOREST);</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">📖 API Reference</h2>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Métodos de Fábrica (estáticos)</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-6">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.bar(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Gráfico de barras vertical.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.bar(title, labels, multiValues, series)</td>
+                                <td class="px-6 py-4 text-slate-500">Barras agrupadas con múltiples series.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.horizontalBar(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Barras horizontales.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.line(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Gráfico de línea.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.line(title, labels, multiValues, series)</td>
+                                <td class="px-6 py-4 text-slate-500">Multi-línea.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.pie(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Gráfico circular.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.donut(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Gráfico de dona con total en el centro.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.area(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Gráfico de área con gradiente.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.area(title, labels, multiValues, series)</td>
+                                <td class="px-6 py-4 text-slate-500">Multi-área superpuesta.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.scatter(title, labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Gráfico de dispersión.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JChart.scatter(title, labels, multiValues, series)</td>
+                                <td class="px-6 py-4 text-slate-500">Dispersión multi-serie.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-bold text-slate-800 mb-3">Métodos de Configuración</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withPalette(Color[])</td>
+                                <td class="px-6 py-4 text-slate-500">Cambia la paleta de colores.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withSize(int w, int h)</td>
+                                <td class="px-6 py-4 text-slate-500">Tamaño del canvas en píxeles.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withLegend(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Mostrar/ocultar leyenda.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withValues(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Mostrar/ocultar valores sobre datos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withGrid(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Mostrar/ocultar líneas de grid.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">withAnimation(boolean)</td>
+                                <td class="px-6 py-4 text-slate-500">Habilitar/deshabilitar animación.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setData(labels, values)</td>
+                                <td class="px-6 py-4 text-slate-500">Actualiza los datos y re-anima.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">refresh()</td>
+                                <td class="px-6 py-4 text-slate-500">Fuerza re-dibujo con animación.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Palettes Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Constantes de Paleta</h2>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Constante</th>
+                                <th scope="col" class="px-6 py-4">Estilo</th>
+                                <th scope="col" class="px-6 py-4">Uso Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">PALETTE_VIBRANT</td>
+                                <td class="px-6 py-4">
+                                    <span class="color-dot" style="background:#3b82f6"></span>
+                                    <span class="color-dot" style="background:#10b981"></span>
+                                    <span class="color-dot" style="background:#f59e0b"></span>
+                                    <span class="color-dot" style="background:#ef4444"></span>
+                                    <span class="color-dot" style="background:#8b5cf6"></span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">General, dashboards coloridos.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">PALETTE_OCEAN</td>
+                                <td class="px-6 py-4">
+                                    <span class="color-dot" style="background:#0ea5e9"></span>
+                                    <span class="color-dot" style="background:#06b6d4"></span>
+                                    <span class="color-dot" style="background:#14b8a6"></span>
+                                    <span class="color-dot" style="background:#3b82f6"></span>
+                                    <span class="color-dot" style="background:#6366f1"></span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">Corporativo, reportes serios.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">PALETTE_SUNSET</td>
+                                <td class="px-6 py-4">
+                                    <span class="color-dot" style="background:#f97316"></span>
+                                    <span class="color-dot" style="background:#ef4444"></span>
+                                    <span class="color-dot" style="background:#ec4899"></span>
+                                    <span class="color-dot" style="background:#f59e0b"></span>
+                                    <span class="color-dot" style="background:#e11d48"></span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">Marketing, datos de alertas.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">PALETTE_FOREST</td>
+                                <td class="px-6 py-4">
+                                    <span class="color-dot" style="background:#10b981"></span>
+                                    <span class="color-dot" style="background:#059669"></span>
+                                    <span class="color-dot" style="background:#14b8a6"></span>
+                                    <span class="color-dot" style="background:#0d9488"></span>
+                                    <span class="color-dot" style="background:#22c55e"></span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">Agrícola, ambiental, salud.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">PALETTE_SLATE</td>
+                                <td class="px-6 py-4">
+                                    <span class="color-dot" style="background:#334155"></span>
+                                    <span class="color-dot" style="background:#475569"></span>
+                                    <span class="color-dot" style="background:#64748b"></span>
+                                    <span class="color-dot" style="background:#94a3b8"></span>
+                                    <span class="color-dot" style="background:#cbd5e1"></span>
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">Minimalista, impresión B/N.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

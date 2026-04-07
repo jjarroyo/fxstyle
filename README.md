@@ -80,31 +80,79 @@ Si prefieres ejecutar manualmente:
 
 - java -jar fxstyle-demo/target/fxstyle-demo-2.0.0.jar
 
-## Estructura del proyecto
+## Catálogo de Componentes
 
-- fxstyle-library: libreria principal de componentes y estilos.
-- fxstyle-demo: aplicacion demo para visualizar componentes.
-- docs: documentacion y previews.
+Navega a la documentación de cada componente y visualiza cómo lucen de forma estructurada.
 
-Abrir documentacion local:
+### 🔘 Botones y Acciones
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JButton** | [📄 Docs](docs/components/JButton.html) | [🖼️ Ver Preview](docs/images/buttons.png) |
+| **JFloatingButton** | [📄 Docs](docs/components/JFloatingButton.html) | - |
+| **JSwitch** | [📄 Docs](docs/components/JSwitch.html) | - |
 
-- docs/index.html
+### 📝 Entradas de Datos y Formularios
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JInput** / **JInputGroup** | [📄 Docs](docs/components/JInput.html) | [🖼️ Ver Preview](docs/images/inputs.png) |
+| **JSearchInput** | [📄 Docs](docs/components/JSearchInput.html) | [🖼️ Ver Preview](docs/images/searchinputs.png) |
+| **JSelect** | [📄 Docs](docs/components/JSelect.html) | [🖼️ Ver Preview](docs/images/selects.png) |
+| **JCheckBox** & **JRadioButton**| [📄 Docs](docs/components/JCheckBox.html) | [🖼️ Ver Preview](docs/images/checkandradio.png) |
+| **JPasswordInput** | [📄 Docs](docs/components/JPasswordInput.html) | - |
+| **JNumberInput** | [📄 Docs](docs/components/JNumberInput.html) | - |
+| **JSlider** | [📄 Docs](docs/components/JSlider.html) | [🖼️ Ver Preview](docs/images/sliders.png) |
+| **JDatePicker** / **JTimePicker**| [📄 Docs](docs/components/JDatePicker.html) | - |
+| **JCalendar** | [📄 Docs](docs/components/JCalendar.html) | - |
+| **JTextArea** | [📄 Docs](docs/components/JTextArea.html) | - |
+| **JRating** | [📄 Docs](docs/components/JRating.html) | - |
 
-## Screenshots
+### 🔔 Feedback y Comunicación
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JAlert** | [📄 Docs](docs/components/JAlert.html) | [🖼️ Ver Preview](docs/images/alerts.png) |
+| **JModal** | [📄 Docs](docs/components/JModal.html) | [🖼️ Ver Preview](docs/images/modals.png) |
+| **JConfirmDialog** | [📄 Docs](docs/components/JConfirmDialog.html) | [🖼️ Ver Preview](docs/images/modalalert.png) |
+| **JNotification** & **JToast** | [📄 Docs](docs/components/JNotification.html) | - |
+| **JProgressBar** & **JCircular**| [📄 Docs](docs/components/JProgressBar.html) | [🖼️ Ver Preview](docs/images/progress.png) |
+| **JSkeleton** | [📄 Docs](docs/components/JSkeleton.html) | [🖼️ Ver Preview](docs/images/skeletons.png) |
 
-![Control Panel](docs/images/dashboard.png)
-![Buttons](docs/images/buttons.png)
-![Modals](docs/images/modals.png)
-![Inputs](docs/images/inputs.png)
-![Tables](docs/images/tables.png)
-![Cards](docs/images/cards.png)
-![Files](docs/images/files.png)
-![Popovers](docs/images/popovers.png)
-![Progress](docs/images/progress.png)
-![Tabs](docs/images/tabs.png)
-![Checkboxes](docs/images/checkandradio.png)
-![Alerts](docs/images/alerts.png)
-![Sliders](docs/images/sliders.png)
+### 📊 Despliegue de Datos
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JTable** | [📄 Docs](docs/components/JTable.html) | [🖼️ Ver Preview](docs/images/tables.png) |
+| **JTreeView** | [📄 Docs](docs/components/JTreeView.html) | [🖼️ Ver Preview](docs/images/treeview.png) |
+| **JCard** & **JStatCard** | [📄 Docs](docs/components/JCard.html) | [🖼️ Ver Preview](docs/images/cards.png) |
+| **JAvatar** | [📄 Docs](docs/components/JAvatar.html) | [🖼️ Ver Preview](docs/images/avatars.png) |
+| **JBadge** & **JChip** | [📄 Docs](docs/components/JBadge.html) | - |
+| **JTimeline** | [📄 Docs](docs/components/JTimeline.html) | - |
+| **JChart** | [📄 Docs](docs/components/JChart.html) | - |
+| **Typography** (Label/Paragraph)| [📄 Docs](docs/components/Typography.html) | - |
+
+### 🧭 Navegación y Contenedores
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JSidebar** & **JHeader** | [📄 Docs](docs/components/JSidebar.html) | [🖼️ Ver Preview](docs/images/dashboard.png) |
+| **JTabs** | [📄 Docs](docs/components/JTabs.html) | [🖼️ Ver Preview](docs/images/tabs.png) |
+| **JDrawer** | [📄 Docs](docs/components/JDrawer.html) | [🖼️ Ver Preview](docs/images/drawers.png) |
+| **JAccordion** | [📄 Docs](docs/components/JAccordion.html) | [🖼️ Ver Preview](docs/images/accordions.png) |
+| **JTitleBar** | [📄 Docs](docs/components/JTitleBar.html) | - |
+| **JBreadcrumb** & **JPagination**| [📄 Docs](docs/components/JBreadcrumb.html) | - |
+| **JStepper** | [📄 Docs](docs/components/JStepper.html) | - |
+
+### 🕹️ Overlays & Popovers
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JPopover** | [📄 Docs](docs/components/JPopover.html) | [🖼️ Ver Preview](docs/images/popovers.png) |
+| **JDropdown** | [📄 Docs](docs/components/JDropdown.html) | - |
+
+### ⚙️ Especiales / Helpers
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JFile** | [📄 Docs](docs/components/JFile.html) | [🖼️ Ver Preview](docs/images/files.png) |
+| **JSqlEditor** | [📄 Docs](docs/components/JSqlEditor.html) | - |
+| **JDesignCanvas** | [📄 Docs](docs/components/JDesignCanvas.html) | - |
+| **JIcon** | [📄 Docs](docs/components/JIcon.html) | - |
+| **Colores y Utilidades CSS** | [📄 Docs](docs/components/Colors.html) | - |
 
 ## Problemas comunes
 

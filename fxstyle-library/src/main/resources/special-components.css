@@ -346,3 +346,153 @@
 
 /* ─── SQL EDITOR ─────────────────────────────────────────────────────────────── */
 /* ─── SQL EDITOR (Migrated to src/main/resources/css/sql-editor-light.css) ─── */
+
+/* ─── J-NOTIFICATION ─────────────────────────────────────────────────────────── */
+.j-notification-trigger {
+    -fx-padding: 8px;
+    -fx-background-radius: 50%;
+    -fx-transition: -fx-background-color 0.2s;
+}
+.j-notification-trigger:hover {
+    -fx-background-color: transparent;
+}
+.dark .j-notification-trigger:hover {
+    -fx-background-color: transparent;
+}
+
+.j-notification-bell {
+    -fx-fill: -color-slate-600;
+}
+.dark .j-notification-bell {
+    -fx-fill: -color-slate-300;
+}
+
+.j-notification-badge {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+    -fx-padding: 2px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 50%;
+}
+.dark .j-notification-badge {
+    -fx-border-color: -color-slate-900;
+}
+
+/* Popup Container - Minimalist because JPopover already has a card */
+.j-notification-popover .j-popover-content {
+    -fx-padding: 0;
+}
+
+.j-notification-popup {
+    -fx-background-color: transparent;
+}
+
+.j-notification-header {
+    -fx-padding: 16px 20px;
+    -fx-border-color: transparent transparent -color-border-subtle transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: center-left;
+    -fx-background-color: -color-bg-surface;
+    -fx-background-radius: 8px 8px 0 0;
+}
+
+.j-notification-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -color-text-primary;
+}
+
+.j-notification-action {
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-primary-500;
+    -fx-cursor: hand;
+}
+.j-notification-action:hover {
+    -fx-text-decoration: underline;
+}
+
+.j-notification-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent; /* Importante para el fondo del viewport */
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.j-notification-scroll .viewport {
+    -fx-background-color: transparent;
+}
+.j-notification-scroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* Items */
+.j-notification-list {
+    -fx-background-color: transparent;
+}
+
+.j-notification-item {
+    -fx-border-color: -color-border-subtle;
+    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: -color-bg-surface;
+    -fx-transition: -fx-background-color 0.2s;
+    -fx-cursor: hand;
+}
+.j-notification-item:hover {
+    -fx-background-color: -color-slate-50;
+}
+.dark .j-notification-item:hover {
+    -fx-background-color: -color-slate-800;
+}
+
+.j-notification-item.unread {
+    -fx-background-color: -color-primary-50;
+}
+.dark .j-notification-item.unread {
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+}
+
+.j-notification-item .item-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-text-primary;
+}
+
+.j-notification-item .item-description {
+    -fx-font-size: 13px;
+    -fx-text-fill: -color-text-secondary;
+    -fx-line-spacing: 2px;
+}
+
+.j-notification-item .item-time {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-slate-400;
+}
+
+.j-notification-empty {
+    -fx-padding: 40px;
+    -fx-text-fill: -color-slate-400;
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+.j-notification-footer {
+    -fx-padding: 14px 0;
+    -fx-alignment: center;
+    -fx-background-color: -color-bg-surface;
+    -fx-border-color: -color-border-subtle transparent transparent transparent;
+    -fx-border-width: 1px 0 0 0;
+    -fx-background-radius: 0 0 8px 8px;
+}
+
+.j-notification-footer-action {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -color-primary-600;
+    -fx-cursor: hand;
+}
+.j-notification-footer-action:hover {
+    -fx-opacity: 0.8;
+}
+
