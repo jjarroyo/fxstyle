@@ -6,7 +6,7 @@ set "MAVEN_HOME=%~dp0maven\apache-maven-3.9.12"
 set "PATH=%MAVEN_HOME%\bin;%JAVA_HOME%\bin;%PATH%"
 
 echo ==========================================
-echo Building and Running FxStyle Demo App v2.0.0
+echo Building and Running FxStyle Demo App v2.1.0
 echo ==========================================
 
 rem Build the entire project (Library + Demo)
@@ -23,7 +23,7 @@ echo Running Demo Application...
 echo ==========================================
 
 rem Run the Demo JAR
-java -jar fxstyle-demo/target/fxstyle-demo-2.0.0.jar
+java -jar fxstyle-demo/target/fxstyle-demo-2.1.0.jar
 if %ERRORLEVEL% NEQ 0 (
     echo Application execution failed!
     pause

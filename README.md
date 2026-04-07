@@ -1,4 +1,4 @@
-# FxStyle - JavaFX Design System v2.0.0
+# FxStyle - JavaFX Design System v2.1.0
 
 Sistema de diseno moderno para JavaFX, inspirado en conceptos de Tailwind CSS y orientado a crear interfaces consistentes y reutilizables.
 
@@ -66,7 +66,7 @@ Este script hace lo siguiente:
 
 1. Ejecuta mvn clean install para compilar libreria y demo.
 2. Lanza la aplicacion demo:
-   fxstyle-demo/target/fxstyle-demo-2.0.0.jar
+   fxstyle-demo/target/fxstyle-demo-2.1.0.jar
 
 ## Ejecucion manual (opcional)
 
@@ -78,7 +78,7 @@ Si prefieres ejecutar manualmente:
 
 2. Ejecutar demo:
 
-- java -jar fxstyle-demo/target/fxstyle-demo-2.0.0.jar
+- java -jar fxstyle-demo/target/fxstyle-demo-2.1.0.jar
 
 ## Catálogo de Componentes
 
