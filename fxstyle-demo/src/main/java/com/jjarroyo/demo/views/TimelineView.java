@@ -35,7 +35,7 @@ public class TimelineView extends ScrollPane {
 
         JTimeline timeline = new JTimeline();
         
-        JTimeline.Event e1 = new JTimeline.Event("System Update", "The system was updated to version 2.1.0.", "10:00 AM");
+        JTimeline.Event e1 = new JTimeline.Event("System Update", "The system was updated to version 2.2.0.", "10:00 AM");
         e1.setColorClass("primary");
         
         JTimeline.Event e2 = new JTimeline.Event("Database Backup", "Automated backup completed without errors.", "11:30 AM");

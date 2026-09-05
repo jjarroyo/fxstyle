@@ -37,7 +37,7 @@ public class JSlider extends Slider {
             // Clamp percentage between 0 and 100
             percentage = Math.max(0, Math.min(100, percentage));
             
-            String style = String.format(
+            String style = String.format(java.util.Locale.US,
                 "-fx-background-color: linear-gradient(to right, -color-primary-500 %.2f%%, -color-slate-200 %.2f%%);",
                 percentage, percentage
             );

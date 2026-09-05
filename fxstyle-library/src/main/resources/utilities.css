@@ -70,9 +70,7 @@
 }
 
 /* --- Margin / Insets --- */
-.m-0 {
-    -fx-background-insets: 0;
-}
+/* Ver bloque extendido de márgenes más abajo */
 
 /* --- Spacing (gap) --- */
 .gap-2 {
@@ -454,36 +452,98 @@
 }
 
 /* --- Margin / Insets extendido --- */
-.m-1 {
-    -fx-padding: 4px;
-}
-.m-2 {
-    -fx-padding: 8px;
-}
-.m-3 {
-    -fx-padding: 12px;
-}
-.m-4 {
-    -fx-padding: 16px;
-}
-.m-5 {
-    -fx-padding: 20px;
-}
-.m-6 {
-    -fx-padding: 24px;
-}
-.m-8 {
-    -fx-padding: 32px;
-}
-.m-10 {
-    -fx-padding: 40px;
-}
-.m-12 {
-    -fx-padding: 48px;
-}
-.m-16 {
-    -fx-padding: 64px;
-}
+/* Nota: JavaFX no soporta márgenes nativos por CSS (-fx-margin no existe), por lo que estas clases utilitarias aplican padding. */
+
+/* Margin All */
+.m-0 { -fx-padding: 0; }
+.m-1 { -fx-padding: 4px; }
+.m-2 { -fx-padding: 8px; }
+.m-3 { -fx-padding: 12px; }
+.m-4 { -fx-padding: 16px; }
+.m-5 { -fx-padding: 20px; }
+.m-6 { -fx-padding: 24px; }
+.m-8 { -fx-padding: 32px; }
+.m-10 { -fx-padding: 40px; }
+.m-12 { -fx-padding: 48px; }
+.m-16 { -fx-padding: 64px; }
+
+/* Margin X (Horizontal) */
+.mx-0 { -fx-padding: 0 0; }
+.mx-1 { -fx-padding: 0 4px; }
+.mx-2 { -fx-padding: 0 8px; }
+.mx-3 { -fx-padding: 0 12px; }
+.mx-4 { -fx-padding: 0 16px; }
+.mx-5 { -fx-padding: 0 20px; }
+.mx-6 { -fx-padding: 0 24px; }
+.mx-8 { -fx-padding: 0 32px; }
+.mx-10 { -fx-padding: 0 40px; }
+.mx-12 { -fx-padding: 0 48px; }
+.mx-16 { -fx-padding: 0 64px; }
+
+/* Margin Y (Vertical) */
+.my-0 { -fx-padding: 0 0; }
+.my-1 { -fx-padding: 4px 0; }
+.my-2 { -fx-padding: 8px 0; }
+.my-3 { -fx-padding: 12px 0; }
+.my-4 { -fx-padding: 16px 0; }
+.my-5 { -fx-padding: 20px 0; }
+.my-6 { -fx-padding: 24px 0; }
+.my-8 { -fx-padding: 32px 0; }
+.my-10 { -fx-padding: 40px 0; }
+.my-12 { -fx-padding: 48px 0; }
+.my-16 { -fx-padding: 64px 0; }
+
+/* Margin Top */
+.mt-0 { -fx-padding: 0 0 0 0; }
+.mt-1 { -fx-padding: 4px 0 0 0; }
+.mt-2 { -fx-padding: 8px 0 0 0; }
+.mt-3 { -fx-padding: 12px 0 0 0; }
+.mt-4 { -fx-padding: 16px 0 0 0; }
+.mt-5 { -fx-padding: 20px 0 0 0; }
+.mt-6 { -fx-padding: 24px 0 0 0; }
+.mt-8 { -fx-padding: 32px 0 0 0; }
+.mt-10 { -fx-padding: 40px 0 0 0; }
+.mt-12 { -fx-padding: 48px 0 0 0; }
+.mt-16 { -fx-padding: 64px 0 0 0; }
+
+/* Margin Bottom */
+.mb-0 { -fx-padding: 0 0 0 0; }
+.mb-1 { -fx-padding: 0 0 4px 0; }
+.mb-2 { -fx-padding: 0 0 8px 0; }
+.mb-3 { -fx-padding: 0 0 12px 0; }
+.mb-4 { -fx-padding: 0 0 16px 0; }
+.mb-5 { -fx-padding: 0 0 20px 0; }
+.mb-6 { -fx-padding: 0 0 24px 0; }
+.mb-8 { -fx-padding: 0 0 32px 0; }
+.mb-10 { -fx-padding: 0 0 40px 0; }
+.mb-12 { -fx-padding: 0 0 48px 0; }
+.mb-16 { -fx-padding: 0 0 64px 0; }
+
+/* Margin Left */
+.ml-0 { -fx-padding: 0 0 0 0; }
+.ml-1 { -fx-padding: 0 0 0 4px; }
+.ml-2 { -fx-padding: 0 0 0 8px; }
+.ml-3 { -fx-padding: 0 0 0 12px; }
+.ml-4 { -fx-padding: 0 0 0 16px; }
+.ml-5 { -fx-padding: 0 0 0 20px; }
+.ml-6 { -fx-padding: 0 0 0 24px; }
+.ml-8 { -fx-padding: 0 0 0 32px; }
+.ml-10 { -fx-padding: 0 0 0 40px; }
+.ml-12 { -fx-padding: 0 0 0 48px; }
+.ml-16 { -fx-padding: 0 0 0 64px; }
+
+/* Margin Right */
+.mr-0 { -fx-padding: 0 0 0 0; }
+.mr-1 { -fx-padding: 0 4px 0 0; }
+.mr-2 { -fx-padding: 0 8px 0 0; }
+.mr-3 { -fx-padding: 0 12px 0 0; }
+.mr-4 { -fx-padding: 0 16px 0 0; }
+.mr-5 { -fx-padding: 0 20px 0 0; }
+.mr-6 { -fx-padding: 0 24px 0 0; }
+.mr-8 { -fx-padding: 0 32px 0 0; }
+.mr-10 { -fx-padding: 0 40px 0 0; }
+.mr-12 { -fx-padding: 0 48px 0 0; }
+.mr-16 { -fx-padding: 0 64px 0 0; }
 
 /* --- Gap extendido --- */
 .gap-1 {
@@ -927,8 +987,102 @@
 .bg-emerald-50 {
     -fx-background-color: #ecfdf5;
 }
+.bg-emerald-100 {
+    -fx-background-color: #d1fae5;
+}
 .bg-emerald-500 {
     -fx-background-color: #10b981;
+}
+.bg-emerald-600 {
+    -fx-background-color: #059669;
+}
+.bg-emerald-700 {
+    -fx-background-color: #047857;
+}
+
+.text-emerald-500 {
+    -fx-text-fill: #10b981;
+}
+.text-emerald-600 {
+    -fx-text-fill: #059669;
+}
+.text-emerald-700 {
+    -fx-text-fill: #047857;
+}
+.text-emerald-800 {
+    -fx-text-fill: #065f46;
+}
+
+.border-emerald-200 {
+    -fx-border-color: #a7f3d0;
+}
+.border-emerald-500 {
+    -fx-border-color: #10b981;
+}
+.border-emerald-600 {
+    -fx-border-color: #059669;
+}
+
+/* Primary Button Emerald (Health Theme) */
+.btn-emerald {
+    -fx-background-color: #059669 !important;
+    -fx-text-fill: #ffffff !important;
+    -fx-font-weight: 600;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-cursor: hand;
+}
+.btn-emerald:hover {
+    -fx-background-color: #047857 !important;
+}
+.btn-emerald:pressed {
+    -fx-background-color: #065f46 !important;
+}
+
+/* Badges Semánticos (Sector Salud) */
+.badge-emerald {
+    -fx-background-color: #ecfdf5;
+    -fx-text-fill: #047857;
+    -fx-border-color: #a7f3d0;
+    -fx-border-width: 1px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-padding: 4px 10px;
+    -fx-font-weight: 600;
+    -fx-font-size: 12px;
+}
+.badge-amber {
+    -fx-background-color: #fffbeb;
+    -fx-text-fill: #b45309;
+    -fx-border-color: #fde68a;
+    -fx-border-width: 1px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-padding: 4px 10px;
+    -fx-font-weight: 600;
+    -fx-font-size: 12px;
+}
+.badge-red {
+    -fx-background-color: #fef2f2;
+    -fx-text-fill: #b91c1c;
+    -fx-border-color: #fecaca;
+    -fx-border-width: 1px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-padding: 4px 10px;
+    -fx-font-weight: 600;
+    -fx-font-size: 12px;
+}
+.badge-rose, .badge-red-soft {
+    -fx-background-color: #fef2f2;
+    -fx-text-fill: #991b1b;
+    -fx-border-color: #fecaca;
+    -fx-border-width: 1px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-padding: 4px 10px;
+    -fx-font-weight: 600;
+    -fx-font-size: 12px;
 }
 .bg-orange-50 {
     -fx-background-color: #fff7ed;

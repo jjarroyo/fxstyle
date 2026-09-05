@@ -5,9 +5,10 @@ import com.jjarroyo.components.JAccordionPane;
 import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -40,7 +41,7 @@ public class AccordionsView extends ScrollPane {
         // Let's stick to standard Accordion behavior for JAccordion.
     }
 
-    private javafx.scene.Node createBasicAccordion() {
+    private Node createBasicAccordion() {
         JAccordion accordion = new JAccordion();
         
         // Item 1

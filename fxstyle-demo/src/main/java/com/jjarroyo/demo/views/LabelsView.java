@@ -4,6 +4,8 @@ import com.jjarroyo.components.JBadge;
 import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -20,9 +22,9 @@ public class LabelsView extends ScrollPane {
         
         // Page Title
         VBox pageHeader = new VBox();
-        JLabel title = new JLabel("Labels (Badges)")
+        JLabel title = new JLabel("Badges (JBadge)")
             .withStyle("text-2xl", "font-bold", "text-slate-800");
-        JLabel subtitle = new JLabel("Label and badge styles")
+        JLabel subtitle = new JLabel("Insignias y etiquetas estéticas para estados y contadores (JBadge)")
             .withStyle("text-base", "text-slate-500");
         pageHeader.getChildren().addAll(title, subtitle);
         
@@ -38,7 +40,7 @@ public class LabelsView extends ScrollPane {
         content.getChildren().add(new JCard("Sizes", createSizeBadges()));
     }
 
-    private javafx.scene.Node createSolidBadges() {
+    private Node createSolidBadges() {
         FlowPane pane = new FlowPane();
         pane.setHgap(16);
         pane.setVgap(16);
@@ -55,7 +57,7 @@ public class LabelsView extends ScrollPane {
         return pane;
     }
 
-    private javafx.scene.Node createLightBadges() {
+    private Node createLightBadges() {
         FlowPane pane = new FlowPane();
         pane.setHgap(16);
         pane.setVgap(16);
@@ -71,11 +73,11 @@ public class LabelsView extends ScrollPane {
         return pane;
     }
 
-    private javafx.scene.Node createSizeBadges() {
+    private Node createSizeBadges() {
         FlowPane pane = new FlowPane();
         pane.setHgap(16);
         pane.setVgap(16);
-        pane.setAlignment(javafx.geometry.Pos.CENTER_LEFT);
+        pane.setAlignment(Pos.CENTER_LEFT);
         
         pane.getChildren().addAll(
             new JBadge("Small Badge", "badge-sm"), // Default primary + small

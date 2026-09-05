@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JStatusBadge - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+
+            /* Simulation Styles */
+            .status-badge {
+                @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border transition-all;
+            }
+            .status-badge-dot {
+                @apply w-2 h-2 rounded-full mr-1.5 inline-block;
+            }
+
+            /* Variants */
+            .badge-success {
+                @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+            }
+            .badge-success .status-badge-dot { @apply bg-emerald-500; }
+
+            .badge-danger {
+                @apply bg-red-50 text-red-700 border-red-200;
+            }
+            .badge-danger .status-badge-dot { @apply bg-red-500; }
+
+            .badge-warning {
+                @apply bg-amber-50 text-amber-700 border-amber-200;
+            }
+            .badge-warning .status-badge-dot { @apply bg-amber-500; }
+
+            .badge-info {
+                @apply bg-blue-50 text-blue-700 border-blue-200;
+            }
+            .badge-info .status-badge-dot { @apply bg-blue-500; }
+
+            .badge-muted {
+                @apply bg-slate-100 text-slate-600 border-slate-200;
+            }
+            .badge-muted .status-badge-dot { @apply bg-slate-400; }
+
+            .badge-purple {
+                @apply bg-purple-50 text-purple-700 border-purple-200;
+            }
+            .badge-purple .status-badge-dot { @apply bg-purple-600; }
+
+            /* Pulse Animation */
+            @keyframes pulse-ring {
+                0% { transform: scale(0.95); opacity: 1; }
+                50% { transform: scale(1.3); opacity: 0.4; }
+                100% { transform: scale(0.95); opacity: 1; }
+            }
+            .pulse-dot {
+                animation: pulse-ring 1.8s infinite ease-in-out;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JStatusBadge</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Insignia de estado con indicador de punto brillante (<em>status dot</em>),
+                        animación de pulso opcional para estados en vivo (online / live status) y estilos contextuales Metronic/Tailwind.
+                    </p>
+                </header>
+
+                <!-- Estados y Variantes -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Variantes y Estados
+                    </h2>
+
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4">
+                        <div class="flex flex-wrap gap-4 items-center justify-around py-4">
+                            <span class="status-badge badge-success">
+                                <span class="status-badge-dot pulse-dot"></span> Online (Live)
+                            </span>
+                            <span class="status-badge badge-danger">
+                                <span class="status-badge-dot"></span> Offline
+                            </span>
+                            <span class="status-badge badge-warning">
+                                <span class="status-badge-dot"></span> Ausente
+                            </span>
+                            <span class="status-badge badge-info">
+                                <span class="status-badge-dot pulse-dot"></span> Procesando
+                            </span>
+                            <span class="status-badge badge-muted">
+                                <span class="status-badge-dot"></span> Inactivo
+                            </span>
+                            <span class="status-badge badge-purple">
+                                <span class="status-badge-dot"></span> Premium
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Estado Activo / Online con Animación de Pulso</span>
+JStatusBadge liveBadge = new JStatusBadge("Online", Status.ONLINE, true);
+
+<span class="text-blue-400">// Estado Offline o Inactivo</span>
+JStatusBadge offlineBadge = new JStatusBadge("Desconectado", Status.OFFLINE);
+
+<span class="text-blue-400">// Estado Procesando / Informativo con Pulso</span>
+JStatusBadge processingBadge = new JStatusBadge("Sincronizando...", Status.PROCESSING, true);
+
+<span class="text-blue-400">// Uso del Builder Fluido</span>
+JStatusBadge customBadge = new JStatusBadge()
+    .withText("Servidor OK")
+    .withStatus(Status.SUCCESS)
+    .withPulse(true);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Animación de Pulso -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Animación de Pulso (Live Pulse)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Activa el efecto de pulso con <code class="bg-blue-50 text-blue-700 px-1 rounded">setPulse(true)</code> o <code class="bg-blue-50 text-blue-700 px-1 rounded">withPulse(true)</code>
+                        para resaltar visualmente cuando un servicio, usuario o proceso está en ejecución en vivo.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Encender / Apagar el pulso dinámicamente</span>
+statusBadge.setPulse(true);  <span class="text-slate-500">// Inicia animación suavizada de escalado y opacidad</span>
+statusBadge.setPulse(false); <span class="text-slate-500">// Detiene la animación y restaura el punto a su estado normal</span></code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Constructor / Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JStatusBadge()</td>
+                                <td class="px-6 py-4 text-slate-500">Crea una insignia con texto "Active", estado <code class="text-slate-700">SUCCESS</code> sin pulso.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JStatusBadge(String text)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea una insignia con texto personalizado y estado <code class="text-slate-700">SUCCESS</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JStatusBadge(String text, Status status)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea una insignia con texto y estado especificado.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JStatusBadge(text, status, boolean pulse)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea una insignia completa definiendo texto, estado y animación de pulso.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setStatus(Status status)</td>
+                                <td class="px-6 py-4 text-slate-500">Cambia el estado contextual y ajusta los colores de fondo, borde y punto.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setPulse(boolean pulse)</td>
+                                <td class="px-6 py-4 text-slate-500">Activa o desactiva la animación de pulso continuo en el punto de estado.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setText(String text)</td>
+                                <td class="px-6 py-4 text-slate-500">Actualiza el contenido textual de la etiqueta de la insignia.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Enum JStatusBadge.Status</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Valor Enum</th>
+                                <th scope="col" class="px-6 py-4">Alias</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">SUCCESS</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">ONLINE</td>
+                                <td class="px-6 py-4 text-slate-500">Verde claro con punto verde (Activo / En línea).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">DANGER</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">OFFLINE</td>
+                                <td class="px-6 py-4 text-slate-500">Rojo claro con punto rojo (Desconectado / Error).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">WARNING</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">AWAY</td>
+                                <td class="px-6 py-4 text-slate-500">Amarillo/Ámbar con punto ámbar (Ausente / Advertencia).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">INFO</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">PROCESSING</td>
+                                <td class="px-6 py-4 text-slate-500">Azul claro con punto azul (Procesando / Información).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">MUTED</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">IDLE</td>
+                                <td class="px-6 py-4 text-slate-500">Gris claro con punto gris (Inactivo / Reposo).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">PURPLE</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">-</td>
+                                <td class="px-6 py-4 text-slate-500">Púrpura claro con punto púrpura (Especial / Premium).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

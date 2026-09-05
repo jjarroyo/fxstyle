@@ -126,9 +126,14 @@ public class JSidebar extends VBox {
 
     private void checkAutoCollapseMode() {
         boolean hasIcons = items.stream()
-            .filter(node -> node instanceof JSidebarItem)
-            .map(node -> (JSidebarItem) node)
-            .anyMatch(item -> item.getIcon() != null);
+            .anyMatch(node -> {
+                if (node instanceof JSidebarItem) {
+                    return ((JSidebarItem) node).getIcon() != null;
+                } else if (node instanceof JSidebarSubmenu) {
+                    return ((JSidebarSubmenu) node).getIcon() != null;
+                }
+                return false;
+            });
         
         if (hasIcons) {
              setCollapseMode(CollapseMode.COMPACT);

@@ -4,10 +4,11 @@ import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JSlider;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class SlidersView extends ScrollPane {
 
@@ -39,7 +40,7 @@ public class SlidersView extends ScrollPane {
         content.getChildren().add(new JCard("Estado Deshabilitado", createDisabledSlider()));
     }
 
-    private javafx.scene.Node createBasicSlider() {
+    private Node createBasicSlider() {
         VBox container = new VBox(20);
         
         Label label = new Label("Volumen");
@@ -51,7 +52,7 @@ public class SlidersView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createSliderWithValue() {
+    private Node createSliderWithValue() {
         VBox container = new VBox(20);
         
         HBox header = new HBox(10);
@@ -72,7 +73,7 @@ public class SlidersView extends ScrollPane {
         return container;
     }
     
-    private javafx.scene.Node createDisabledSlider() {
+    private Node createDisabledSlider() {
         VBox container = new VBox(20);
         
         Label label = new Label("Deshabilitado");

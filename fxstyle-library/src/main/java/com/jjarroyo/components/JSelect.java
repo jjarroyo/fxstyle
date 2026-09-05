@@ -58,6 +58,41 @@ public class JSelect<T> extends StackPane {
         setupEventHandlers();
     }
 
+    public JSelect<T> setModern(boolean modern) {
+        if (modern) {
+            if (!getStyleClass().contains("select-modern")) {
+                getStyleClass().add("select-modern");
+            }
+        } else {
+            getStyleClass().remove("select-modern");
+        }
+        return this;
+    }
+
+    /**
+     * Creates a VBox containing a Label (with optional required mark) and this Select control.
+     */
+    public VBox createWithLabel(String labelText, boolean required) {
+        VBox container = new VBox();
+        container.setSpacing(4);
+
+        Label label = new Label(labelText);
+        label.getStyleClass().add("form-label");
+
+        if (required) {
+            Label req = new Label("*");
+            req.getStyleClass().add("required-mark");
+            HBox labelBox = new HBox(label, req);
+            labelBox.setAlignment(Pos.CENTER_LEFT);
+            container.getChildren().add(labelBox);
+        } else {
+            container.getChildren().add(label);
+        }
+
+        container.getChildren().add(this);
+        return container;
+    }
+
     private void initGraphics() {
         // Trigger area (looks like JInput)
         HBox container = new HBox();
@@ -165,29 +200,22 @@ public class JSelect<T> extends StackPane {
                 }
             }
 
-            // Match width
-            // Need to set min width of popup content
             if (!popup.getContent().isEmpty()) {
                 VBox content = (VBox) popup.getContent().get(0);
                 content.applyCss();
                 content.layout();
                 
-                // Extraemos el espacio (padding/insets) asignado por el CSS para la sombra
                 double leftInset = content.getInsets().getLeft();
                 double rightInset = content.getInsets().getRight();
                 double topInset = content.getInsets().getTop();
                 
-                // Ajustamos el tamaño total para que el fondo blanco coincida exactamente con el iniciador
                 content.setMinWidth(bounds.getWidth() + leftInset + rightInset);
                 content.setPrefWidth(bounds.getWidth() + leftInset + rightInset);
                 content.setMaxWidth(bounds.getWidth() + leftInset + rightInset);
 
-                // Update pseudo-class state
                 popup.setOnShown(event -> pseudoClassStateChanged(SHOWING_PSEUDO_CLASS, true));
                 popup.setOnHidden(event -> pseudoClassStateChanged(SHOWING_PSEUDO_CLASS, false));
 
-                // Restamos el inset izquierdo y superior para que quede perfectamente alineado
-                // Restamos 1 adicional en Y para superponer ligeramente y anular espacios dobles de borde
                 popup.show(trigger, bounds.getMinX() - leftInset-15, bounds.getMaxY() - topInset - 1);
             } else {
                 popup.setOnShown(event -> pseudoClassStateChanged(SHOWING_PSEUDO_CLASS, true));
@@ -207,7 +235,6 @@ public class JSelect<T> extends StackPane {
             } else {
                 selectedItems.add(item);
             }
-            // Use cell factory refesh or bindings to update checks
             listView.refresh(); 
         } else {
             setSelectedItem(item);
@@ -225,7 +252,6 @@ public class JSelect<T> extends StackPane {
                 tagsContainer.setVisible(true);
                 tagsContainer.getChildren().clear();
                 
-                // Show count or tags? Let's show first X tags + count
                 for (T item : selectedItems) {
                     Label tag = new Label(converter.apply(item));
                     tag.getStyleClass().add("select-tag");
@@ -238,7 +264,7 @@ public class JSelect<T> extends StackPane {
             promptLabel.setVisible(true);
             if (item != null) {
                 promptLabel.setText(converter.apply(item));
-                promptLabel.getStyleClass().remove("select-prompt"); // Make it look like value
+                promptLabel.getStyleClass().remove("select-prompt");
                 promptLabel.getStyleClass().add("select-value");
             } else {
                 promptLabel.setText(placeholder);
@@ -257,7 +283,6 @@ public class JSelect<T> extends StackPane {
         });
     }
 
-    // --- Inner Class: Custom List Cell ---
     private class SelectListCell extends ListCell<T> {
         private final CheckBox checkBox;
         private final HBox container;
@@ -270,7 +295,7 @@ public class JSelect<T> extends StackPane {
             checkBox = new CheckBox();
             checkBox.managedProperty().bind(multiple);
             checkBox.visibleProperty().bind(multiple);
-            checkBox.setMouseTransparent(true); // Let cell handle clicks
+            checkBox.setMouseTransparent(true);
             
             label = new Label();
             container.getChildren().addAll(checkBox, label);
@@ -285,12 +310,6 @@ public class JSelect<T> extends StackPane {
             } else {
                 label.setText(converter.apply(item));
                 
-                // Custom Icon Support check
-                if (item instanceof Node) {
-                     // If item itself is node, might need special handling, but usually we use cell factory for that
-                     // For now, assume T is data object
-                }
-                
                 if (isMultiple()) {
                     checkBox.setSelected(selectedItems.contains(item));
                 }
@@ -299,8 +318,6 @@ public class JSelect<T> extends StackPane {
             }
         }
     }
-
-    // --- Properties ---
 
     public ObservableList<T> getItems() { return items; }
     
@@ -328,9 +345,7 @@ public class JSelect<T> extends StackPane {
         updateTrigger();
     }
     
-    // Allow custom cell factory for icons
     public void setCellFactory(Callback<ListView<T>, ListCell<T>> factory) {
         listView.setCellFactory(factory);
     }
 }
-

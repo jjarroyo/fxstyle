@@ -3,11 +3,12 @@ package com.jjarroyo.demo.views;
 import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JDatePicker;
 import com.jjarroyo.components.JLabel;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.ScrollPane;
 import java.time.LocalDate;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 
 public class DatePickersView extends ScrollPane {
 
@@ -39,7 +40,11 @@ public class DatePickersView extends ScrollPane {
         content.getChildren().add(new JCard("Deshabilitado", createDisabledDatePicker()));
     }
 
-    private javafx.scene.Node createBasicDatePicker() {
+        // =========================================================================
+    // COPIAR Y PEGAR: Selector de Fechas (JDatePicker)
+    // Ejemplo: JDatePicker datePicker = new JDatePicker();
+    // =========================================================================
+private Node createBasicDatePicker() {
         VBox container = new VBox(10);
         Label label = new Label("Seleccionar fecha");
         label.getStyleClass().add("form-label");
@@ -52,7 +57,7 @@ public class DatePickersView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createPreselectedDatePicker() {
+    private Node createPreselectedDatePicker() {
         VBox container = new VBox(10);
         Label label = new Label("Fecha de nacimiento");
         label.getStyleClass().add("form-label");
@@ -64,7 +69,7 @@ public class DatePickersView extends ScrollPane {
         return container;
     }
     
-    private javafx.scene.Node createDisabledDatePicker() {
+    private Node createDisabledDatePicker() {
         VBox container = new VBox(10);
         Label label = new Label("No editable");
         label.getStyleClass().add("form-label");

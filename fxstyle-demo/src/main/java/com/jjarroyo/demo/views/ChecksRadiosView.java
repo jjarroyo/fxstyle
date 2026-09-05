@@ -3,6 +3,7 @@ package com.jjarroyo.demo.views;
 import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JCheckBox;
 import com.jjarroyo.components.JRadioButton;
+import com.jjarroyo.components.JSwitch;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleGroup;
@@ -106,10 +107,10 @@ public class ChecksRadiosView extends VBox {
 
         FlowPane switchFlow = new FlowPane(20, 20);
         switchFlow.getChildren().addAll(
-            new com.jjarroyo.components.JSwitch("Toggle Me"),
-            new com.jjarroyo.components.JSwitch("Checked") {{ setSelected(true); }},
-            new com.jjarroyo.components.JSwitch("Disabled") {{ setDisable(true); }},
-            new com.jjarroyo.components.JSwitch("Disabled & On") {{ setDisable(true); setSelected(true); }}
+            new JSwitch("Toggle Me"),
+            new JSwitch("Checked") {{ setSelected(true); }},
+            new JSwitch("Disabled") {{ setDisable(true); }},
+            new JSwitch("Disabled & On") {{ setDisable(true); setSelected(true); }}
         );
         
         switchCard.setBody(switchFlow);
@@ -122,7 +123,7 @@ public class ChecksRadiosView extends VBox {
 
         FlowPane colorSwitchFlow = new FlowPane(20, 20);
         for (JCheckBox.CheckBoxStyle style : JCheckBox.CheckBoxStyle.values()) {
-            com.jjarroyo.components.JSwitch s = new com.jjarroyo.components.JSwitch(style.name());
+            JSwitch s = new JSwitch(style.name());
             s.setColorStyle(style);
             s.setSelected(true);
             colorSwitchFlow.getChildren().add(s);

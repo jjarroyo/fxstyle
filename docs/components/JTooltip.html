@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JTooltip - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+
+            /* Simulation Styles */
+            .tooltip-box {
+                @apply relative inline-block text-xs font-medium px-2.5 py-1.5 rounded shadow-lg transition-all;
+            }
+            .tooltip-light {
+                @apply bg-white text-slate-700 border border-slate-200;
+            }
+            .tooltip-default {
+                @apply bg-slate-900 text-white border border-slate-800;
+            }
+            .tooltip-info {
+                @apply bg-blue-600 text-white;
+            }
+            .tooltip-success {
+                @apply bg-emerald-600 text-white;
+            }
+            .tooltip-danger {
+                @apply bg-red-600 text-white;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JTooltip</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Componente de tooltip moderno estilizado con utilidades de FxStyle.
+                        Reemplaza el tooltip oscuro nativo de JavaFX por un diseño elegante,
+                        suave y con soporte para variantes contextuales de color. Hereda de `javafx.scene.control.Tooltip`.
+                    </p>
+                </header>
+
+                <!-- Variantes -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Variantes y Estilos
+                    </h2>
+
+                    <div class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4">
+                        <div class="flex flex-wrap gap-6 items-center justify-around py-4">
+                            <div class="text-center">
+                                <span class="tooltip-box tooltip-light mb-2 block">Tooltip Light</span>
+                                <span class="text-xs text-slate-400 font-mono">Variant.LIGHT</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="tooltip-box tooltip-default mb-2 block">Tooltip Default</span>
+                                <span class="text-xs text-slate-400 font-mono">Variant.DEFAULT</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="tooltip-box tooltip-info mb-2 block">Información útil</span>
+                                <span class="text-xs text-slate-400 font-mono">Variant.INFO</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="tooltip-box tooltip-success mb-2 block">Operación exitosa</span>
+                                <span class="text-xs text-slate-400 font-mono">Variant.SUCCESS</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="tooltip-box tooltip-danger mb-2 block">Acción destructiva</span>
+                                <span class="text-xs text-slate-400 font-mono">Variant.DANGER</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Crear un JTooltip directamente</span>
+JTooltip tooltipLight = new JTooltip("Información secundaria");
+JTooltip tooltipDanger = new JTooltip("Eliminar registro permanentemente", JTooltip.Variant.DANGER);
+
+<span class="text-blue-400">// Cambiar variante dinámicamente</span>
+tooltipLight.setVariant(JTooltip.Variant.INFO);
+
+<span class="text-blue-400">// Asignar a un botón nativo o FxStyle</span>
+JButton btn = new JButton("Guardar");
+btn.setTooltip(tooltipLight);</code></pre>
+                    </div>
+                </section>
+
+                <!-- Helper Static Methods -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Instalación Rápida Estática
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Puedes instalar un <code class="bg-blue-50 text-blue-700 px-1 rounded">JTooltip</code> en cualquier nodo de JavaFX
+                        con una sola línea de código utilizando el método helper estático <code class="bg-blue-50 text-blue-700 px-1 rounded">JTooltip.install()</code>.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Instalación rápida con variante por defecto (LIGHT)</span>
+JTooltip.install(buttonSave, "Guardar los cambios actuales");
+
+<span class="text-blue-400">// Instalación rápida especificando una variante de color</span>
+JTooltip.install(buttonDelete, "Advertencia: Esta acción no se puede deshacer", JTooltip.Variant.DANGER);
+JTooltip.install(iconInfo, "Ver detalles del producto", JTooltip.Variant.INFO);</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Constructor / Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JTooltip()</td>
+                                <td class="px-6 py-4 text-slate-500">Crea un JTooltip vacío con variante <code class="text-slate-700">LIGHT</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JTooltip(String text)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea un JTooltip con texto y variante <code class="text-slate-700">LIGHT</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JTooltip(String text, Variant variant)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea un JTooltip con texto y la variante de color especificada.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setVariant(Variant variant)</td>
+                                <td class="px-6 py-4 text-slate-500">Aplica una variante de color y configura los tiempos de aparición (150ms delay, 10s duración).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">install(Node node, String text)</td>
+                                <td class="px-6 py-4 text-slate-500">Método estático para crear e instalar un JTooltip claro en un nodo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">install(Node node, String text, Variant variant)</td>
+                                <td class="px-6 py-4 text-slate-500">Método estático para crear e instalar un JTooltip con variante en un nodo.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Enum JTooltip.Variant</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Valor Enum</th>
+                                <th scope="col" class="px-6 py-4">Clase CSS aplicada</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">LIGHT</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">tooltip-light</td>
+                                <td class="px-6 py-4 text-slate-500">Fondo blanco con texto oscuro y borde suave (por defecto).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">DEFAULT</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">tooltip</td>
+                                <td class="px-6 py-4 text-slate-500">Fondo oscuro con texto blanco.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">INFO</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">tooltip-info</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo azul informativo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">SUCCESS</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">tooltip-success</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo verde de éxito/confirmación.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">DANGER</td>
+                                <td class="px-6 py-4 font-mono text-slate-600">tooltip-danger</td>
+                                <td class="px-6 py-4 text-slate-500">Estilo rojo de alerta/destructivo.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

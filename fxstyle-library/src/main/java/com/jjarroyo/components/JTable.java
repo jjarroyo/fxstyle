@@ -122,10 +122,13 @@ public class JTable<T> extends VBox {
     public JTable() {
         getStyleClass().add("j-table-wrapper");
 
+        setMinHeight(260);
+
         // TableView
         tableView = new TableView<>();
         tableView.getStyleClass().add("j-table-view");
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.setMinHeight(200);
         VBox.setVgrow(tableView, Priority.ALWAYS);
 
         // Empty state placeholder
@@ -171,7 +174,18 @@ public class JTable<T> extends VBox {
     // CORE ACCESSORS
     // ═══════════════════════════════════════════════════════════════════════════════
 
-    public TableView<T> getTableView() { return tableView; }
+    public TableView<T> getTableView() {
+        return tableView;
+    }
+
+    public ObservableList<TableColumn<T, ?>> getColumns() {
+        return tableView.getColumns();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setColumnResizePolicy(javafx.util.Callback callback) {
+        tableView.setColumnResizePolicy(callback);
+    }
 
     /** @deprecated Use getTableView() instead */
     @Deprecated
@@ -754,9 +768,12 @@ public class JTable<T> extends VBox {
                 if (empty || getTableRow() == null || getTableRow().getItem() == null) {
                     setGraphic(null);
                 } else {
-                    HBox box = new HBox(6);
+                    FlowPane box = new FlowPane(Orientation.HORIZONTAL, 4, 4);
                     box.setAlignment(Pos.CENTER);
-                    rowActionsFactory.accept(getTableRow().getItem(), box);
+                    box.setPadding(new Insets(2, 0, 2, 0));
+                    HBox tempBox = new HBox(4);
+                    rowActionsFactory.accept(getTableRow().getItem(), tempBox);
+                    box.getChildren().addAll(tempBox.getChildren());
                     setGraphic(box);
                 }
             }
@@ -787,9 +804,10 @@ public class JTable<T> extends VBox {
         if (emptyGraphic != null) {
             emptyBox.getChildren().add(emptyGraphic);
         } else {
-            Label icon = new Label("📋");
-            icon.setStyle("-fx-font-size: 36px;");
-            emptyBox.getChildren().add(icon);
+            Node iconNode = JIcon.ASSIGNMENT.view("#94a3b8");
+            iconNode.setScaleX(1.8);
+            iconNode.setScaleY(1.8);
+            emptyBox.getChildren().add(iconNode);
         }
 
         Label label = new Label(emptyText);
@@ -1106,6 +1124,59 @@ public class JTable<T> extends VBox {
         updateStatusBar();
     }
 
+    // ─── Server-Side Pagination (DB Pagination) ──────────────────────────────────
+    private boolean serverSidePagination = false;
+    private Consumer<Integer> onServerPageChange;
+    private int serverTotalItems = 0;
+
+    public void setServerSidePagination(Consumer<Integer> pageLoader) {
+        this.serverSidePagination = true;
+        this.onServerPageChange = pageLoader;
+        pagination.setOnPageChange(() -> {
+            if (serverSidePagination && onServerPageChange != null) {
+                int page = pagination.currentPageProperty().get();
+                onServerPageChange.accept(page);
+            } else {
+                updateTableData();
+            }
+        });
+    }
+
+    public boolean isServerSidePagination() {
+        return serverSidePagination;
+    }
+
+    public void setServerPageData(List<T> pageData, int totalItems) {
+        this.serverSidePagination = true;
+        this.serverTotalItems = totalItems;
+        int perPage = itemsPerPage.get();
+        int pages = (int) Math.ceil((double) totalItems / perPage);
+        if (pages == 0) pages = 1;
+        pagination.totalPagesProperty().set(pages);
+
+        if (pagination.currentPageProperty().get() > pages) {
+            pagination.currentPageProperty().set(1);
+        }
+
+        tableView.setItems(FXCollections.observableArrayList(pageData != null ? pageData : Collections.emptyList()));
+        updateHeaderCheckBoxState();
+        updateStatusBarForServer(totalItems);
+    }
+
+    private void updateStatusBarForServer(int total) {
+        if (statusLabel == null) return;
+        int page = pagination.currentPageProperty().get();
+        int perPage = itemsPerPage.get();
+        int from = Math.min((page - 1) * perPage + 1, total);
+        int to = Math.min(page * perPage, total);
+
+        if (total == 0) {
+            statusLabel.setText("No hay resultados");
+        } else {
+            statusLabel.setText("Mostrando " + from + " a " + to + " de " + total + " resultados");
+        }
+    }
+
     // ─── Scroll & Pagination ─────────────────────────────────────────────────────
 
     public void setOnScrollBottom(Runnable action) {
@@ -1116,12 +1187,23 @@ public class JTable<T> extends VBox {
     public void setPaginationVisible(boolean visible) {
         pagination.setVisible(visible);
         pagination.setManaged(visible);
+        if (!visible) {
+            setMinHeight(140);
+            tableView.setMinHeight(100);
+        } else {
+            setMinHeight(260);
+            tableView.setMinHeight(200);
+        }
     }
 
     // ─── Refresh ─────────────────────────────────────────────────────────────────
 
     public void refresh() {
-        applyFilter();
-        tableView.refresh();
+        if (serverSidePagination && onServerPageChange != null) {
+            onServerPageChange.accept(pagination.currentPageProperty().get());
+        } else {
+            applyFilter();
+            tableView.refresh();
+        }
     }
 }

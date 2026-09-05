@@ -158,6 +158,14 @@ public class JCard extends VBox {
         this.collapsible = collapsible;
         ensureHeader();
         updateToolbar();
+        
+        if (collapsible) {
+            header.setCursor(javafx.scene.Cursor.HAND);
+            header.setOnMouseClicked(e -> toggleCollapse());
+        } else {
+            header.setCursor(javafx.scene.Cursor.DEFAULT);
+            header.setOnMouseClicked(null);
+        }
         return this;
     }
 
@@ -173,21 +181,12 @@ public class JCard extends VBox {
                 chevron.setContent("M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"); // Chevron Up
                 chevron.getStyleClass().add("card-chevron");
                 
-                // Add click handler
                 javafx.scene.layout.StackPane chevronBtn = new javafx.scene.layout.StackPane(chevron);
-                chevronBtn.setCursor(javafx.scene.Cursor.HAND);
-                chevronBtn.setOnMouseClicked(e -> toggleCollapse());
-                
-                // Add to toolbar (always last)
+                // Click is handled by the header
                 toolbar.getChildren().add(chevronBtn);
             } else {
-                 // Check if wrapper exists, complicated with VBox children list...
-                 // Simplification: Just re-add the wrapper if we kept reference? 
-                 // For now, assume updateToolbar is called rarely or handled cleanly.
-                 // Better: Create wrapper once.
                  javafx.scene.layout.StackPane chevronBtn = new javafx.scene.layout.StackPane(chevron);
-                 chevronBtn.setCursor(javafx.scene.Cursor.HAND);
-                 chevronBtn.setOnMouseClicked(e -> toggleCollapse());
+                 // Click is handled by the header
                  toolbar.getChildren().add(chevronBtn);
             }
         }

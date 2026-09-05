@@ -6,6 +6,7 @@ import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JRating;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
@@ -64,7 +65,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 1. Basic Rating ──────────────────────────────────────────────
 
-    private javafx.scene.Node createBasicRating() {
+    private Node createBasicRating() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Rating de 5 estrellas por defecto. Haz clic para calificar.");
@@ -78,7 +79,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 2. Initial Value Rating ──────────────────────────────────────
 
-    private javafx.scene.Node createInitialValueRating() {
+    private Node createInitialValueRating() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Rating pre-configurado con un valor inicial de 3 estrellas.");
@@ -92,7 +93,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 3. Live Value Rating ─────────────────────────────────────────
 
-    private javafx.scene.Node createLiveValueRating() {
+    private Node createLiveValueRating() {
         VBox container = new VBox(12);
 
         Label desc = new Label("El valor numérico se actualiza en tiempo real al hacer clic.");
@@ -117,7 +118,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 4. Sizes ─────────────────────────────────────────────────────
 
-    private javafx.scene.Node createSizesRating() {
+    private Node createSizesRating() {
         VBox container = new VBox(16);
 
         Label desc = new Label("Tres tamaños disponibles: pequeño (sm), mediano (md) y grande (lg).");
@@ -155,7 +156,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 5. Color Variants ────────────────────────────────────────────
 
-    private javafx.scene.Node createColorVariants() {
+    private Node createColorVariants() {
         VBox container = new VBox(16);
 
         Label desc = new Label("Múltiples variantes de color para diferentes contextos.");
@@ -206,7 +207,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 6. Read Only ─────────────────────────────────────────────────
 
-    private javafx.scene.Node createReadOnlyRating() {
+    private Node createReadOnlyRating() {
         VBox container = new VBox(16);
 
         Label desc = new Label("Ratings de solo lectura, ideales para mostrar calificaciones de productos o reseñas.");
@@ -244,7 +245,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 7. Custom Star Count ─────────────────────────────────────────
 
-    private javafx.scene.Node createCustomStarCount() {
+    private Node createCustomStarCount() {
         VBox container = new VBox(16);
 
         Label desc = new Label("Configurable con diferente cantidad de estrellas.");
@@ -281,7 +282,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 8. Disabled ──────────────────────────────────────────────────
 
-    private javafx.scene.Node createDisabledRating() {
+    private Node createDisabledRating() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Rating en estado deshabilitado. No permite interacción.");
@@ -296,7 +297,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 9. Feedback Labels ───────────────────────────────────────────
 
-    private javafx.scene.Node createFeedbackRating() {
+    private Node createFeedbackRating() {
         VBox container = new VBox(12);
 
         Label desc = new Label("El texto de feedback cambia dinámicamente según la calificación.");
@@ -333,7 +334,7 @@ public class RatingView extends ScrollPane {
 
     // ─── 10. Interactive with Reset ───────────────────────────────────
 
-    private javafx.scene.Node createInteractiveRating() {
+    private Node createInteractiveRating() {
         VBox container = new VBox(16);
 
         Label desc = new Label("Rating interactivo con contador de cambios y botón de reset. Haz clic en la misma estrella para deseleccionar.");

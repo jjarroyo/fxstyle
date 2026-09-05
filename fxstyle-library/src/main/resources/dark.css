@@ -76,7 +76,15 @@
 .root.dark .j-header-menu-item {
     -fx-text-fill: -color-text-secondary;
 }
+.root.dark .j-header-menu-item .label,
+.root.dark .j-header-menu-item-text {
+    -fx-text-fill: -color-text-secondary;
+}
 .root.dark .j-header-menu-item:hover {
+    -fx-text-fill: -color-text-primary;
+}
+.root.dark .j-header-menu-item:hover .label,
+.root.dark .j-header-menu-item:hover .j-header-menu-item-text {
     -fx-text-fill: -color-text-primary;
 }
 

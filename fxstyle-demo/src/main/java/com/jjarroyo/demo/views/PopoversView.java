@@ -5,7 +5,9 @@ import com.jjarroyo.components.JPopover;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -123,11 +125,11 @@ public class PopoversView extends ScrollPane {
             VBox loginForm = new VBox(10);
             loginForm.setPadding(new Insets(10, 0, 0, 0));
             
-            javafx.scene.control.TextField userField = new javafx.scene.control.TextField();
+            TextField userField = new TextField();
             userField.setPromptText("Username");
             userField.getStyleClass().add("form-input");
             
-            javafx.scene.control.PasswordField passField = new javafx.scene.control.PasswordField();
+            PasswordField passField = new PasswordField();
             passField.setPromptText("Password");
             passField.getStyleClass().add("form-input");
             

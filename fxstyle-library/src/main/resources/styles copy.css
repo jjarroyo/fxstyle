@@ -1733,7 +1733,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 20, 0, 0, 10);
     -fx-padding: 0; /* Content handles padding */
     -fx-max-height: 90%; /* Prevent overflow on small screens */
-    -fx-alignment: top-left;
+    -fx-alignment: top-center;
 }
 
 /* Sizes */
@@ -1755,8 +1755,6 @@
 .j-modal-dialog.modal-full {
     -fx-pref-width: 95%;
     -fx-max-width: 95%;
-    -fx-pref-height: 95%;
-    -fx-max-height: 95%;
 }
 
 .modal-header {

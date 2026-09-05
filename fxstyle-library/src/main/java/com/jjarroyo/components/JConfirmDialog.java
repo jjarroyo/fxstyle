@@ -66,13 +66,13 @@ public class JConfirmDialog extends StackPane {
 
     public enum Type {
         INFO("j-confirm-info", JIcon.INFO,
-             "btn-primary", "btn-light-primary"),
+             "btn-primary", "btn-secondary"),
         SUCCESS("j-confirm-success", JIcon.CHECK_CIRCLE,
-                "btn-success", "btn-light-success"),
+                "btn-success", "btn-secondary"),
         WARNING("j-confirm-warning", JIcon.WARNING,
-                "btn-warning", "btn-light-warning"),
+                "btn-warning", "btn-secondary"),
         DANGER("j-confirm-danger", JIcon.DELETE,
-               "btn-danger", "btn-light-danger");
+               "btn-danger", "btn-secondary");
 
         final String styleClass;
         final JIcon defaultIcon;
@@ -169,12 +169,12 @@ public class JConfirmDialog extends StackPane {
         }
 
         // 5. Buttons
-        confirmBtn = new Button(confirmText);
-        confirmBtn.getStyleClass().addAll("btn", "btn-primary");
+        confirmBtn = new JButton(confirmText);
+        confirmBtn.getStyleClass().addAll("btn", "btn-md", "btn-primary");
         confirmBtn.setOnAction(e -> handleConfirm());
 
-        cancelBtn = new Button(cancelText);
-        cancelBtn.getStyleClass().addAll("btn", "btn-light-primary");
+        cancelBtn = new JButton(cancelText);
+        cancelBtn.getStyleClass().addAll("btn", "btn-md", "btn-secondary");
         cancelBtn.setOnAction(e -> handleCancel());
 
         footerContainer = new HBox(12);

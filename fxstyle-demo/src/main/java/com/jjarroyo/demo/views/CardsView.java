@@ -13,7 +13,11 @@ import javafx.scene.layout.VBox;
 
 public class CardsView extends ScrollPane {
 
-    public CardsView() {
+        // =========================================================================
+    // COPIAR Y PEGAR: Tarjetas Contenedoras (JCard)
+    // Ejemplo: JCard card = new JCard("Título de Tarjeta", contenidoNode);
+    // =========================================================================
+public CardsView() {
         getStyleClass().add("scroll-pane");
         setFitToWidth(true);
         setPadding(new Insets(24));

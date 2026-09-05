@@ -149,9 +149,17 @@ public class JToast extends Popup {
         new JToast().show(owner, null, message, type, pos, Duration.millis(durationMillis));
     }
     
+    public static void show(Window owner, String message, Type type, Position pos) {
+        show(owner, null, message, type, pos, 3000);
+    }
+    
     // Static helper overload with title
     public static void show(Window owner, String title, String message, Type type, Position pos, int durationMillis) {
         new JToast().show(owner, title, message, type, pos, Duration.millis(durationMillis));
+    }
+
+    public static void show(Window owner, String title, String message, Type type, Position pos) {
+        show(owner, title, message, type, pos, 3000);
     }
     // Factory method for chaining
     public static JToast make(String title, String message, Type type, int durationMillis) {

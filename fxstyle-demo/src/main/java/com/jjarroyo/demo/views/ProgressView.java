@@ -6,10 +6,11 @@ import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JProgressBar;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ScrollPane;
 
 public class ProgressView extends ScrollPane {
 
@@ -50,7 +51,7 @@ public class ProgressView extends ScrollPane {
         content.getChildren().add(new JCard("Circular - Colores", createCircularColors()));
     }
 
-    private javafx.scene.Node createBasicProgress() {
+    private Node createBasicProgress() {
         VBox container = new VBox(20);
         
         // 50%
@@ -67,7 +68,7 @@ public class ProgressView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createIndeterminateProgress() {
+    private Node createIndeterminateProgress() {
         VBox container = new VBox(20);
         
         Label l1 = new Label("Cargando...");
@@ -79,7 +80,7 @@ public class ProgressView extends ScrollPane {
         return container;
     }
     
-    private javafx.scene.Node createColorProgress() {
+    private Node createColorProgress() {
         VBox container = new VBox(20);
         
         for (JProgressBar.ProgressStyle style : JProgressBar.ProgressStyle.values()) {
@@ -93,7 +94,7 @@ public class ProgressView extends ScrollPane {
         return container;
     }
     
-    private javafx.scene.Node createSizeProgress() {
+    private Node createSizeProgress() {
         VBox container = new VBox(20);
         
         Label l1 = new Label("Small");
@@ -115,7 +116,7 @@ public class ProgressView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createCircularProgress() {
+    private Node createCircularProgress() {
         FlowPane container = new FlowPane(40, 20);
         container.setAlignment(Pos.CENTER_LEFT);
         
@@ -151,7 +152,7 @@ public class ProgressView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createCircularColors() {
+    private Node createCircularColors() {
         FlowPane container = new FlowPane(40, 20);
         container.setAlignment(Pos.CENTER_LEFT);
         

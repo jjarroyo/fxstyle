@@ -8,6 +8,7 @@ import com.jjarroyo.components.JToast;
 import com.jjarroyo.components.JZoom;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -48,7 +49,7 @@ public class DropdownsView extends ScrollPane {
         content.getChildren().add(new JCard("Controles de Zoom (JZoom)", createZoomDemo()));
     }
 
-    private javafx.scene.Node createBasicDropdowns() {
+    private Node createBasicDropdowns() {
         FlowPane container = new FlowPane(20, 16);
         
         JDropdown dd1 = new JDropdown("Opciones");
@@ -65,7 +66,7 @@ public class DropdownsView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createActionDropdowns() {
+    private Node createActionDropdowns() {
         FlowPane container = new FlowPane(20, 16);
         
         JDropdown dd = new JDropdown("Acciones", JIcon.LIST.view());
@@ -81,7 +82,7 @@ public class DropdownsView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createStyledDropdowns() {
+    private Node createStyledDropdowns() {
         FlowPane container = new FlowPane(20, 16);
         
         JDropdown primary = new JDropdown("Primary");
@@ -113,7 +114,7 @@ public class DropdownsView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createZoomDemo() {
+    private Node createZoomDemo() {
         VBox container = new VBox(20);
         
         Label description = new Label("JZoom provee controles de +/- para zoom. Conecta callbacks para implementar la lógica.");

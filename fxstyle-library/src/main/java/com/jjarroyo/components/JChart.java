@@ -261,8 +261,33 @@ public class JChart extends VBox {
         canvas = new Canvas(canvasWidth, canvasHeight);
 
         // Canvas Container
-        canvasContainer = new StackPane(canvas);
+        canvasContainer = new StackPane(canvas) {
+            @Override
+            protected double computeMinWidth(double height) {
+                return 50.0;
+            }
+            @Override
+            protected double computeMinHeight(double width) {
+                return 50.0;
+            }
+        };
         canvasContainer.setAlignment(Pos.CENTER);
+
+        canvasContainer.widthProperty().addListener((obs, oldVal, newVal) -> {
+            double w = newVal.doubleValue();
+            if (w > 50) {
+                canvas.setWidth(w);
+                drawChart();
+            }
+        });
+
+        canvasContainer.heightProperty().addListener((obs, oldVal, newVal) -> {
+            double h = newVal.doubleValue();
+            if (h > 50) {
+                canvas.setHeight(h);
+                drawChart();
+            }
+        });
 
         // Tooltip
         tooltipLabel = new Label();
@@ -400,7 +425,7 @@ public class JChart extends VBox {
         } else if (values != null) {
             for (double v : values) max = Math.max(max, v);
         }
-        return max == 0 ? 1 : max;
+        return max == 0 ? 1 : max * 1.15; // Add 15% headroom to prevent label clipping at the top
     }
 
     private double getTotal() {

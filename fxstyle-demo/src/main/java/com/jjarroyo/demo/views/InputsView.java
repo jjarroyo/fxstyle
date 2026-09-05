@@ -1,18 +1,18 @@
 package com.jjarroyo.demo.views;
 
-import com.jjarroyo.components.JCard;
-import com.jjarroyo.components.JLabel;
-import com.jjarroyo.components.JInput;
-import com.jjarroyo.components.JPasswordInput;
-import com.jjarroyo.components.JInputGroup;
 import com.jjarroyo.components.JButton;
+import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JIcon;
-
+import com.jjarroyo.components.JInput;
+import com.jjarroyo.components.JInputGroup;
+import com.jjarroyo.components.JLabel;
+import com.jjarroyo.components.JPasswordInput;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class InputsView extends ScrollPane {
 
@@ -53,7 +53,7 @@ public class InputsView extends ScrollPane {
         content.getChildren().add(new JCard("Validation States", createValidationInputs()));
     }
 
-    private javafx.scene.Node createValidationInputs() {
+    private Node createValidationInputs() {
         VBox container = new VBox(16);
         
         JInput valid = new JInput("Valid input");
@@ -75,7 +75,11 @@ public class InputsView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createBasicInputs() {
+        // =========================================================================
+    // COPIAR Y PEGAR: Campos de Texto Estilizados (JInput)
+    // Ejemplo: JInput input = new JInput("Placeholder...");
+    // =========================================================================
+private Node createBasicInputs() {
         VBox container = new VBox(16);
         
         JInput input1 = new JInput("Placeholder example...");
@@ -91,7 +95,7 @@ public class InputsView extends ScrollPane {
         return container;
     }
     
-    private javafx.scene.Node createSizes() {
+    private Node createSizes() {
         VBox container = new VBox(16);
         
         JInput inputSm = new JInput("Small Input");
@@ -106,7 +110,7 @@ public class InputsView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createInputGroups() {
+    private Node createInputGroups() {
         VBox container = new VBox(16);
         
         // Button addon
@@ -127,7 +131,11 @@ public class InputsView extends ScrollPane {
         return container;
     }
     
-    private javafx.scene.Node createPasswordInput() {
+        // =========================================================================
+    // COPIAR Y PEGAR: Campo de Contraseña con Mostrar/Ocultar (JPasswordInput)
+    // Ejemplo: JPasswordInput passInput = new JPasswordInput();
+    // =========================================================================
+private Node createPasswordInput() {
         VBox container = new VBox(16);
         
         JPasswordInput pass = new JPasswordInput("Enter password...");
@@ -136,7 +144,7 @@ public class InputsView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createTextArea() {
+    private Node createTextArea() {
         VBox container = new VBox(16);
         
         com.jjarroyo.components.JTextArea area1 = new com.jjarroyo.components.JTextArea();

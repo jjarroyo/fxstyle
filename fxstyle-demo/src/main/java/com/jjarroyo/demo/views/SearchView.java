@@ -4,12 +4,12 @@ import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JSearchInput;
 import com.jjarroyo.components.JToast;
-import javafx.geometry.Insets;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
-
 import java.util.Arrays;
 import java.util.List;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.VBox;
 
 public class SearchView extends ScrollPane {
 
@@ -40,7 +40,7 @@ public class SearchView extends ScrollPane {
         content.getChildren().add(new JCard("Búsqueda con Proveedor de Sugerencias Dinámico", createDynamicSearch()));
     }
 
-    private javafx.scene.Node createFreeSearch() {
+    private Node createFreeSearch() {
         VBox container = new VBox(12);
         
         JSearchInput search = new JSearchInput();
@@ -57,7 +57,7 @@ public class SearchView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createStaticSelect() {
+    private Node createStaticSelect() {
         VBox container = new VBox(12);
         
         JSearchInput search = new JSearchInput();
@@ -75,7 +75,7 @@ public class SearchView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createDynamicSearch() {
+    private Node createDynamicSearch() {
         VBox container = new VBox(12);
         
         JSearchInput search = new JSearchInput();

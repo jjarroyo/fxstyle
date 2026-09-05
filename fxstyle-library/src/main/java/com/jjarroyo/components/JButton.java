@@ -1,9 +1,14 @@
 package com.jjarroyo.components;
 
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.SVGPath;
+import javafx.scene.shape.StrokeLineCap;
+import javafx.scene.shape.StrokeLineJoin;
 
 import java.util.function.Consumer;
 
@@ -30,8 +35,31 @@ public class JButton extends Button {
         setIcon(icon);
     }
 
+    public JButton(String text, JIcon icon, String hexColor) {
+        super(text);
+        init();
+        setIcon(icon, hexColor);
+    }
+
     private void init() {
         getStyleClass().addAll("btn", DEFAULT_STYLE);
+        
+        getStyleClass().addListener((ListChangeListener<String>) change -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    for (String style : change.getAddedSubList()) {
+                        if (style != null && style.startsWith("btn-") && !style.equals("btn")
+                                && !style.equals(DEFAULT_STYLE)
+                                && !style.equals("btn-sm") && !style.equals("btn-lg")
+                                && !style.equals("btn-md") && !style.equals("btn-rounded")
+                                && !style.equals("btn-has-icon") && !style.equals("btn-icon")
+                                && !style.equals("btn-icon-emerald") && !style.equals("btn-link-emerald")) {
+                            Platform.runLater(() -> getStyleClass().remove(DEFAULT_STYLE));
+                        }
+                    }
+                }
+            }
+        });
     }
 
     public JButton addClass(String... styleClasses) {
@@ -46,16 +74,44 @@ public class JButton extends Button {
     }
 
     public void setIcon(JIcon icon) {
+        setIcon(icon, null);
+    }
+
+    public void setIcon(JIcon icon, String hexColor) {
         if (icon != null) {
             SVGPath svg = new SVGPath();
             svg.setContent(icon.getPath());
             svg.getStyleClass().add("icon-svg");
-            svg.setScaleX(0.8);
-            svg.setScaleY(0.8);
-            svg.setStyle("-fx-fill: -fx-text-fill;"); 
             
+            // Icono inline/outline más grande y nítido
+            svg.setScaleX(1.15);
+            svg.setScaleY(1.15);
+            
+            Color color;
+            if (hexColor != null && !hexColor.isBlank()) {
+                color = Color.web(hexColor);
+            } else if (getStyleClass().contains("btn-ghost") || getStyleClass().contains("btn-outline")) {
+                color = Color.web("#475569");
+            } else {
+                color = Color.WHITE;
+            }
+
+            if (icon == JIcon.BARCODE) {
+                svg.setFill(color);
+                svg.setStroke(Color.TRANSPARENT);
+                svg.setStrokeWidth(0.0);
+            } else {
+                svg.setStrokeWidth(2.0);
+                svg.setStrokeLineCap(StrokeLineCap.ROUND);
+                svg.setStrokeLineJoin(StrokeLineJoin.ROUND);
+                svg.setFill(Color.TRANSPARENT);
+                svg.setStroke(color);
+            }
+
             setGraphic(svg);
-            setGraphicTextGap(8);
+            if (getText() != null && !getText().isBlank()) {
+                setGraphicTextGap(8);
+            }
             getStyleClass().add("btn-has-icon");
         } else {
             setGraphic(null);
@@ -63,75 +119,45 @@ public class JButton extends Button {
         }
     }
 
-    /**
-     * Activa/desactiva el estado de loading con un spinner animado.
-     */
     public void setLoading(boolean loading) {
-        if (loading && !isLoading) {
-            isLoading = true;
-            originalText = getText();
-            originalGraphic = getGraphic();
+        if (this.isLoading == loading) return;
+        this.isLoading = loading;
 
-            // Spinner nativo de JavaFX
-            javafx.scene.control.ProgressIndicator spinner = new javafx.scene.control.ProgressIndicator();
-            spinner.setMaxSize(18, 18);
-            spinner.setPrefSize(18, 18);
-            spinner.getStyleClass().add("btn-spinner");
+        Platform.runLater(() -> {
+            if (loading) {
+                this.originalText = getText();
+                this.originalGraphic = getGraphic();
 
-            setText("Cargando...");
-            setGraphic(spinner);
-            setDisable(true);
-            if (!getStyleClass().contains("btn-loading")) {
-                getStyleClass().add("btn-loading");
+                String loadingText = (originalText != null && !originalText.isBlank()) ? "Ingresando..." : "";
+                setText(loadingText);
+
+                ProgressIndicator pi = new ProgressIndicator();
+                pi.setPrefSize(16, 16);
+                pi.setMaxSize(16, 16);
+                pi.setMinSize(16, 16);
+                pi.setStyle("-fx-progress-color: white;");
+
+                setGraphic(pi);
+                setGraphicTextGap(10);
+                setDisable(true);
+            } else {
+                setText(originalText);
+                setGraphic(originalGraphic);
+                setDisable(false);
             }
-        } else if (!loading && isLoading) {
-            isLoading = false;
-            setText(originalText);
-            setGraphic(originalGraphic);
-            setDisable(false);
-            getStyleClass().remove("btn-loading");
-        }
+        });
     }
 
-    public boolean isLoading() {
-        return isLoading;
-    }
-
-    /**
-     * Ejecuta una acción en un hilo separado con loading automático.
-     * El Runnable 'action' se ejecuta en background.
-     * El {@code Consumer<Boolean>} 'callback' recibe true (éxito) o false (fallo) en el hilo de JavaFX.
-     *
-     * Ejemplo:
-     * {@code
-     *   btn.setOnActionAsync(
-     *       () -> viewModel.login(),
-     *       success -> { if (success) navegarDashboard(); }
-     *   );
-     * }
-     */
-    public void setOnActionAsync(java.util.function.Supplier<Boolean> action, Consumer<Boolean> callback) {
+    public void setOnAsyncAction(Consumer<Runnable> action) {
         setOnAction(e -> {
-            if (isLoading) return;
             setLoading(true);
-
-            Thread thread = new Thread(() -> {
-                boolean result = false;
+            new Thread(() -> {
                 try {
-                    result = action.get();
+                    action.accept(() -> Platform.runLater(() -> setLoading(false)));
                 } catch (Exception ex) {
-                    ex.printStackTrace();
+                    Platform.runLater(() -> setLoading(false));
                 }
-                final boolean finalResult = result;
-                Platform.runLater(() -> {
-                    setLoading(false);
-                    if (callback != null) {
-                        callback.accept(finalResult);
-                    }
-                });
-            });
-            thread.setDaemon(true);
-            thread.start();
+            }).start();
         });
     }
 }

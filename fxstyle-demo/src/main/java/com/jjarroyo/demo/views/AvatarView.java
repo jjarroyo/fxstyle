@@ -5,6 +5,7 @@ import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
@@ -46,7 +47,7 @@ public class AvatarView extends ScrollPane {
         content.getChildren().add(new JCard("Grupo de Avatares", createGroup()));
     }
 
-    private javafx.scene.Node createSizes() {
+    private Node createSizes() {
         FlowPane container = new FlowPane(24, 16);
         container.setAlignment(Pos.CENTER_LEFT);
 
@@ -63,7 +64,7 @@ public class AvatarView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createColors() {
+    private Node createColors() {
         FlowPane container = new FlowPane(24, 16);
         container.setAlignment(Pos.CENTER_LEFT);
 
@@ -85,7 +86,7 @@ public class AvatarView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createFromNames() {
+    private Node createFromNames() {
         FlowPane container = new FlowPane(24, 16);
         container.setAlignment(Pos.CENTER_LEFT);
 
@@ -110,7 +111,7 @@ public class AvatarView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createStatus() {
+    private Node createStatus() {
         FlowPane container = new FlowPane(32, 16);
         container.setAlignment(Pos.CENTER_LEFT);
 
@@ -135,7 +136,7 @@ public class AvatarView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createGroup() {
+    private Node createGroup() {
         VBox container = new VBox(20);
 
         // Basic group

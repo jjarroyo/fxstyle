@@ -4,6 +4,7 @@ import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JChart;
 import com.jjarroyo.components.JLabel;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
@@ -169,7 +170,7 @@ public class ChartView extends ScrollPane {
         return box;
     }
 
-    private JCard wrapInCard(String title, javafx.scene.Node content) {
+    private JCard wrapInCard(String title, Node content) {
         return new JCard(title, content);
     }
 
@@ -177,7 +178,7 @@ public class ChartView extends ScrollPane {
     // 1. BAR CHART DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createSimpleBar() {
+    private Node createSimpleBar() {
         VBox container = new VBox(12);
         Label desc = new Label("Gráfico de barras simple con una sola línea de código.");
         desc.getStyleClass().add("text-slate-500");
@@ -190,7 +191,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createSalesBar() {
+    private Node createSalesBar() {
         VBox container = new VBox(12);
         Label desc = new Label("Barras con colores automáticos para cada categoría.");
         desc.getStyleClass().add("text-slate-500");
@@ -204,7 +205,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createGroupedBar() {
+    private Node createGroupedBar() {
         VBox container = new VBox(12);
         Label desc = new Label("Barras agrupadas para comparar múltiples series de datos.");
         desc.getStyleClass().add("text-slate-500");
@@ -222,7 +223,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createMonthlyBar() {
+    private Node createMonthlyBar() {
         VBox container = new VBox(12);
         Label desc = new Label("12 categorías para datos mensuales.");
         desc.getStyleClass().add("text-slate-500");
@@ -240,7 +241,7 @@ public class ChartView extends ScrollPane {
     // 2. HORIZONTAL BAR DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createHorizontalBar() {
+    private Node createHorizontalBar() {
         VBox container = new VBox(12);
         Label desc = new Label("Barras horizontales, ideales para categorías con nombres largos.");
         desc.getStyleClass().add("text-slate-500");
@@ -254,7 +255,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createCountriesHBar() {
+    private Node createCountriesHBar() {
         VBox container = new VBox(12);
         Label desc = new Label("Rankings con barras horizontales.");
         desc.getStyleClass().add("text-slate-500");
@@ -273,7 +274,7 @@ public class ChartView extends ScrollPane {
     // 3. LINE CHART DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createSimpleLine() {
+    private Node createSimpleLine() {
         VBox container = new VBox(12);
         Label desc = new Label("Línea con puntos decorativos y valores.");
         desc.getStyleClass().add("text-slate-500");
@@ -286,7 +287,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createMultiLine() {
+    private Node createMultiLine() {
         VBox container = new VBox(12);
         Label desc = new Label("Múltiples líneas para comparar tendencias de diferentes productos.");
         desc.getStyleClass().add("text-slate-500");
@@ -305,7 +306,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createStockLine() {
+    private Node createStockLine() {
         VBox container = new VBox(12);
         Label desc = new Label("Evolución de precio con paleta oceánica.");
         desc.getStyleClass().add("text-slate-500");
@@ -324,7 +325,7 @@ public class ChartView extends ScrollPane {
     // 4. AREA CHART DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createSimpleArea() {
+    private Node createSimpleArea() {
         VBox container = new VBox(12);
         Label desc = new Label("Área con degradado semi-transparente bajo la línea.");
         desc.getStyleClass().add("text-slate-500");
@@ -338,7 +339,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createMultiArea() {
+    private Node createMultiArea() {
         VBox container = new VBox(12);
         Label desc = new Label("Áreas superpuestas con transparencia para comparar canales.");
         desc.getStyleClass().add("text-slate-500");
@@ -357,7 +358,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createRevenueArea() {
+    private Node createRevenueArea() {
         VBox container = new VBox(12);
         Label desc = new Label("Ingresos acumulados con paleta sunset.");
         desc.getStyleClass().add("text-slate-500");
@@ -376,7 +377,7 @@ public class ChartView extends ScrollPane {
     // 5. PIE CHART DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createSimplePie() {
+    private Node createSimplePie() {
         VBox container = new VBox(12);
 
         JChart chart = JChart.pie("Presupuesto",
@@ -388,7 +389,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createMarketPie() {
+    private Node createMarketPie() {
         VBox container = new VBox(12);
 
         JChart chart = JChart.pie("Cuota de Mercado",
@@ -401,7 +402,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createRegionPie() {
+    private Node createRegionPie() {
         VBox container = new VBox(12);
         Label desc = new Label("Distribución de ventas por zona geográfica.");
         desc.getStyleClass().add("text-slate-500");
@@ -419,7 +420,7 @@ public class ChartView extends ScrollPane {
     // 6. DONUT CHART DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createTaskDonut() {
+    private Node createTaskDonut() {
         VBox container = new VBox(12);
 
         JChart chart = JChart.donut("Estado de Tareas",
@@ -431,7 +432,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createStorageDonut() {
+    private Node createStorageDonut() {
         VBox container = new VBox(12);
 
         JChart chart = JChart.donut("Uso de Almacenamiento",
@@ -444,7 +445,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createPortfolioDonut() {
+    private Node createPortfolioDonut() {
         VBox container = new VBox(12);
         Label desc = new Label("Dona grande con centro informativo mostrando el total.");
         desc.getStyleClass().add("text-slate-500");
@@ -463,7 +464,7 @@ public class ChartView extends ScrollPane {
     // 7. SCATTER CHART DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createSimpleScatter() {
+    private Node createSimpleScatter() {
         VBox container = new VBox(12);
         Label desc = new Label("Puntos de dispersión con tamaño proporcional al valor.");
         desc.getStyleClass().add("text-slate-500");
@@ -476,7 +477,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createMultiScatter() {
+    private Node createMultiScatter() {
         VBox container = new VBox(12);
         Label desc = new Label("Dispersión con múltiples series para correlación de datos.");
         desc.getStyleClass().add("text-slate-500");
@@ -498,7 +499,7 @@ public class ChartView extends ScrollPane {
     // 8. PALETTE DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createOceanPalette() {
+    private Node createOceanPalette() {
         VBox container = new VBox(12);
         Label desc = new Label("Paleta de tonos azules y cian para reportes corporativos.");
         desc.getStyleClass().add("text-slate-500");
@@ -512,7 +513,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createSunsetPalette() {
+    private Node createSunsetPalette() {
         VBox container = new VBox(12);
         Label desc = new Label("Paleta cálida con naranjas, rojos y rosas.");
         desc.getStyleClass().add("text-slate-500");
@@ -527,7 +528,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createForestPalette() {
+    private Node createForestPalette() {
         VBox container = new VBox(12);
         Label desc = new Label("Paleta de verdes ideal para datos ambientales o agrícolas.");
         desc.getStyleClass().add("text-slate-500");
@@ -545,7 +546,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createSlatePalette() {
+    private Node createSlatePalette() {
         VBox container = new VBox(12);
         Label desc = new Label("Paleta monocromática elegante y profesional.");
         desc.getStyleClass().add("text-slate-500");
@@ -564,7 +565,7 @@ public class ChartView extends ScrollPane {
     // 9. SIZE DEMOS
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createSmallChart() {
+    private Node createSmallChart() {
         VBox container = new VBox(8);
 
         JChart chart = JChart.pie("Mini Pie",
@@ -577,7 +578,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createCompactChart() {
+    private Node createCompactChart() {
         VBox container = new VBox(8);
 
         JChart chart = JChart.bar("Compacto",
@@ -589,7 +590,7 @@ public class ChartView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createLargeChart() {
+    private Node createLargeChart() {
         VBox container = new VBox(12);
         Label desc = new Label("Gráfico grande de 700x350px para pantallas amplias.");
         desc.getStyleClass().add("text-slate-500");
@@ -611,7 +612,7 @@ public class ChartView extends ScrollPane {
     // 10. DASHBOARD COMBO
     // ═══════════════════════════════════════════════════════════════════
 
-    private javafx.scene.Node createDashboardCombo() {
+    private Node createDashboardCombo() {
         VBox container = new VBox(20);
         Label desc = new Label("Combinación de múltiples gráficos en un layout tipo dashboard agrícola.");
         desc.getStyleClass().add("text-slate-500");

@@ -48,7 +48,7 @@ public class AlertsView extends ScrollPane {
         // Section 4: Dismissible Alerts
         JAlert dismissAlert = new JAlert("Dismiss Me", "Click the X on the right.");
         dismissAlert.addClass("alert-primary", "alert-light");
-        dismissAlert.setIcon(com.jjarroyo.components.JIcon.INFO);
+        dismissAlert.setIcon(JIcon.INFO);
         dismissAlert.setDismissible(true);
 
         JCard dismissCard = new JCard("Dismissible Alert", dismissAlert);
@@ -58,7 +58,15 @@ public class AlertsView extends ScrollPane {
         setContent(container);
     }
 
-    private JAlert createAlert(String title, String desc, String colorClass, String variantClass, JIcon iconCode) {
+        // =========================================================================
+    // COPIAR Y PEGAR: Alertas Estilizadas (JAlert)
+    // Ejemplo: 
+    // JAlert alert = new JAlert("Título", "Descripción");
+    // alert.addClass("alert-success", "alert-light");
+    // alert.setIcon(JIcon.CHECK);
+    // alert.setDismissible(true);
+    // =========================================================================
+private JAlert createAlert(String title, String desc, String colorClass, String variantClass, JIcon iconCode) {
         JAlert alert = new JAlert(title, desc);
         alert.addClass(colorClass, variantClass);
         if (iconCode != null) {
@@ -67,7 +75,15 @@ public class AlertsView extends ScrollPane {
         return alert;
     }
     
-    private JAlert createAlert(String title, String desc, String colorClass, String variantClass, String borderClass, JIcon iconCode) {
+        // =========================================================================
+    // COPIAR Y PEGAR: Alertas Estilizadas (JAlert)
+    // Ejemplo: 
+    // JAlert alert = new JAlert("Título", "Descripción");
+    // alert.addClass("alert-success", "alert-light");
+    // alert.setIcon(JIcon.CHECK);
+    // alert.setDismissible(true);
+    // =========================================================================
+private JAlert createAlert(String title, String desc, String colorClass, String variantClass, String borderClass, JIcon iconCode) {
          JAlert alert = createAlert(title, desc, colorClass, variantClass, iconCode);
          alert.addClass(borderClass);
          return alert;

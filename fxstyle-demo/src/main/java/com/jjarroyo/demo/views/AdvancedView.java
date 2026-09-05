@@ -7,6 +7,7 @@ import com.jjarroyo.components.JIcon;
 import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JSqlEditor;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
@@ -39,7 +40,7 @@ public class AdvancedView extends ScrollPane {
         content.getChildren().add(createDesignCanvasCard());
     }
 
-    private javafx.scene.Node createSqlEditorCard() {
+    private Node createSqlEditorCard() {
         JCard card = new JCard("SQL Editor", "Editor con resaltado de sintaxis, autocompletado y validación en tiempo real");
         
         VBox body = new VBox(12);
@@ -77,7 +78,7 @@ public class AdvancedView extends ScrollPane {
         return card;
     }
 
-    private javafx.scene.Node createDesignCanvasCard() {
+    private Node createDesignCanvasCard() {
         JCard card = new JCard("Design Canvas", "Canvas con drag & drop y campos arrastrables");
         
         VBox body = new VBox(12);

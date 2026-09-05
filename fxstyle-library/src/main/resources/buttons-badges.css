@@ -136,6 +136,14 @@
     -fx-background-color: #fee2e2;
 }
 
+.btn-light-warning {
+    -fx-background-color: #fffbe6;
+    -fx-text-fill: -color-warning-600;
+}
+.btn-light-warning:hover {
+    -fx-background-color: #fef3c7;
+}
+
 /* ─── DASHED BUTTON ──────────────────────────────────────────────────────────── */
 .btn-dashed {
     -fx-background-color: transparent;
@@ -214,6 +222,8 @@
 .badge {
     -fx-padding: 3px 6px;
     -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: transparent;
     -fx-font-weight: 600;
     -fx-font-size: 12px;
     -fx-text-fill: white;
@@ -566,8 +576,77 @@
 /* Extended FAB variant (Pill shape with Text + Icon) */
 .j-floating-button-extended {
     -fx-background-radius: 28px;
-    -fx-min-width: USE_COMPUTED_SIZE;
-    -fx-max-width: USE_COMPUTED_SIZE;
+    -fx-min-width: -1;
+    -fx-max-width: -1;
     -fx-padding: 0px 20px;
     -fx-graphic-text-gap: 8px;
 }
+
+/* ─── STATUS BADGE (JStatusBadge) ─────────────────────────────────────────── */
+.j-status-badge {
+    -fx-padding: 4px 10px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+    -fx-alignment: center-left;
+    -fx-spacing: 6px;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+}
+.j-status-badge-dot {
+    -fx-pref-width: 8px;
+    -fx-pref-height: 8px;
+    -fx-min-width: 8px;
+    -fx-min-height: 8px;
+    -fx-max-width: 8px;
+    -fx-max-height: 8px;
+    -fx-background-radius: 9999px;
+    -fx-border-radius: 9999px;
+}
+.j-status-badge-text {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+/* Light / Soft Variants */
+.status-badge-success {
+    -fx-background-color: -color-success-50;
+    -fx-border-color: -color-success-200;
+}
+.status-badge-success .j-status-badge-dot { -fx-background-color: -color-success-500; }
+.status-badge-success .j-status-badge-text { -fx-text-fill: -color-success-700; }
+
+.status-badge-danger {
+    -fx-background-color: -color-danger-50;
+    -fx-border-color: -color-danger-200;
+}
+.status-badge-danger .j-status-badge-dot { -fx-background-color: -color-danger-500; }
+.status-badge-danger .j-status-badge-text { -fx-text-fill: -color-danger-700; }
+
+.status-badge-warning {
+    -fx-background-color: -color-warning-50;
+    -fx-border-color: -color-warning-200;
+}
+.status-badge-warning .j-status-badge-dot { -fx-background-color: -color-warning-500; }
+.status-badge-warning .j-status-badge-text { -fx-text-fill: -color-warning-700; }
+
+.status-badge-info {
+    -fx-background-color: -color-info-50;
+    -fx-border-color: -color-info-200;
+}
+.status-badge-info .j-status-badge-dot { -fx-background-color: -color-info-500; }
+.status-badge-info .j-status-badge-text { -fx-text-fill: -color-info-700; }
+
+.status-badge-muted {
+    -fx-background-color: -color-slate-100;
+    -fx-border-color: -color-slate-200;
+}
+.status-badge-muted .j-status-badge-dot { -fx-background-color: -color-slate-400; }
+.status-badge-muted .j-status-badge-text { -fx-text-fill: -color-slate-600; }
+
+.status-badge-purple {
+    -fx-background-color: #f3e8ff;
+    -fx-border-color: #d8b4fe;
+}
+.status-badge-purple .j-status-badge-dot { -fx-background-color: #9333ea; }
+.status-badge-purple .j-status-badge-text { -fx-text-fill: #7e22ce; }
+

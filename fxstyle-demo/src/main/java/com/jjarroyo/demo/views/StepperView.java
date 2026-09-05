@@ -1,11 +1,12 @@
 package com.jjarroyo.demo.views;
 
 import com.jjarroyo.components.JCard;
+import com.jjarroyo.components.JInput;
 import com.jjarroyo.components.JStepper;
 import com.jjarroyo.components.JToast;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Label;
-import com.jjarroyo.components.JInput;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
@@ -90,7 +91,7 @@ public class StepperView extends ScrollPane {
         stepper.addStep("Confirm", null, new VBox(new Label("Order confirmation.")));
         
         stepper.setOnFinish(() -> {
-            com.jjarroyo.components.JToast.show(getScene().getWindow(), "Order placed!", com.jjarroyo.components.JToast.Type.SUCCESS, com.jjarroyo.components.JToast.Position.TOP_RIGHT, 3000);
+            JToast.show(getScene().getWindow(), "Order placed!", JToast.Type.SUCCESS, JToast.Position.TOP_RIGHT, 3000);
             stepper.setCurrentStepIndex(0);
         });
 
@@ -104,14 +105,14 @@ public class StepperView extends ScrollPane {
         card.setSubtitle("A stepper with vertical orientation");
 
         JStepper stepper = new JStepper();
-        stepper.setOrientation(javafx.geometry.Orientation.VERTICAL);
+        stepper.setOrientation(Orientation.VERTICAL);
         
         stepper.addStep("Step 1", "Configure the basics", new VBox(new Label("Basic settings here.")));
-        stepper.addStep("Step 2", "Add advanced options", new VBox(new Label("Advanced settings here.", new com.jjarroyo.components.JInput("Option A").createWithLabel("Option", false))));
+        stepper.addStep("Step 2", "Add advanced options", new VBox(new Label("Advanced settings here.", new JInput("Option A").createWithLabel("Option", false))));
         stepper.addStep("Step 3", "Review and Finish", new VBox(new Label("Review your configuration.")));
         
         stepper.setOnFinish(() -> {
-            com.jjarroyo.components.JToast.show(getScene().getWindow(), "Configuration saved!", com.jjarroyo.components.JToast.Type.SUCCESS, com.jjarroyo.components.JToast.Position.TOP_RIGHT, 3000);
+            JToast.show(getScene().getWindow(), "Configuration saved!", JToast.Type.SUCCESS, JToast.Position.TOP_RIGHT, 3000);
             stepper.setCurrentStepIndex(0);
         });
 

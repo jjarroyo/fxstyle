@@ -6,6 +6,8 @@ import com.jjarroyo.components.JIcon;
 import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JToast;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
@@ -44,7 +46,7 @@ public class BreadcrumbView extends ScrollPane {
         content.getChildren().add(new JCard("Con Íconos", createWithIcons()));
     }
 
-    private javafx.scene.Node createBasic() {
+    private Node createBasic() {
         VBox container = new VBox(16);
 
         JBreadcrumb bc1 = new JBreadcrumb();
@@ -59,7 +61,7 @@ public class BreadcrumbView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createWithActions() {
+    private Node createWithActions() {
         VBox container = new VBox(16);
 
         JBreadcrumb bc = new JBreadcrumb();
@@ -68,14 +70,14 @@ public class BreadcrumbView extends ScrollPane {
           .addItem("Categorías", () -> showToast("Navegando a Categorías"))
           .addItem("Electrónicos");
 
-        javafx.scene.control.Label hint = new javafx.scene.control.Label("Haz clic en los items para ver la acción");
+        Label hint = new Label("Haz clic en los items para ver la acción");
         hint.setStyle("-fx-font-size: 11px; -fx-text-fill: -color-slate-400;");
 
         container.getChildren().addAll(bc, hint);
         return container;
     }
 
-    private javafx.scene.Node createSeparators() {
+    private Node createSeparators() {
         VBox container = new VBox(16);
 
         JBreadcrumb bc1 = new JBreadcrumb();
@@ -98,7 +100,7 @@ public class BreadcrumbView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createColors() {
+    private Node createColors() {
         VBox container = new VBox(16);
 
         String[] colors = {"primary", "success", "danger", "warning", "info", "slate"};
@@ -112,7 +114,7 @@ public class BreadcrumbView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createWithIcons() {
+    private Node createWithIcons() {
         VBox container = new VBox(16);
 
         JBreadcrumb bc = new JBreadcrumb();

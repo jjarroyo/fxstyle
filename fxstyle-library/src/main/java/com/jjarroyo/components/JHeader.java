@@ -66,10 +66,12 @@ public class JHeader extends HBox {
         itemBox.getStyleClass().add("j-header-menu-item");
         
         Label label = new Label(text);
-        // Add a small arrow icon if we had one, or just text
-        // For now just text
+        label.getStyleClass().add("j-header-menu-item-text");
         
-        itemBox.getChildren().add(label);
+        Label arrow = new Label("▾");
+        arrow.getStyleClass().add("j-header-menu-item-text");
+        
+        itemBox.getChildren().addAll(label, arrow);
         
         itemBox.setOnMouseClicked(e -> {
             JPopover pop = new JPopover();

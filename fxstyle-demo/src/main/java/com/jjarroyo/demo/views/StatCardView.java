@@ -2,6 +2,7 @@ package com.jjarroyo.demo.views;
 
 import com.jjarroyo.components.JIcon;
 import com.jjarroyo.components.JStatCard;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -9,7 +10,11 @@ import javafx.scene.layout.VBox;
 
 public class StatCardView extends VBox {
 
-    public StatCardView() {
+        // =========================================================================
+    // COPIAR Y PEGAR: Tarjetas Estadísticas KPI (JStatCard)
+    // Ejemplo: JStatCard statCard = new JStatCard("Ventas Totales", "$12,450", "+15%", JIcon.MONEY);
+    // =========================================================================
+public StatCardView() {
         setPadding(new Insets(24));
         setSpacing(24);
 
@@ -62,7 +67,7 @@ public class StatCardView extends VBox {
         getChildren().addAll(title, description, grid);
         
         // Start animations after a tiny delay so the UI shows up first
-        javafx.application.Platform.runLater(() -> {
+        Platform.runLater(() -> {
             revCard.setValue(125430.50, 1500);
         });
     }

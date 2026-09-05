@@ -24,6 +24,9 @@ public class JStatCard extends VBox {
     private final Label valueLabel;
     private final Label trendLabel;
     private final StackPane iconPane;
+    private final Region spacer;
+    private final HBox headerBox;
+    private boolean inlineIcon = false;
     
     private final DoubleProperty currentValue = new SimpleDoubleProperty(0.0);
     private Timeline timeline;
@@ -47,12 +50,12 @@ public class JStatCard extends VBox {
         iconPane.setVisible(false);
         iconPane.setManaged(false); // Hide by default until an icon is set
         
-        Region spacer = new Region();
+        spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         
-        HBox headerBox = new HBox(8);
+        headerBox = new HBox(8);
         headerBox.setAlignment(Pos.CENTER_LEFT);
-        headerBox.getChildren().addAll(titleLabel, spacer, iconPane);
+        updateHeaderLayout();
         
         // --- Value Block ---
         valueLabel = new Label("0");
@@ -63,7 +66,6 @@ public class JStatCard extends VBox {
             valueLabel.setText(prefix + formatter.format(newVal.doubleValue()) + suffix);
         });
 
-        // --- Footer (Trend) ---
         trendLabel = new Label();
         trendLabel.getStyleClass().add("j-stat-trend");
         trendLabel.setVisible(false);
@@ -71,7 +73,32 @@ public class JStatCard extends VBox {
         
         getChildren().addAll(headerBox, valueLabel, trendLabel);
     }
-    
+
+    private void updateHeaderLayout() {
+        headerBox.getChildren().clear();
+        if (inlineIcon) {
+            headerBox.getChildren().addAll(iconPane, titleLabel, spacer);
+        } else {
+            headerBox.getChildren().addAll(titleLabel, spacer, iconPane);
+        }
+    }
+
+    public void setIconInline(boolean inline) {
+        this.inlineIcon = inline;
+        if (inline) {
+            if (!getStyleClass().contains("inline-icon")) {
+                getStyleClass().add("inline-icon");
+            }
+        } else {
+            getStyleClass().remove("inline-icon");
+        }
+        updateHeaderLayout();
+    }
+
+    public boolean isIconInline() {
+        return inlineIcon;
+    }
+
     public void setTitle(String title) {
         titleLabel.setText(title);
     }
@@ -161,6 +188,10 @@ public class JStatCard extends VBox {
             trendLabel.setVisible(false);
             trendLabel.setManaged(false);
         }
+    }
+    
+    public Label getValueLabel() {
+        return valueLabel;
     }
     
     private void updateText() {

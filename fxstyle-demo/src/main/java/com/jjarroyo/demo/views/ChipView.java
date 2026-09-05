@@ -1,11 +1,12 @@
 package com.jjarroyo.demo.views;
 
-import com.jjarroyo.components.JChip;
 import com.jjarroyo.components.JCard;
+import com.jjarroyo.components.JChip;
 import com.jjarroyo.components.JIcon;
 import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JToast;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -36,7 +37,7 @@ public class ChipView extends ScrollPane {
         content.getChildren().add(new JCard("Dismissible (Cerrables)", createDismissible()));
     }
 
-    private javafx.scene.Node createSoftVariant() {
+    private Node createSoftVariant() {
         FlowPane flow = new FlowPane(8, 8);
         JChip.ChipColor[] colors = JChip.ChipColor.values();
         for (JChip.ChipColor color : colors) {
@@ -45,7 +46,7 @@ public class ChipView extends ScrollPane {
         return flow;
     }
 
-    private javafx.scene.Node createFilledVariant() {
+    private Node createFilledVariant() {
         FlowPane flow = new FlowPane(8, 8);
         JChip.ChipColor[] colors = JChip.ChipColor.values();
         for (JChip.ChipColor color : colors) {
@@ -56,7 +57,7 @@ public class ChipView extends ScrollPane {
         return flow;
     }
 
-    private javafx.scene.Node createOutlinedVariant() {
+    private Node createOutlinedVariant() {
         FlowPane flow = new FlowPane(8, 8);
         JChip.ChipColor[] colors = JChip.ChipColor.values();
         for (JChip.ChipColor color : colors) {
@@ -67,7 +68,7 @@ public class ChipView extends ScrollPane {
         return flow;
     }
 
-    private javafx.scene.Node createSizes() {
+    private Node createSizes() {
         FlowPane flow = new FlowPane(8, 8);
         flow.getChildren().addAll(
             new JChip("Small").setChipSize(JChip.Size.SM).setColor(JChip.ChipColor.INFO),
@@ -77,7 +78,7 @@ public class ChipView extends ScrollPane {
         return flow;
     }
 
-    private javafx.scene.Node createWithIcons() {
+    private Node createWithIcons() {
         FlowPane flow = new FlowPane(8, 8);
         flow.getChildren().addAll(
             new JChip("Activo", JIcon.CHECK.view()).setColor(JChip.ChipColor.SUCCESS),
@@ -88,7 +89,7 @@ public class ChipView extends ScrollPane {
         return flow;
     }
 
-    private javafx.scene.Node createDismissible() {
+    private Node createDismissible() {
         FlowPane flow = new FlowPane(8, 8);
         String[] tags = {"JavaScript", "Java", "Python", "TypeScript", "Rust"};
         JChip.ChipColor[] colors = {JChip.ChipColor.PRIMARY, JChip.ChipColor.SUCCESS, JChip.ChipColor.DANGER, JChip.ChipColor.WARNING, JChip.ChipColor.INFO};

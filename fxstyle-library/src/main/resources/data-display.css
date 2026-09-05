@@ -55,6 +55,7 @@
     -fx-font-size: 14px;
     -fx-padding: 12px 16px;
     -fx-alignment: center-left;
+    -fx-wrap-text: true;
 }
 
 /* ─── J-TABLE SEARCH BAR ─────────────────────────────────────────────────────── */

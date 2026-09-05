@@ -4,6 +4,9 @@ import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
 import com.jjarroyo.components.JSkeleton;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -32,21 +35,21 @@ public class SkeletonView extends ScrollPane {
         content.getChildren().add(new JCard("Tabla", createTable()));
     }
 
-    private javafx.scene.Node createTextLines() {
+    private Node createTextLines() {
         VBox container = new VBox(20);
 
         VBox section1 = new VBox(4);
-        javafx.scene.control.Label l1 = new javafx.scene.control.Label("1 línea:");
+        Label l1 = new Label("1 línea:");
         l1.setStyle("-fx-font-size: 11px; -fx-font-weight: 600; -fx-text-fill: -color-slate-500;");
         section1.getChildren().addAll(l1, JSkeleton.text(1));
 
         VBox section2 = new VBox(4);
-        javafx.scene.control.Label l2 = new javafx.scene.control.Label("3 líneas:");
+        Label l2 = new Label("3 líneas:");
         l2.setStyle("-fx-font-size: 11px; -fx-font-weight: 600; -fx-text-fill: -color-slate-500;");
         section2.getChildren().addAll(l2, JSkeleton.text(3));
 
         VBox section3 = new VBox(4);
-        javafx.scene.control.Label l3 = new javafx.scene.control.Label("5 líneas:");
+        Label l3 = new Label("5 líneas:");
         l3.setStyle("-fx-font-size: 11px; -fx-font-weight: 600; -fx-text-fill: -color-slate-500;");
         section3.getChildren().addAll(l3, JSkeleton.text(5));
 
@@ -54,7 +57,7 @@ public class SkeletonView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createUserRows() {
+    private Node createUserRows() {
         VBox container = new VBox(16);
         container.getChildren().addAll(
             JSkeleton.userRow(),
@@ -64,7 +67,7 @@ public class SkeletonView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createCards() {
+    private Node createCards() {
         HBox container = new HBox(16);
         container.getChildren().addAll(
             JSkeleton.card(),
@@ -73,9 +76,9 @@ public class SkeletonView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createRects() {
+    private Node createRects() {
         HBox container = new HBox(16);
-        javafx.geometry.Pos alignment = javafx.geometry.Pos.BOTTOM_LEFT;
+        Pos alignment = Pos.BOTTOM_LEFT;
         container.setAlignment(alignment);
         container.getChildren().addAll(
             JSkeleton.rect(80, 80),
@@ -87,7 +90,7 @@ public class SkeletonView extends ScrollPane {
         return container;
     }
 
-    private javafx.scene.Node createTable() {
+    private Node createTable() {
         return JSkeleton.table(5, 4);
     }
 }

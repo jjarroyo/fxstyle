@@ -1,4 +1,4 @@
-# FxStyle - JavaFX Design System v2.1.0
+# FxStyle - JavaFX Design System v2.2.0
 
 Sistema de diseno moderno para JavaFX, inspirado en conceptos de Tailwind CSS y orientado a crear interfaces consistentes y reutilizables.
 
@@ -66,7 +66,7 @@ Este script hace lo siguiente:
 
 1. Ejecuta mvn clean install para compilar libreria y demo.
 2. Lanza la aplicacion demo:
-   fxstyle-demo/target/fxstyle-demo-2.1.0.jar
+   fxstyle-demo/target/fxstyle-demo-2.2.0.jar
 
 ## Ejecucion manual (opcional)
 
@@ -78,7 +78,71 @@ Si prefieres ejecutar manualmente:
 
 2. Ejecutar demo:
 
-- java -jar fxstyle-demo/target/fxstyle-demo-2.1.0.jar
+- java -jar fxstyle-demo/target/fxstyle-demo-2.2.0.jar
+
+## 🚀 Cómo implementar FxStyle en tu proyecto
+
+Para integrar **FxStyle** en tu aplicación JavaFX en un proyecto real, sigue estos pasos:
+
+### 1. Agregar la dependencia Maven
+
+Agrega el módulo a tu `pom.xml`:
+
+```xml
+<dependency>
+    <groupId>com.jjarroyo</groupId>
+    <artifactId>fxstyle-library</artifactId>
+    <version>2.2.0</version>
+</dependency>
+```
+
+### 2. Inicializar FxStyle en la clase principal (`Application`)
+
+Debes invocar `FxStyle.init(scene)` al momento de crear la `Scene`. Esto cargará automáticamente el tema, variables CSS y estilos globales necesarios para que todos los componentes se rendericen correctamente.
+
+Si usas componentes que requieren un contenedor global para capas/superposiciones (como `JModal` o `JConfirmDialog`), opcionalmente puedes registrar el contenedor principal (`StackPane`) usando `FxStyle.setModalContainer(...)`.
+
+#### Ejemplo de integración (`App.java`):
+
+```java
+package com.miempresa.app;
+
+import com.jjarroyo.FxStyle;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class App extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
+        Parent root = loader.load();
+        
+        Scene scene = new Scene(root, 1280, 800);
+        
+        // (Opcional) Cargar hoja de estilos propia de tu app
+        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+       
+        // Inicializar el sistema de diseño FxStyle (Carga CSS base y estilos globales)
+        FxStyle.init(scene); 
+       
+        // (Opcional) Si usas JModal / JConfirmDialog, establece el StackPane contenedor raíz:
+        // FxStyle.setModalContainer(rootStackPane);
+
+        primaryStage.setTitle("Mi Aplicación JavaFX");
+        primaryStage.setScene(scene);
+        primaryStage.setMaximized(true);
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+```
 
 ## Catálogo de Componentes
 
@@ -105,6 +169,7 @@ Navega a la documentación de cada componente y visualiza cómo lucen de forma e
 | **JCalendar** | [📄 Docs](docs/components/JCalendar.html) | - |
 | **JTextArea** | [📄 Docs](docs/components/JTextArea.html) | - |
 | **JRating** | [📄 Docs](docs/components/JRating.html) | - |
+| **JTagInput** | [📄 Docs](docs/components/JTagInput.html) | - |
 
 ### 🔔 Feedback y Comunicación
 | Componente | Documentación | Preview |

@@ -4,7 +4,9 @@ import com.jjarroyo.components.*;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -40,7 +42,7 @@ public class DashboardView extends ScrollPane {
         statsGrid.add(createStatCard("Support Tickets", "12", "All caught up!", "info"), 3, 0);
         
         // Make columns equal width
-        javafx.scene.layout.ColumnConstraints cc = new javafx.scene.layout.ColumnConstraints();
+        ColumnConstraints cc = new ColumnConstraints();
         cc.setPercentWidth(25);
         statsGrid.getColumnConstraints().addAll(cc, cc, cc, cc);
         
@@ -81,7 +83,7 @@ public class DashboardView extends ScrollPane {
         listTitle.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
         
         JList<Activity> list = new JList<>();
-        list.setCellFactory(lv -> new javafx.scene.control.ListCell<Activity>() {
+        list.setCellFactory(lv -> new ListCell<Activity>() {
             @Override
             protected void updateItem(Activity item, boolean empty) {
                 super.updateItem(item, empty);

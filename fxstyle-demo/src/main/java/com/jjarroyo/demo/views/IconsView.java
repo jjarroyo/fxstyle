@@ -7,8 +7,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 public class IconsView extends ScrollPane {
 
@@ -47,7 +50,7 @@ public class IconsView extends ScrollPane {
             Label name = new Label(icon.name());
             name.setStyle("-fx-font-size: 11px; -fx-text-fill: -color-slate-500;");
             name.setWrapText(true);
-            name.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
+            name.setTextAlignment(TextAlignment.CENTER);
             
             item.getChildren().add(name);
             
@@ -58,8 +61,8 @@ public class IconsView extends ScrollPane {
             // Click to copy (Toast)
             item.setOnMouseClicked(e -> {
                String copyText = "JIcon." + icon.name() + ".view()";
-               javafx.scene.input.Clipboard clipboard = javafx.scene.input.Clipboard.getSystemClipboard();
-               javafx.scene.input.ClipboardContent contentCopy = new javafx.scene.input.ClipboardContent();
+               Clipboard clipboard = Clipboard.getSystemClipboard();
+               ClipboardContent contentCopy = new ClipboardContent();
                contentCopy.putString(copyText);
                clipboard.setContent(contentCopy);
                

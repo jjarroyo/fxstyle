@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JTagInput - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            .form-label {
+                @apply block text-sm font-medium text-slate-700 mb-1;
+            }
+            /* Simulated tag input style */
+            .tag-input-container {
+                @apply flex flex-wrap items-center gap-2 p-2 bg-slate-100 border border-slate-300 rounded-md focus-within:bg-white focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition-all;
+            }
+            .tag-input-field {
+                @apply bg-transparent border-0 outline-none text-sm text-slate-800 placeholder-slate-400 p-1 min-w-[80px] flex-grow;
+            }
+            .tag-chip {
+                @apply inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800;
+            }
+            .tag-chip-close {
+                @apply text-blue-600 hover:text-blue-900 cursor-pointer text-[10px];
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JTagInput</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Campo de entrada interactivo que organiza datos en etiquetas (chips) flotantes con soporte de ajuste automático de línea (wrap), límites de cantidad, rechazo de duplicados y estilos dinámicos.
+                    </p>
+                </header>
+
+                <!-- Basic Usage -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Ejemplo Interactivo (Representación Web)
+                    </h2>
+
+                    <div
+                        class="bg-white p-6 rounded-lg border border-slate-200 shadow-sm mb-4"
+                    >
+                        <div class="max-w-md">
+                            <label class="form-label">Tags / Etiquetas de Categorías</label>
+                            <div class="tag-input-container">
+                                <span class="tag-chip">
+                                    JavaFX
+                                    <span class="tag-chip-close">✕</span>
+                                </span>
+                                <span class="tag-chip">
+                                    TailwindCSS
+                                    <span class="tag-chip-close">✕</span>
+                                </span>
+                                <input
+                                    type="text"
+                                    class="tag-input-field"
+                                    placeholder="Escribe y presiona Enter..."
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto">
+                        <pre><code class="text-slate-300 font-mono text-sm">// Creación e inicialización básica de JTagInput
+JTagInput tagInput = new JTagInput();
+tagInput.setPlaceholder("Escribe y presiona Enter...");
+
+// Agregar etiquetas de forma programática
+tagInput.getTags().addAll("JavaFX", "TailwindCSS");</code></pre>
+                    </div>
+                </section>
+
+                <!-- Configuration Options -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Características de Configuración
+                    </h2>
+                    <ul class="list-disc pl-6 space-y-2 text-slate-600">
+                        <li><strong>Delimitador de ingreso:</strong> Se puede agregar un tag pulsando la tecla <kbd class="px-1.5 py-0.5 bg-slate-200 border rounded text-xs font-mono">Enter</kbd> o ingresando una coma <kbd class="px-1.5 py-0.5 bg-slate-200 border rounded text-xs font-mono">,</kbd> en el teclado.</li>
+                        <li><strong>Eliminación asistida:</strong> Pulsar <kbd class="px-1.5 py-0.5 bg-slate-200 border rounded text-xs font-mono">Backspace</kbd> cuando el input está vacío remueve automáticamente la última etiqueta añadida.</li>
+                        <li><strong>Control de Duplicados:</strong> Opciones para habilitar o rechazar términos duplicados dentro de la lista de etiquetas.</li>
+                        <li><strong>Límites Estrictos:</strong> Se puede definir un número máximo de etiquetas permitidas. Una vez alcanzado, el componente bloquea el ingreso de nuevos términos hasta que se libere espacio.</li>
+                    </ul>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table
+                        class="min-w-full text-left text-sm whitespace-nowrap"
+                    >
+                        <thead
+                            class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600"
+                        >
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">
+                                    Descripción
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    getTags()
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Retorna la lista observable (<code class="font-mono text-xs">ObservableList&lt;String&gt;</code>) para leer o modificar las etiquetas.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setPlaceholder(String text)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Establece el texto informativo en el campo de entrada cuando no hay tags.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setMaxTags(int max)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Establece la cantidad máxima de etiquetas permitidas. El valor <code class="font-mono text-xs">-1</code> representa ilimitadas.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setDuplicateAllowed(boolean allow)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Define si se permiten o no etiquetas con el mismo nombre de texto. Por defecto es <code class="font-mono text-xs">false</code>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setTagColor(JChip.ChipColor color)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Define el color de los tags usando el enumerador (<code class="font-mono text-xs">PRIMARY, SUCCESS, DANGER, WARNING, INFO, SLATE</code>).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setTagVariant(JChip.Variant variant)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Define la variante visual del chip (<code class="font-mono text-xs">SOFT, FILLED, OUTLINED</code>).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    setTagSize(JChip.Size size)
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Ajusta el tamaño del chip de los tags (<code class="font-mono text-xs">SM, MD, LG</code>).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">
+                                    clear()
+                                </td>
+                                <td class="px-6 py-4 text-slate-500">
+                                    Limpia todo el texto del input y elimina todas las etiquetas registradas en el componente.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

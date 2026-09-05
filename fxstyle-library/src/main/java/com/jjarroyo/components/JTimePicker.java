@@ -10,27 +10,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
- * JTimePicker — selector de hora compacto HH:mm con spinners de subir/bajar
- * y campos de texto editables por teclado.
- *
- * <pre>
- * // Uso basico
- * JTimePicker picker = new JTimePicker("08:30");
- * picker.valueProperty().addListener((obs, o, n) -&gt; System.out.println(n));
- *
- * // Binding bidireccional
- * picker.valueProperty().bindBidirectional(viewModel.formTimeProperty());
- * </pre>
- *
- * <p>Caracteristicas:</p>
- * <ul>
- *   <li>Escritura directa en los campos de hora y minutos</li>
- *   <li>Flechas arriba/abajo para incrementar/decrementar</li>
- *   <li>Teclas UP/DOWN del teclado cuando el campo esta enfocado</li>
- *   <li>Validacion automatica al perder el foco (clamp 0-23 / 0-59)</li>
- *   <li>Solo acepta digitos — rechaza cualquier otro caracter</li>
- * </ul>
+ * JTimePicker — selector de hora compacto HH:mm con spinners de subir/bajar,
+ * estilo moderno, campos editables por teclado y validación de hora mínima.
  */
 public class JTimePicker extends HBox {
 
@@ -38,12 +23,11 @@ public class JTimePicker extends HBox {
     private int hours = 0;
     private int minutes = 0;
 
-    /** TextField editable para la hora */
     private final TextField hourField;
-    /** TextField editable para los minutos */
     private final TextField minuteField;
 
-    // ─── Constructores ────────────────────────────────────────────────────────
+    private JDatePicker parentDatePicker = null;
+    private boolean disablePastTime = false;
 
     public JTimePicker() {
         this("00:00");
@@ -56,37 +40,87 @@ public class JTimePicker extends HBox {
 
         parseTime(initialTime);
 
-        // --- Spinner de Horas ---
         hourField = createField(hours, true);
         VBox hourSpinner = createSpinner(hourField, true);
 
-        // --- Separador ---
         Label separator = new Label(":");
         separator.getStyleClass().add("j-time-separator");
 
-        // --- Spinner de Minutos ---
         minuteField = createField(minutes, false);
         VBox minuteSpinner = createSpinner(minuteField, false);
 
         getChildren().addAll(hourSpinner, separator, minuteSpinner);
 
-        // Sincronizar value property → actualiza campos si se cambia desde fuera
         value.set(formatTime());
         value.addListener((obs, oldVal, newVal) -> {
             if (newVal != null && !newVal.equals(formatTime())) {
                 parseTime(newVal);
+                validateMinTime();
                 hourField.setText(String.format("%02d", hours));
                 minuteField.setText(String.format("%02d", minutes));
             }
         });
     }
 
-    // ─── Construcción de la UI ────────────────────────────────────────────────
+    public JTimePicker setModern(boolean modern) {
+        if (modern) {
+            if (!getStyleClass().contains("j-time-picker-modern")) {
+                getStyleClass().add("j-time-picker-modern");
+            }
+            if (!hourField.getStyleClass().contains("form-input-modern")) {
+                hourField.getStyleClass().add("form-input-modern");
+            }
+            if (!minuteField.getStyleClass().contains("form-input-modern")) {
+                minuteField.getStyleClass().add("form-input-modern");
+            }
+        } else {
+            getStyleClass().remove("j-time-picker-modern");
+            hourField.getStyleClass().remove("form-input-modern");
+            minuteField.getStyleClass().remove("form-input-modern");
+        }
+        return this;
+    }
 
-    /**
-     * Crea el TextField editable de hora o minutos.
-     * Solo acepta dígitos, valida al perder foco y responde a ↑↓ del teclado.
-     */
+    public JTimePicker setParentDatePicker(JDatePicker parent) {
+        this.parentDatePicker = parent;
+        if (parent != null) {
+            parent.valueProperty().addListener((obs, oldDate, newDate) -> validateMinTime());
+        }
+        validateMinTime();
+        return this;
+    }
+
+    public JTimePicker setDisablePastTime(boolean disable) {
+        this.disablePastTime = disable;
+        validateMinTime();
+        return this;
+    }
+
+    public JTimePicker setDisablePastTime(boolean disable, JDatePicker parent) {
+        this.disablePastTime = disable;
+        setParentDatePicker(parent);
+        return this;
+    }
+
+    private void validateMinTime() {
+        if (!disablePastTime) return;
+
+        LocalDate targetDate = (parentDatePicker != null && parentDatePicker.getValue() != null)
+                ? parentDatePicker.getValue() : LocalDate.now();
+
+        if (targetDate.isEqual(LocalDate.now()) || targetDate.isBefore(LocalDate.now())) {
+            LocalTime now = LocalTime.now();
+            LocalTime current = LocalTime.of(hours, minutes);
+            if (current.isBefore(now)) {
+                hours = now.getHour();
+                minutes = now.getMinute();
+                hourField.setText(String.format("%02d", hours));
+                minuteField.setText(String.format("%02d", minutes));
+                value.set(formatTime());
+            }
+        }
+    }
+
     private TextField createField(int initialValue, boolean isHour) {
         TextField field = new TextField(String.format("%02d", initialValue));
         field.getStyleClass().add("j-time-field");
@@ -94,24 +128,20 @@ public class JTimePicker extends HBox {
         field.setMaxWidth(40);
         field.setAlignment(Pos.CENTER);
 
-        // Filtrar: solo permitir dígitos (máx 2)
         field.textProperty().addListener((obs, oldVal, newVal) -> {
             if (!newVal.matches("\\d{0,2}")) {
                 field.setText(oldVal);
             }
         });
 
-        // Validar y normalizar al perder el foco
         field.focusedProperty().addListener((obs, wasFocused, isFocused) -> {
             if (!isFocused) {
                 applyFieldValue(field, isHour);
             }
         });
 
-        // Confirmar con Enter
         field.setOnAction(e -> applyFieldValue(field, isHour));
 
-        // ↑ incrementa, ↓ decrementa mientras el campo está activo
         field.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.UP) {
                 step(field, isHour, +1);
@@ -122,7 +152,6 @@ public class JTimePicker extends HBox {
             }
         });
 
-        // Seleccionar todo al ganar foco → facilita la escritura
         field.setOnMouseClicked(e -> field.selectAll());
         field.focusedProperty().addListener((obs, o, focused) -> {
             if (focused) field.selectAll();
@@ -131,9 +160,6 @@ public class JTimePicker extends HBox {
         return field;
     }
 
-    /**
-     * Crea el VBox que contiene: botón ▲, campo editable, botón ▼.
-     */
     private VBox createSpinner(TextField field, boolean isHour) {
         VBox spinner = new VBox(0);
         spinner.setAlignment(Pos.CENTER);
@@ -151,44 +177,68 @@ public class JTimePicker extends HBox {
         return spinner;
     }
 
-    // ─── Lógica interna ────────────────────────────────────────────────────────
-
-    /**
-     * Incrementa o decrementa el valor del campo en {@code delta} unidades,
-     * con wrap-around (00 → max / max → 00).
-     */
     private void step(TextField field, boolean isHour, int delta) {
+        int newHours = hours;
+        int newMinutes = minutes;
+
         if (isHour) {
-            hours = (hours + delta + 24) % 24;
-            field.setText(String.format("%02d", hours));
+            newHours = (hours + delta + 24) % 24;
         } else {
-            minutes = (minutes + delta + 60) % 60;
-            field.setText(String.format("%02d", minutes));
+            newMinutes = (minutes + delta + 60) % 60;
         }
+
+        if (disablePastTime) {
+            LocalDate targetDate = (parentDatePicker != null && parentDatePicker.getValue() != null)
+                    ? parentDatePicker.getValue() : LocalDate.now();
+            if (targetDate.isEqual(LocalDate.now()) || targetDate.isBefore(LocalDate.now())) {
+                LocalTime minTime = LocalTime.now();
+                LocalTime targetTime = LocalTime.of(newHours, newMinutes);
+                if (targetTime.isBefore(minTime)) {
+                    newHours = minTime.getHour();
+                    newMinutes = minTime.getMinute();
+                }
+            }
+        }
+
+        hours = newHours;
+        minutes = newMinutes;
+        hourField.setText(String.format("%02d", hours));
+        minuteField.setText(String.format("%02d", minutes));
         value.set(formatTime());
     }
 
-    /**
-     * Lee el texto del field, lo parsea y lo guarda en {@code hours} o
-     * {@code minutes}, aplicando el rango válido. Actualiza el texto del campo
-     * al formato {@code 00}.
-     */
     private void applyFieldValue(TextField field, boolean isHour) {
         try {
             int parsed = Integer.parseInt(field.getText().trim());
+            int newHours = hours;
+            int newMinutes = minutes;
+
             if (isHour) {
-                hours = Math.max(0, Math.min(23, parsed));
-                field.setText(String.format("%02d", hours));
+                newHours = Math.max(0, Math.min(23, parsed));
             } else {
-                minutes = Math.max(0, Math.min(59, parsed));
-                field.setText(String.format("%02d", minutes));
+                newMinutes = Math.max(0, Math.min(59, parsed));
             }
+
+            if (disablePastTime) {
+                LocalDate targetDate = (parentDatePicker != null && parentDatePicker.getValue() != null)
+                        ? parentDatePicker.getValue() : LocalDate.now();
+                if (targetDate.isEqual(LocalDate.now()) || targetDate.isBefore(LocalDate.now())) {
+                    LocalTime minTime = LocalTime.now();
+                    LocalTime targetTime = LocalTime.of(newHours, newMinutes);
+                    if (targetTime.isBefore(minTime)) {
+                        newHours = minTime.getHour();
+                        newMinutes = minTime.getMinute();
+                    }
+                }
+            }
+
+            hours = newHours;
+            minutes = newMinutes;
         } catch (NumberFormatException ex) {
-            // Si el campo está vacío o inválido, restaurar el valor anterior
-            field.setText(isHour
-                    ? String.format("%02d", hours)
-                    : String.format("%02d", minutes));
+            // Restaurar valor previo si es inválido
         }
+        hourField.setText(String.format("%02d", hours));
+        minuteField.setText(String.format("%02d", minutes));
         value.set(formatTime());
     }
 
@@ -209,30 +259,11 @@ public class JTimePicker extends HBox {
         return String.format("%02d:%02d", hours, minutes);
     }
 
-    // ─── API pública ──────────────────────────────────────────────────────────
-
-    /** Retorna el valor actual como {@code "HH:mm"}. */
     public String getValue() { return value.get(); }
-
-    /** Establece la hora como {@code "HH:mm"}. */
     public void setValue(String v) { value.set(v); }
-
-    /** Property observable del valor {@code "HH:mm"}. */
     public StringProperty valueProperty() { return value; }
-
-    /** Retorna la hora actual (0–23). */
     public int getHours() { return hours; }
-
-    /** Retorna los minutos actuales (0–59). */
     public int getMinutes() { return minutes; }
-
-    /**
-     * Retorna el TextField interno de la hora. Útil para aplicar estilos extras.
-     */
     public TextField getHourField() { return hourField; }
-
-    /**
-     * Retorna el TextField interno de los minutos. Útil para aplicar estilos extras.
-     */
     public TextField getMinuteField() { return minuteField; }
 }

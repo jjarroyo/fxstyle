@@ -7,6 +7,7 @@ import com.jjarroyo.components.JInput;
 import com.jjarroyo.components.JTextArea;
 import com.jjarroyo.components.JToast;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
@@ -222,7 +223,7 @@ public class DrawerView extends ScrollPane {
         setContent(content);
     }
 
-    private VBox createFormField(String labelText, javafx.scene.Node input) {
+    private VBox createFormField(String labelText, Node input) {
         VBox field = new VBox(4);
         Label label = new Label(labelText);
         label.getStyleClass().add("j-label");

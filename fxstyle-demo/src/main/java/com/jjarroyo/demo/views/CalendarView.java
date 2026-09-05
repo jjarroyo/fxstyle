@@ -4,17 +4,17 @@ import com.jjarroyo.components.JButton;
 import com.jjarroyo.components.JCalendar;
 import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JLabel;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
 public class CalendarView extends ScrollPane {
 
@@ -53,7 +53,7 @@ public class CalendarView extends ScrollPane {
 
     // ─── 1. Basic Calendar ───────────────────────────────────────────
 
-    private javafx.scene.Node createBasicCalendar() {
+    private Node createBasicCalendar() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Calendario del mes actual. Haz clic en cualquier día para seleccionarlo. Usa los botones ◀ ▶ para navegar entre meses.");
@@ -68,7 +68,7 @@ public class CalendarView extends ScrollPane {
 
     // ─── 2. Live Selection ───────────────────────────────────────────
 
-    private javafx.scene.Node createLiveSelectionCalendar() {
+    private Node createLiveSelectionCalendar() {
         VBox container = new VBox(12);
 
         Label desc = new Label("El label de abajo se actualiza en tiempo real al seleccionar una fecha.");
@@ -93,7 +93,7 @@ public class CalendarView extends ScrollPane {
 
     // ─── 3. Highlighted Dates ────────────────────────────────────────
 
-    private javafx.scene.Node createHighlightedCalendar() {
+    private Node createHighlightedCalendar() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Las fechas verdes representan eventos o citas. Puedes usar setHighlightedDates() para marcarlas.");
@@ -122,7 +122,7 @@ public class CalendarView extends ScrollPane {
 
     // ─── 4. Programmatic Navigation ──────────────────────────────────
 
-    private javafx.scene.Node createProgrammaticCalendar() {
+    private Node createProgrammaticCalendar() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Controla el calendario desde código: ir a una fecha específica, avanzar o retroceder meses.");
@@ -162,7 +162,7 @@ public class CalendarView extends ScrollPane {
 
     // ─── 5. Multiple Calendars ───────────────────────────────────────
 
-    private javafx.scene.Node createMultipleCalendars() {
+    private Node createMultipleCalendars() {
         VBox container = new VBox(12);
 
         Label desc = new Label("Dos calendarios independientes mostrando meses consecutivos.");
