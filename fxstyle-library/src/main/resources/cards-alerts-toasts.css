@@ -484,3 +484,215 @@
     -fx-background-color: -color-info-50;
     -fx-border-color: -color-info-500;
 }
+
+/* ─── TOAST CARD (Avast-style Soft Pastel / Light Notification Card) ──────────── */
+.j-toast-card-wrapper {
+    -fx-background-color: transparent;
+    -fx-padding: 8px;
+}
+
+.j-toast-card {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #cbd5e1;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 16, 0, 0, 4);
+    -fx-padding: 14px 16px 10px 16px;
+    -fx-min-width: 320px;
+    -fx-max-width: 440px;
+    -fx-spacing: 10px;
+}
+
+/* ─── Soft Pastel Color Variants (Colores Bajitos) ───────────────────────────── */
+
+/* DANGER (Soft Red / Light) */
+.j-toast-card-danger {
+    -fx-background-color: #fef2f2;
+    -fx-border-color: #fca5a5;
+}
+.j-toast-card-danger .j-toast-card-icon-badge {
+    -fx-background-color: #fee2e2;
+}
+.j-toast-card-danger .j-toast-card-icon {
+    -fx-fill: #ef4444;
+}
+.j-toast-card-danger .j-toast-card-title {
+    -fx-text-fill: #991b1b;
+}
+.j-toast-card-danger .j-toast-card-message {
+    -fx-text-fill: #b91c1c;
+}
+.j-toast-card-danger .j-toast-card-close {
+    -fx-text-fill: #991b1b;
+}
+.j-toast-card-danger .j-toast-card-close:hover {
+    -fx-text-fill: #7f1d1d;
+    -fx-background-color: #fee2e2;
+}
+.j-toast-card-danger .j-toast-card-progress {
+    -fx-background-color: #f87171;
+}
+
+/* WARNING (Soft Amber / Light) */
+.j-toast-card-warning {
+    -fx-background-color: #fffbeb;
+    -fx-border-color: #fde68a;
+}
+.j-toast-card-warning .j-toast-card-icon-badge {
+    -fx-background-color: #fef3c7;
+}
+.j-toast-card-warning .j-toast-card-icon {
+    -fx-fill: #f59e0b;
+}
+.j-toast-card-warning .j-toast-card-title {
+    -fx-text-fill: #92400e;
+}
+.j-toast-card-warning .j-toast-card-message {
+    -fx-text-fill: #b45309;
+}
+.j-toast-card-warning .j-toast-card-close {
+    -fx-text-fill: #92400e;
+}
+.j-toast-card-warning .j-toast-card-close:hover {
+    -fx-text-fill: #78350f;
+    -fx-background-color: #fef3c7;
+}
+.j-toast-card-warning .j-toast-card-progress {
+    -fx-background-color: #fbbf24;
+}
+
+/* SUCCESS (Soft Emerald / Light) */
+.j-toast-card-success {
+    -fx-background-color: #ecfdf5;
+    -fx-border-color: #a7f3d0;
+}
+.j-toast-card-success .j-toast-card-icon-badge {
+    -fx-background-color: #d1fae5;
+}
+.j-toast-card-success .j-toast-card-icon {
+    -fx-fill: #10b981;
+}
+.j-toast-card-success .j-toast-card-title {
+    -fx-text-fill: #065f46;
+}
+.j-toast-card-success .j-toast-card-message {
+    -fx-text-fill: #047857;
+}
+.j-toast-card-success .j-toast-card-close {
+    -fx-text-fill: #065f46;
+}
+.j-toast-card-success .j-toast-card-close:hover {
+    -fx-text-fill: #064e3b;
+    -fx-background-color: #d1fae5;
+}
+.j-toast-card-success .j-toast-card-progress {
+    -fx-background-color: #34d399;
+}
+
+/* INFO (Soft Blue / Light) */
+.j-toast-card-info {
+    -fx-background-color: #eff6ff;
+    -fx-border-color: #bfdbfe;
+}
+.j-toast-card-info .j-toast-card-icon-badge {
+    -fx-background-color: #dbeafe;
+}
+.j-toast-card-info .j-toast-card-icon {
+    -fx-fill: #3b82f6;
+}
+.j-toast-card-info .j-toast-card-title {
+    -fx-text-fill: #1e40af;
+}
+.j-toast-card-info .j-toast-card-message {
+    -fx-text-fill: #1d4ed8;
+}
+.j-toast-card-info .j-toast-card-close {
+    -fx-text-fill: #1e40af;
+}
+.j-toast-card-info .j-toast-card-close:hover {
+    -fx-text-fill: #1e3a8a;
+    -fx-background-color: #dbeafe;
+}
+.j-toast-card-info .j-toast-card-progress {
+    -fx-background-color: #60a5fa;
+}
+
+/* DEFAULT (Soft Slate / Light) */
+.j-toast-card-default {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #cbd5e1;
+}
+.j-toast-card-default .j-toast-card-icon-badge {
+    -fx-background-color: #f1f5f9;
+}
+.j-toast-card-default .j-toast-card-icon {
+    -fx-fill: #64748b;
+}
+.j-toast-card-default .j-toast-card-title {
+    -fx-text-fill: #1e293b;
+}
+.j-toast-card-default .j-toast-card-message {
+    -fx-text-fill: #475569;
+}
+.j-toast-card-default .j-toast-card-close {
+    -fx-text-fill: #64748b;
+}
+.j-toast-card-default .j-toast-card-close:hover {
+    -fx-text-fill: #1e293b;
+    -fx-background-color: #e2e8f0;
+}
+.j-toast-card-default .j-toast-card-progress {
+    -fx-background-color: #94a3b8;
+}
+
+/* Icon Badge Container */
+.j-toast-card-icon-badge {
+    -fx-background-radius: 50%;
+    -fx-min-width: 36px;
+    -fx-min-height: 36px;
+    -fx-max-width: 36px;
+    -fx-max-height: 36px;
+    -fx-alignment: center;
+}
+
+/* Content Container */
+.j-toast-card-content {
+    -fx-alignment: top-left;
+    -fx-spacing: 3px;
+}
+
+/* Typography */
+.j-toast-card-title {
+    -fx-font-weight: 800;
+    -fx-font-size: 13.5px;
+}
+
+.j-toast-card-message {
+    -fx-font-size: 12.5px;
+    -fx-line-spacing: 2px;
+}
+
+/* Close Button (Pinned Top-Right) */
+.j-toast-card-close {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-min-width: 22px;
+    -fx-min-height: 22px;
+    -fx-max-width: 22px;
+    -fx-max-height: 22px;
+    -fx-alignment: center;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+}
+
+/* Progress bar timer line */
+.j-toast-card-progress {
+    -fx-background-radius: 2px;
+    -fx-min-height: 2.5px;
+    -fx-max-height: 2.5px;
+}
+
+
+

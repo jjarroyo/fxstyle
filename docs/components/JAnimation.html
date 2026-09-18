@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Animaciones y Transiciones - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">Animaciones y Transiciones</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Motor utilitario de animaciones declarativas (<code>JAnimation</code>), contadores numéricos animados (<code>JAnimatedNumber</code>) y contenedores de cambio de vista con transición fluida (<code>JAnimatedSwitcher</code>).
+                    </p>
+                </header>
+
+                <!-- 1. JAnimation Utility -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        1. Motor Utilitario Declarativo (JAnimation)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Aplica efectos suaves a cualquier <code>Node</code> de JavaFX con una sola línea de código sin crear objetos <code>Timeline</code> o <code>Transition</code> manualmente.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Efectos de Entrada / Desplazamiento</span>
+JAnimation.fadeIn(myCard);
+JAnimation.slideInUp(myCard);
+JAnimation.slideInDown(myCard);
+JAnimation.slideInLeft(myCard);
+JAnimation.slideInRight(myCard);
+JAnimation.zoomIn(myCard);
+JAnimation.popIn(myCard);
+
+<span class="text-blue-400">// Efectos de Feedback / Atención</span>
+JAnimation.shake(passwordField);  <span class="text-slate-500">// Sacudida de error</span>
+JAnimation.pulse(actionButton);    <span class="text-slate-500">// Latido para llamar la atención</span>
+JAnimation.bounce(notification);   <span class="text-slate-500">// Salto elástico</span>
+
+<span class="text-blue-400">// Configuración Avanzada y Callbacks Encadenados</span>
+JAnimation.slideInUp(dialogNode, Duration.millis(500), 30)
+          .delay(Duration.millis(150))
+          .onFinished(() -> System.out.println("¡Animación finalizada!"))
+          .play();</code></pre>
+                    </div>
+                </section>
+
+                <!-- 2. JAnimatedNumber -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        2. Contador Numérico Animado (JAnimatedNumber)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Control <code>Label</code> especial para animar cambios numéricos (conteo de 0 a X) con curvas de aceleración suaves (<em>EaseOutCubic</em>).
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Crear contador financiero</span>
+JAnimatedNumber numRevenue = new JAnimatedNumber(0, 15420.50);
+numRevenue.setPrefix("$ ");
+numRevenue.setDecimalPlaces(2);
+numRevenue.setDuration(Duration.seconds(1.5));
+
+<span class="text-blue-400">// Animar suavemente hacia un nuevo valor</span>
+numRevenue.animateTo(28750.00);</code></pre>
+                    </div>
+                </section>
+
+                <!-- 3. JAnimatedSwitcher -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        3. Contenedor con Transición entre Vistas (JAnimatedSwitcher)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Contenedor inspirador en <em>AnimatedSwitcher</em> de Flutter y <em>AnimatePresence</em> de Framer Motion. Al invocar <code>setContent(newView)</code>, reemplaza la vista con animación fluida.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Instanciar contenedor con tipo de animación</span>
+JAnimatedSwitcher switcher = new JAnimatedSwitcher();
+switcher.setSwitchAnimation(SwitchAnimation.SLIDE_LEFT);
+switcher.setDuration(Duration.millis(400));
+
+<span class="text-blue-400">// Cambiar de vista con animación</span>
+switcher.setContent(step2FormView);</code></pre>
+                    </div>
+                </section>
+
+                <!-- 4. JFlipCard -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        4. Tarjeta 3D Giratoria (JFlipCard)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Tarjeta interactiva con 2 caras (Frontal y Trasera) que realiza una rotación 3D de 180° en el eje Y o X al hacer clic o al pasar el ratón.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Crear tarjeta 3D con cara frontal y trasera</span>
+JFlipCard flipCard = new JFlipCard(frontView, backView);
+
+<span class="text-blue-400">// Girar manualmente al hacer clic o por evento</span>
+flipCard.flip();
+
+<span class="text-blue-400">// O activar giro automático en hover</span>
+flipCard.setFlipOnHover(true);</code></pre>
+                    </div>
+                </section>
+
+                <!-- 5. JRippleContainer -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        5. Efecto Onda de Clic (JRippleContainer)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Agrega el efecto de onda circular (<em>Ripple Wave</em> de Material Design y Tailwind) a cualquier botón, tarjeta o control de JavaFX al hacer clic.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Envolver un control con el efecto de onda</span>
+JRippleContainer ripple = new JRippleContainer(myButton);
+ripple.setRippleColor(Color.web("#3b82f6", 0.3));</code></pre>
+                    </div>
+                </section>
+
+                <!-- 6. JMarquee -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        6. Marquesina Animada (JMarquee)
+                    </h2>
+                    <p class="text-slate-600 mb-4">
+                        Cinta o banner de texto de desplazamiento continuo para anuncios, noticias o tickers en tiempo real con pausa al hacer hover.
+                    </p>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Banner marquesina continuo</span>
+JMarquee marquee = new JMarquee("🚀 [NUEVA VERSIÓN] FxStyle v2.2.0 disponible");
+marquee.setSpeed(75.0); // píxeles por segundo
+marquee.setPauseOnHover(true);</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Clase JAnimation</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método Estático</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">fadeIn(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Aparece suavemente aumentando la opacidad de 0 a 1.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">fadeOut(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Desaparece suavemente reduciendo la opacidad a 0.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">slideInUp(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Desplaza de abajo hacia arriba con efecto de entrada.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">slideInDown(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Desplaza de arriba hacia abajo con efecto de entrada.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">zoomIn(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Escala de 0.7 a 1.0 con opacidad progresiva.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">popIn(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Efecto pop elástico con rebote sutil.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">shake(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Sacudida horizontal para indicar errores o entradas inválidas.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">pulse(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Pulsación/escalado temporal para llamar la atención.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">bounce(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Rebote vertical doble para notificaciones.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Clase JFlipCard</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">flip()</td>
+                                <td class="px-6 py-4 text-slate-500">Alterna la tarjeta de 0° a 180° en 3D.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setFront(Node node) / setBack(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Define los contenidos del frente y reverso.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setFlipOnHover(boolean flipOnHover)</td>
+                                <td class="px-6 py-4 text-slate-500">Gira automáticamente al pasar el cursor sobre la tarjeta.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Clase JRippleContainer</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setContent(Node node)</td>
+                                <td class="px-6 py-4 text-slate-500">Envuelve el control base que recibirá la animación ripple.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setRippleColor(Paint color)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el color y opacidad de la onda expansiva.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Clase JMarquee</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setText(String text)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece el texto en desplazamiento continuo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setSpeed(double pxPerSec)</td>
+                                <td class="px-6 py-4 text-slate-500">Velocidad del desplazamiento en píxeles por segundo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setPauseOnHover(boolean pauseOnHover)</td>
+                                <td class="px-6 py-4 text-slate-500">Pausa el desplazamiento al pasar el ratón por encima.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Clase JAnimatedNumber</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">animateTo(double targetValue)</td>
+                                <td class="px-6 py-4 text-slate-500">Inicia la animación suave desde el valor actual hacia el objetivo.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setPrefix(String prefix)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece un prefijo textual (ej: "$ ", "EUR ").</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setSuffix(String suffix)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece un sufijo textual (ej: "%", " usuarios").</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setDecimalPlaces(int places)</td>
+                                <td class="px-6 py-4 text-slate-500">Define el número de lugares decimales formateados.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Clase JAnimatedSwitcher</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setContent(Node newContent)</td>
+                                <td class="px-6 py-4 text-slate-500">Reemplaza el nodo actual animando la transición.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setSwitchAnimation(SwitchAnimation anim)</td>
+                                <td class="px-6 py-4 text-slate-500">Define la animación (FADE, SLIDE_LEFT, SLIDE_RIGHT, SLIDE_UP, SLIDE_DOWN, ZOOM).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

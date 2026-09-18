@@ -90,7 +90,17 @@ public class JButton extends Button {
             Color color;
             if (hexColor != null && !hexColor.isBlank()) {
                 color = Color.web(hexColor);
-            } else if (getStyleClass().contains("btn-ghost") || getStyleClass().contains("btn-outline")) {
+            } else if (getStyleClass().contains("btn-secondary")) {
+                color = Color.web("#334155");
+            } else if (getStyleClass().contains("btn-outline") || getStyleClass().contains("btn-outline-primary")) {
+                color = Color.web("#2563eb");
+            } else if (getStyleClass().contains("btn-light-primary")) {
+                color = Color.web("#1d4ed8");
+            } else if (getStyleClass().contains("btn-light-success")) {
+                color = Color.web("#047857");
+            } else if (getStyleClass().contains("btn-light-danger")) {
+                color = Color.web("#b91c1c");
+            } else if (getStyleClass().contains("btn-ghost")) {
                 color = Color.web("#475569");
             } else {
                 color = Color.WHITE;

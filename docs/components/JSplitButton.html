@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JSplitButton - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JSplitButton</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Un componente de botón dividido que combina un botón de acción principal en el lado izquierdo y un gatillo con flecha para menú desplegable en el lado derecho.
+                    </p>
+                </header>
+
+                <main class="space-y-10">
+                    <!-- Introducción -->
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h2 class="text-xl font-semibold text-slate-900 mb-4">Descripción General</h2>
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            <code class="text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded font-mono text-sm">JSplitButton</code> extiende de <code class="font-mono text-sm">HBox</code> y agrupa dos instancias de <code class="font-mono text-sm">JButton</code> fusionadas mediante CSS con esquinas redondeadas compartidas. Permite ejecutar una acción directa al presionar el botón principal o desplegar un menú desplegable de acciones alternativas al presionar la flecha.
+                        </p>
+                    </section>
+
+                    <!-- Ejemplo de Uso -->
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h2 class="text-xl font-semibold text-slate-900 mb-4">Ejemplo de Uso</h2>
+                        <div class="bg-slate-900 rounded-lg p-4 overflow-x-auto">
+                            <pre class="text-slate-100 font-mono text-sm"><code>// Crear un JSplitButton con acción principal y menú
+JSplitButton saveBtn = new JSplitButton("Guardar Cambios", () -> save())
+    .addMenuItem("Guardar y Salir", () -> saveAndClose())
+    .addMenuItem("Guardar como Borrador", () -> saveDraft())
+    .addSeparator()
+    .addMenuItem("Descartar", () -> discard());
+
+// Definir variante de color
+saveBtn.setVariant(JSplitButton.Variant.SUCCESS);</code></pre>
+                        </div>
+                    </section>
+
+                    <!-- Variantes -->
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h2 class="text-xl font-semibold text-slate-900 mb-4">Variantes Disponibles</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                                <span class="font-semibold text-blue-600 font-mono text-sm">Variant.PRIMARY</span>
+                                <p class="text-xs text-slate-500 mt-1">Estilo primario predeterminado de la biblioteca.</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                                <span class="font-semibold text-emerald-600 font-mono text-sm">Variant.SUCCESS</span>
+                                <p class="text-xs text-slate-500 mt-1">Variante verde para acciones positivas (publicar, guardar).</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                                <span class="font-semibold text-red-600 font-mono text-sm">Variant.DANGER</span>
+                                <p class="text-xs text-slate-500 mt-1">Variante roja para acciones destructivas o críticas.</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                                <span class="font-semibold text-amber-600 font-mono text-sm">Variant.WARNING</span>
+                                <p class="text-xs text-slate-500 mt-1">Variante amarilla / ámbar para advertencias.</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                                <span class="font-semibold text-slate-700 font-mono text-sm">Variant.SECONDARY</span>
+                                <p class="text-xs text-slate-500 mt-1">Variante gris neutra para acciones secundarias.</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg bg-slate-50">
+                                <span class="font-semibold text-blue-700 font-mono text-sm">Variant.OUTLINE</span>
+                                <p class="text-xs text-slate-500 mt-1">Estilo con borde y fondo transparente.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- API y Métodos -->
+                    <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+                        <h2 class="text-xl font-semibold text-slate-900 mb-4">Métodos Principales</h2>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="border-b border-slate-200 bg-slate-50 text-slate-700 text-sm font-semibold">
+                                        <th class="py-3 px-4">Método</th>
+                                        <th class="py-3 px-4">Retorno</th>
+                                        <th class="py-3 px-4">Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 text-sm text-slate-600">
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono text-blue-600">addMenuItem(String title, Runnable action)</td>
+                                        <td class="py-3 px-4 font-mono">JSplitButton</td>
+                                        <td class="py-3 px-4">Agrega una opción de menú con su manejador de evento.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono text-blue-600">addSeparator()</td>
+                                        <td class="py-3 px-4 font-mono">JSplitButton</td>
+                                        <td class="py-3 px-4">Agrega un separador visual entre opciones del menú desplegable.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono text-blue-600">setVariant(Variant variant)</td>
+                                        <td class="py-3 px-4 font-mono">void</td>
+                                        <td class="py-3 px-4">Establece la variante visual del botón principal y la flecha.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono text-blue-600">withAction(Runnable action)</td>
+                                        <td class="py-3 px-4 font-mono">JSplitButton</td>
+                                        <td class="py-3 px-4">Asigna la acción del botón principal de forma fluida.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono text-blue-600">getMainButton()</td>
+                                        <td class="py-3 px-4 font-mono">JButton</td>
+                                        <td class="py-3 px-4">Retorna la instancia del JButton principal.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4 font-mono text-blue-600">getContextMenu()</td>
+                                        <td class="py-3 px-4 font-mono">ContextMenu</td>
+                                        <td class="py-3 px-4">Retorna la instancia del ContextMenu asociado.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

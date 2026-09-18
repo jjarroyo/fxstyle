@@ -4,6 +4,8 @@ import com.jjarroyo.components.JButton;
 import com.jjarroyo.components.JCard;
 import com.jjarroyo.components.JIcon;
 import com.jjarroyo.components.JLabel;
+import com.jjarroyo.components.JSplitButton;
+import com.jjarroyo.components.JSplitButton.Variant;
 import com.jjarroyo.demo.util.DemoCodeDialog;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -78,6 +80,17 @@ public class ButtonsView extends ScrollPane {
         // Section: Loading Style
         JCard c7 = new JCard("Loading Style", createLoadingButtons());
         content.getChildren().add(c7);
+
+        // Section: JSplitButton (Split Action Dropdown)
+        JCard c8 = new JCard("Botones Divididos con Menú Desplegable (JSplitButton)", createSplitButtons());
+        c8.addToolbarItem(DemoCodeDialog.createCodeButton("JSplitButton",
+            "// Crear un botón dividido con acción principal e ítems de menú:\n" +
+            "JSplitButton saveBtn = new JSplitButton(\"Guardar Cambios\", () -> save());\n" +
+            "saveBtn.addMenuItem(\"Guardar y Cerrar\", () -> saveAndClose());\n" +
+            "saveBtn.addMenuItem(\"Guardar como Borrador\", () -> saveDraft());\n" +
+            "saveBtn.addSeparator();\n" +
+            "saveBtn.addMenuItem(\"Descartar\", () -> discard());"));
+        content.getChildren().add(c8);
     }
 
         // =========================================================================
@@ -252,6 +265,41 @@ private Node createLoadingButtons() {
         pane.getChildren().addAll(btnLoading1, btnLoading2, btnLoading3, btnLoading4);
         return pane;
     }
+
+    private Node createSplitButtons() {
+        FlowPane pane = new FlowPane();
+        pane.setHgap(16);
+        pane.setVgap(16);
+
+        JSplitButton btnPrimary = new JSplitButton("Guardar Cambios")
+                .addMenuItem("Guardar y Salir", () -> {})
+                .addMenuItem("Guardar como Borrador", () -> {})
+                .addSeparator()
+                .addMenuItem("Descartar", () -> {});
+        btnPrimary.setVariant(Variant.PRIMARY);
+
+        JSplitButton btnSuccess = new JSplitButton("Publicar Documento")
+                .addMenuItem("Publicar Ahora", () -> {})
+                .addMenuItem("Programar Publicación", () -> {})
+                .addSeparator()
+                .addMenuItem("Guardar Borrador", () -> {});
+        btnSuccess.setVariant(Variant.SUCCESS);
+
+        JSplitButton btnDanger = new JSplitButton("Eliminar Registro")
+                .addMenuItem("Eliminar permanentemente", () -> {})
+                .addMenuItem("Mover a la Papelera", () -> {});
+        btnDanger.setVariant(Variant.DANGER);
+
+        JSplitButton btnOutline = new JSplitButton("Exportar Datos")
+                .addMenuItem("Exportar a PDF", () -> {})
+                .addMenuItem("Exportar a Excel", () -> {})
+                .addMenuItem("Exportar a CSV", () -> {});
+        btnOutline.setVariant(Variant.OUTLINE);
+
+        pane.getChildren().addAll(btnPrimary, btnSuccess, btnDanger, btnOutline);
+        return pane;
+    }
 }
+
 
 

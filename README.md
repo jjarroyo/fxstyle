@@ -152,6 +152,7 @@ Navega a la documentación de cada componente y visualiza cómo lucen de forma e
 | Componente | Documentación | Preview |
 |------------|---------------|---------|
 | **JButton** | [📄 Docs](docs/components/JButton.html) | [🖼️ Ver Preview](docs/images/buttons.png) |
+| **JSplitButton** | [📄 Docs](docs/components/JSplitButton.html) | - |
 | **JFloatingButton** | [📄 Docs](docs/components/JFloatingButton.html) | - |
 | **JSwitch** | [📄 Docs](docs/components/JSwitch.html) | - |
 
@@ -178,6 +179,7 @@ Navega a la documentación de cada componente y visualiza cómo lucen de forma e
 | **JModal** | [📄 Docs](docs/components/JModal.html) | [🖼️ Ver Preview](docs/images/modals.png) |
 | **JConfirmDialog** | [📄 Docs](docs/components/JConfirmDialog.html) | [🖼️ Ver Preview](docs/images/modalalert.png) |
 | **JNotification** & **JToast** | [📄 Docs](docs/components/JNotification.html) | - |
+| **JToastCard (Avast Style)** | [📄 Docs](docs/components/JToastCard.html) | - |
 | **JProgressBar** & **JCircular**| [📄 Docs](docs/components/JProgressBar.html) | [🖼️ Ver Preview](docs/images/progress.png) |
 | **JSkeleton** | [📄 Docs](docs/components/JSkeleton.html) | [🖼️ Ver Preview](docs/images/skeletons.png) |
 
@@ -188,7 +190,7 @@ Navega a la documentación de cada componente y visualiza cómo lucen de forma e
 | **JTreeView** | [📄 Docs](docs/components/JTreeView.html) | [🖼️ Ver Preview](docs/images/treeview.png) |
 | **JCard** & **JStatCard** | [📄 Docs](docs/components/JCard.html) | [🖼️ Ver Preview](docs/images/cards.png) |
 | **JAvatar** | [📄 Docs](docs/components/JAvatar.html) | [🖼️ Ver Preview](docs/images/avatars.png) |
-| **JBadge** & **JChip** | [📄 Docs](docs/components/JBadge.html) | - |
+| **JBadge**, **JChip** & **JRibbon** | [📄 Docs](docs/components/JRibbon.html) | - |
 | **JTimeline** | [📄 Docs](docs/components/JTimeline.html) | - |
 | **JChart** | [📄 Docs](docs/components/JChart.html) | - |
 | **Typography** (Label/Paragraph)| [📄 Docs](docs/components/Typography.html) | - |
@@ -209,6 +211,11 @@ Navega a la documentación de cada componente y visualiza cómo lucen de forma e
 |------------|---------------|---------|
 | **JPopover** | [📄 Docs](docs/components/JPopover.html) | [🖼️ Ver Preview](docs/images/popovers.png) |
 | **JDropdown** | [📄 Docs](docs/components/JDropdown.html) | - |
+
+### ✨ Animaciones y Transiciones
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JAnimation** / **JAnimatedNumber** / **JAnimatedSwitcher** / **JFlipCard** / **JRippleContainer** / **JMarquee** | [📄 Docs](docs/components/JAnimation.html) | - |
 
 ### ⚙️ Especiales / Helpers
 | Componente | Documentación | Preview |

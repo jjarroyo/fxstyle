@@ -362,10 +362,24 @@
     -fx-background-color: transparent;
 }
 
-.j-tree-cell-root {
+.j-tree-cell-root,
+.j-tree-cell-root:selected,
+.j-tree-cell-root:focused:selected,
+.j-tree-cell-root:filled:selected,
+.j-tree-cell-root:focused:filled:selected {
     -fx-background-color: transparent;
     -fx-padding: 4px 8px;
     -fx-indent: 20px;
+}
+
+.j-tree-cell-root > .tree-disclosure-node,
+.j-tree-cell-root > .tree-disclosure-node > .arrow {
+    -fx-padding: 0;
+    -fx-shape: null;
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+    -fx-opacity: 0;
 }
 
 .j-tree-cell-content {
@@ -377,10 +391,11 @@
 }
 
 .j-tree-cell-root:hover > .j-tree-cell-content {
-    -fx-background-color: -color-bg-subtle;
+    -fx-background-color: #f1f5f9;
 }
-.j-tree-cell-root:selected > .j-tree-cell-content {
-    -fx-background-color: -color-primary-50;
+.j-tree-cell-root:selected > .j-tree-cell-content,
+.j-tree-cell-root:focused:selected > .j-tree-cell-content {
+    -fx-background-color: #e2e8f0;
 }
 
 .j-tree-label {
@@ -388,8 +403,9 @@
     -fx-font-size: 14px;
     -fx-font-weight: 500;
 }
-.j-tree-cell-root:selected .j-tree-label {
-    -fx-text-fill: -color-primary-700;
+.j-tree-cell-root:selected .j-tree-label,
+.j-tree-cell-root:focused:selected .j-tree-label {
+    -fx-text-fill: #1e293b;
     -fx-font-weight: 600;
 }
 

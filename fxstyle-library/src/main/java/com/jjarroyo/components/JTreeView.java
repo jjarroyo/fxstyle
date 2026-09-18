@@ -91,6 +91,7 @@ public class JTreeView<T> extends TreeView<T> {
 
         public JTreeCell() {
             getStyleClass().add("j-tree-cell-root");
+            setDisclosureNode(null);
 
             container = new HBox(8);
             container.setAlignment(Pos.CENTER_LEFT);

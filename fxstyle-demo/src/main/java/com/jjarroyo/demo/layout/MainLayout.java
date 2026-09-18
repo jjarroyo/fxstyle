@@ -106,6 +106,7 @@ public class MainLayout extends StackPane {
             createItem("Modals", JIcon.CHAT.view()),
             createItem("Data", JIcon.LAYOUT.view()),
             createItem("Toasts", JIcon.NOTIFICATIONS.view()),
+            createItem("Toast Cards", JIcon.BELL.view()),
             createItem("Tooltips", JIcon.CHAT.view()),
             createItem("Popovers", JIcon.CHAT.view()),
             createItem("Icons", JIcon.APPS.view()),
@@ -115,6 +116,7 @@ public class MainLayout extends StackPane {
             createItem("Breadcrumbs", JIcon.ARROW_FORWARD.view()),
             createItem("Chips", JIcon.TAG.view()),
             createItem("Status Badge", JIcon.CHECK_CIRCLE.view()),
+            createItem("Ribbons", JIcon.TAG.view()),
             createItem("Tag Input", JIcon.EDIT.view()),
             createItem("Number Input", JIcon.ADD.view()),
             createItem("Search Input", JIcon.SEARCH.view()),
@@ -126,6 +128,7 @@ public class MainLayout extends StackPane {
             createItem("Confirm Dialogs", JIcon.CHECK_CIRCLE.view()),
             createItem("Drawers", JIcon.LAYERS.view()),
             createItem("Charts", JIcon.BAR_CHART.view()),
+            createItem("Animaciones", JIcon.ROCKET.view()),
             createItem("Avanzado", JIcon.SETTINGS.view()),
             createItem("Tree View", JIcon.FOLDER_OPEN.view())
         );
@@ -157,6 +160,7 @@ public class MainLayout extends StackPane {
         else if (text.equals("Modals")) navigate(new com.jjarroyo.demo.views.ModalsView());
         else if (text.equals("Data")) navigate(new com.jjarroyo.demo.views.DataView());
         else if (text.equals("Toasts")) navigate(new com.jjarroyo.demo.views.ToastsView());
+        else if (text.equals("Toast Cards")) navigate(new com.jjarroyo.demo.views.ToastCardView());
         else if (text.equals("Tooltips")) navigate(new com.jjarroyo.demo.views.TooltipView());
         else if (text.equals("Popovers")) navigate(new com.jjarroyo.demo.views.PopoversView());
         else if (text.equals("Icons")) navigate(new com.jjarroyo.demo.views.IconsView());
@@ -172,6 +176,7 @@ public class MainLayout extends StackPane {
         else if (text.equals("Breadcrumbs")) navigate(new com.jjarroyo.demo.views.BreadcrumbView());
         else if (text.equals("Chips")) navigate(new com.jjarroyo.demo.views.ChipView());
         else if (text.equals("Status Badge")) navigate(new com.jjarroyo.demo.views.StatusBadgeView());
+        else if (text.equals("Ribbons")) navigate(new com.jjarroyo.demo.views.RibbonView());
         else if (text.equals("Tag Input")) navigate(new com.jjarroyo.demo.views.TagInputView());
         else if (text.equals("Number Input")) navigate(new com.jjarroyo.demo.views.NumberInputView());
         else if (text.equals("Search Input")) navigate(new com.jjarroyo.demo.views.SearchView());
@@ -184,6 +189,7 @@ public class MainLayout extends StackPane {
         else if (text.equals("Drawers")) navigate(new com.jjarroyo.demo.views.DrawerView());
         else if (text.equals("Tree View")) navigate(new com.jjarroyo.demo.views.TreeViewView());
         else if (text.equals("Charts")) navigate(new com.jjarroyo.demo.views.ChartView());
+        else if (text.equals("Animaciones")) navigate(new com.jjarroyo.demo.views.AnimationsView());
         else if (text.equals("Avanzado")) navigate(new com.jjarroyo.demo.views.AdvancedView());
         else {
             System.out.println("Navigating to " + text);

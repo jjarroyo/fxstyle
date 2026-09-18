@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JRibbon - Documentación</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">JRibbon</h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Insignia o cinta esquinera diagonal promocional para destacar tarjetas (<code>JCard</code>), productos o planes de precios (ej. <em>"POPULAR"</em>, <em>"PRO"</em>, <em>"-30% OFF"</em>, <em>"BETA"</em>).
+                    </p>
+                </header>
+
+                <!-- Variantes de Color -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Variantes y Uso
+                    </h2>
+
+                    <div class="bg-slate-900 rounded-md p-4 overflow-x-auto mb-6">
+                        <pre><code class="text-slate-300 font-mono text-sm"><span class="text-blue-400">// Envolver cualquier JCard o nodo con una cinta esquinera</span>
+JCard proCard = createCard("Plan Pro", "$19 / mes");
+Node cardWithRibbon = JRibbon.wrap(proCard, "POPULAR", Variant.PURPLE);
+
+<span class="text-blue-400">// Especificar posición en esquina izquierda</span>
+Node leftRibbonCard = JRibbon.wrap(myCard, "BETA", Variant.WARNING, Position.TOP_LEFT);
+
+<span class="text-blue-400">// Crear ribbon individual y contenedor explícito</span>
+JRibbon ribbon = new JRibbon("-50% OFF", Variant.DANGER);
+JRibbon.JRibbonContainer container = new JRibbon.JRibbonContainer(productCard, ribbon);</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        API Reference
+                    </h2>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Constructor / Método</th>
+                                <th scope="col" class="px-6 py-4">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JRibbon(String text)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea una cinta con texto en posición predeterminada <code class="text-slate-700">TOP_RIGHT</code> y variante <code class="text-slate-700">PRIMARY</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JRibbon(text, Variant, Position)</td>
+                                <td class="px-6 py-4 text-slate-500">Crea una cinta definiendo texto, variante de color y posición.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setVariant(Variant variant)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece la variante contextual (PRIMARY, SUCCESS, DANGER, WARNING, PURPLE, DARK).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">setPosition(Position position)</td>
+                                <td class="px-6 py-4 text-slate-500">Establece la posición esquinera (TOP_RIGHT o TOP_LEFT).</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">JRibbon.wrap(node, text, variant)</td>
+                                <td class="px-6 py-4 text-slate-500">Método utilitario estático para envolver rápidamente cualquier nodo con la cinta.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-slate-800 mb-2">Enum JRibbon.Variant</h3>
+                    <table class="min-w-full text-left text-sm whitespace-nowrap mb-8">
+                        <thead class="uppercase tracking-wider border-b-2 border-slate-200 bg-slate-50 text-slate-600">
+                            <tr>
+                                <th scope="col" class="px-6 py-4">Variante</th>
+                                <th scope="col" class="px-6 py-4">Color Base</th>
+                                <th scope="col" class="px-6 py-4">Uso Típico</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 bg-white">
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-blue-600">PRIMARY</td>
+                                <td class="px-6 py-4 text-slate-500">Azul (#2563eb)</td>
+                                <td class="px-6 py-4 text-slate-500">Novedades y recomendaciones estándar.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-emerald-600">SUCCESS</td>
+                                <td class="px-6 py-4 text-slate-500">Verde (#16a34a)</td>
+                                <td class="px-6 py-4 text-slate-500">Descuentos, ofertas y ahorros.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-red-600">DANGER</td>
+                                <td class="px-6 py-4 text-slate-500">Rojo (#dc2626)</td>
+                                <td class="px-6 py-4 text-slate-500">Agotado, ofertas por tiempo limitado, alertas.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-amber-600">WARNING</td>
+                                <td class="px-6 py-4 text-slate-500">Ámbar (#d97706)</td>
+                                <td class="px-6 py-4 text-slate-500">Versiones Beta, acceso anticipado.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-purple-600">PURPLE</td>
+                                <td class="px-6 py-4 text-slate-500">Púrpura (#9333ea)</td>
+                                <td class="px-6 py-4 text-slate-500">Popular, PRO, VIP, Planes Premium.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 font-mono text-slate-700">DARK</td>
+                                <td class="px-6 py-4 text-slate-500">Gris Oscuro (#0f172a)</td>
+                                <td class="px-6 py-4 text-slate-500">Especial, próximo lanzamiento.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

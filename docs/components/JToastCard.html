@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JToastCard - Documentación FxStyle</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <style type="text/tailwindcss">
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+            @keyframes slideInUpAvast {
+                0% {
+                    transform: translateY(60px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideInDownTop {
+                0% {
+                    transform: translateY(-60px);
+                    opacity: 0;
+                }
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            .animate-avast-bottom {
+                animation: slideInUpAvast 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+            .animate-avast-top {
+                animation: slideInDownTop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                            />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <!-- Header -->
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full uppercase tracking-wider">Nuevo Componente</span>
+                        <h1 class="text-3xl font-extrabold text-slate-900">JToastCard</h1>
+                    </div>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Notificaciones flotantes estilo tarjeta (card) con colores sólidos/opacos de alto contraste, icono temático, botón de cierre y animación fluida de entrada de abajo hacia arriba (estilo Avast clásico) o desde la parte superior.
+                    </p>
+                </header>
+
+                <!-- Interactive Visual Simulation -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Vista Previa & Simulación de Animación</h2>
+                    <div class="bg-slate-100 p-8 rounded-xl relative min-h-[420px] flex flex-col justify-between overflow-hidden shadow-inner border border-slate-200">
+                        <!-- Top Toast Position Area -->
+                        <div class="flex justify-end w-full" id="topToastContainer">
+                            <div id="toastTop" class="hidden max-w-sm w-full bg-[#fffbeb] border border-[#fde68a] text-slate-800 p-3.5 rounded-xl shadow-lg relative flex items-start gap-3 animate-avast-top">
+                                <div class="w-9 h-9 rounded-full bg-[#fef3c7] flex items-center justify-center flex-shrink-0 text-lg">
+                                    ⚠️
+                                </div>
+                                <div class="flex-1 min-w-0 pr-6">
+                                    <h4 class="text-sm font-bold text-[#92400e] leading-tight">Uso de Memoria Elevado</h4>
+                                    <p class="text-xs text-[#b45309] mt-0.5 leading-relaxed">El consumo de RAM ha superado el 85%.</p>
+                                </div>
+                                <button onclick="hideToast('toastTop')" class="absolute top-2.5 right-2.5 text-[#92400e]/70 hover:text-[#92400e] hover:bg-[#fef3c7] w-6 h-6 rounded flex items-center justify-center text-xs font-bold">✕</button>
+                            </div>
+                        </div>
+
+                        <!-- Center Placeholder / Control Area -->
+                        <div class="text-center my-6 z-10">
+                            <p class="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-4">Haz clic para probar las animaciones de entrada con colores suaves / claros</p>
+                            <div class="flex flex-wrap items-center justify-center gap-3">
+                                <button onclick="showBottomToast('danger')" class="px-4 py-2 bg-[#fef2f2] hover:bg-[#fee2e2] border border-[#fca5a5] text-[#991b1b] text-xs font-bold rounded-lg shadow-sm transition-transform active:scale-95 flex items-center gap-2">
+                                    <span>🚨</span> Avast Threat (Bottom-Right)
+                                </button>
+                                <button onclick="showBottomToast('success')" class="px-4 py-2 bg-[#ecfdf5] hover:bg-[#d1fae5] border border-[#a7f3d0] text-[#065f46] text-xs font-bold rounded-lg shadow-sm transition-transform active:scale-95 flex items-center gap-2">
+                                    <span>✔</span> Éxito (Bottom-Right)
+                                </button>
+                                <button onclick="showTopToast()" class="px-4 py-2 bg-[#fffbeb] hover:bg-[#fef3c7] border border-[#fde68a] text-[#92400e] text-xs font-bold rounded-lg shadow-sm transition-transform active:scale-95 flex items-center gap-2">
+                                    <span>⚠</span> Advertencia (Top-Right)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Toast Position Area (Avast Style) -->
+                        <div class="flex justify-end w-full" id="bottomToastContainer">
+                            <div id="toastBottom" class="max-w-sm w-full bg-[#fef2f2] border border-[#fca5a5] text-slate-800 p-3.5 rounded-xl shadow-lg relative flex items-start gap-3 animate-avast-bottom">
+                                <div class="w-9 h-9 rounded-full bg-[#fee2e2] flex items-center justify-center flex-shrink-0 text-lg font-bold">
+                                    🛡️
+                                </div>
+                                <div class="flex-1 min-w-0 pr-6">
+                                    <h4 id="toastBottomTitle" class="text-sm font-extrabold text-[#991b1b] leading-tight">¡Se ha detectado una amenaza!</h4>
+                                    <p id="toastBottomDesc" class="text-xs text-[#b91c1c] mt-0.5 leading-relaxed">Win32:Evo-gen [Susp] ha sido bloqueado y neutralizado con éxito.</p>
+                                </div>
+                                <button onclick="hideToast('toastBottom')" class="absolute top-2.5 right-2.5 text-[#991b1b]/70 hover:text-[#991b1b] hover:bg-[#fee2e2] w-6 h-6 rounded flex items-center justify-center text-xs font-bold">✕</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Color Variants Display -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Variantes de Color Suaves / Claros (Colores Bajitos)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Danger -->
+                        <div class="bg-[#fef2f2] border border-[#fca5a5] text-slate-800 p-4 rounded-xl shadow-sm relative flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-[#fee2e2] flex items-center justify-center flex-shrink-0 text-lg">🛡️</div>
+                            <div class="flex-1 min-w-0 pr-6">
+                                <h4 class="text-sm font-bold text-[#991b1b]">DANGER (Rojo Claro / Bajito)</h4>
+                                <p class="text-xs text-[#b91c1c] mt-0.5">Para amenazas, errores críticos o acciones destructivas.</p>
+                            </div>
+                            <span class="absolute top-3 right-3 text-[#991b1b]/60 text-xs">✕</span>
+                        </div>
+
+                        <!-- Warning -->
+                        <div class="bg-[#fffbeb] border border-[#fde68a] text-slate-800 p-4 rounded-xl shadow-sm relative flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-[#fef3c7] flex items-center justify-center flex-shrink-0 text-lg">⚠️</div>
+                            <div class="flex-1 min-w-0 pr-6">
+                                <h4 class="text-sm font-bold text-[#92400e]">WARNING (Ámbar Claro / Bajito)</h4>
+                                <p class="text-xs text-[#b45309] mt-0.5">Para advertencias, límites alcanzados o precauciones.</p>
+                            </div>
+                            <span class="absolute top-3 right-3 text-[#92400e]/60 text-xs">✕</span>
+                        </div>
+
+                        <!-- Success -->
+                        <div class="bg-[#ecfdf5] border border-[#a7f3d0] text-slate-800 p-4 rounded-xl shadow-sm relative flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-[#d1fae5] flex items-center justify-center flex-shrink-0 text-lg">✔</div>
+                            <div class="flex-1 min-w-0 pr-6">
+                                <h4 class="text-sm font-bold text-[#065f46]">SUCCESS (Esmeralda Claro / Bajito)</h4>
+                                <p class="text-xs text-[#047857] mt-0.5">Para confirmaciones de éxito y operaciones completadas.</p>
+                            </div>
+                            <span class="absolute top-3 right-3 text-[#065f46]/60 text-xs">✕</span>
+                        </div>
+
+                        <!-- Info -->
+                        <div class="bg-[#eff6ff] border border-[#bfdbfe] text-slate-800 p-4 rounded-xl shadow-sm relative flex items-start gap-3">
+                            <div class="w-9 h-9 rounded-full bg-[#dbeafe] flex items-center justify-center flex-shrink-0 text-lg">ℹ️</div>
+                            <div class="flex-1 min-w-0 pr-6">
+                                <h4 class="text-sm font-bold text-[#1e40af]">INFO (Azul Claro / Bajito)</h4>
+                                <p class="text-xs text-[#1d4ed8] mt-0.5">Para actualizaciones del sistema e información general.</p>
+                            </div>
+                            <span class="absolute top-3 right-3 text-[#1e40af]/60 text-xs">✕</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Usage Section -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Uso en JavaFX</h2>
+                    <div class="bg-slate-900 rounded-lg p-4 font-mono text-sm text-slate-100 overflow-x-auto shadow-md">
+                        <pre><code><span class="text-pink-400">import</span> com.jjarroyo.components.JToastCard;
+<span class="text-pink-400">import</span> javafx.stage.Window;
+<span class="text-pink-400">import</span> javafx.util.Duration;
+
+<span class="text-slate-400">// 1. Alerta de Amenaza estilo Avast (Bottom-Right por defecto)</span>
+JToastCard.showDanger(
+    stage,
+    <span class="text-emerald-300">"¡Se ha detectado una amenaza!"</span>,
+    <span class="text-emerald-300">"Win32:Evo-gen [Susp] ha sido bloqueado y neutralizado."</span>
+);
+
+<span class="text-slate-400">// 2. Notificación en esquina superior derecha</span>
+JToastCard.show(
+    stage,
+    <span class="text-emerald-300">"Uso de Memoria Elevado"</span>,
+    <span class="text-emerald-300">"El consumo de RAM ha superado el 85%."</span>,
+    JToastCard.Type.WARNING,
+    JToastCard.Position.TOP_RIGHT,
+    Duration.millis(4500)
+);
+
+<span class="text-slate-400">// 3. Fluent Builder API</span>
+JToastCard.make(<span class="text-emerald-300">"Actualización Lista"</span>, <span class="text-emerald-300">"La versión v2.2.0 ya está disponible."</span>)
+    .type(JToastCard.Type.INFO)
+    .position(JToastCard.Position.BOTTOM_RIGHT)
+    .duration(5000)
+    .show(stage);</code></pre>
+                    </div>
+                </section>
+
+                <!-- API Reference Table -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">Referencia de la API</h2>
+                    <div class="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead class="bg-slate-50 border-b border-slate-200 text-slate-600">
+                                <tr>
+                                    <th class="p-3 font-semibold">Método / Enum</th>
+                                    <th class="p-3 font-semibold">Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-700">
+                                <tr>
+                                    <td class="p-3 font-mono text-xs text-blue-600 font-bold">JToastCard.Type</td>
+                                    <td class="p-3"><code class="bg-slate-100 px-1 py-0.5 rounded text-xs">DANGER</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">WARNING</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">SUCCESS</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">INFO</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">DEFAULT</code></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs text-blue-600 font-bold">JToastCard.Position</td>
+                                    <td class="p-3"><code class="bg-slate-100 px-1 py-0.5 rounded text-xs">BOTTOM_RIGHT</code> (default), <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">TOP_RIGHT</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">BOTTOM_LEFT</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">TOP_LEFT</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">BOTTOM_CENTER</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-xs">TOP_CENTER</code></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs text-blue-600 font-bold">show(owner, title, msg, type, pos, duration)</td>
+                                    <td class="p-3">Muestra la tarjeta animada con todos los parámetros personalizados.</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-mono text-xs text-blue-600 font-bold">showDanger / showWarning / showSuccess / showInfo</td>
+                                    <td class="p-3">Atajos estáticos directos en la posición inferior derecha con temporizador adaptativo.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script>
+            function showBottomToast(type) {
+                const toast = document.getElementById('toastBottom');
+                const title = document.getElementById('toastBottomTitle');
+                const desc = document.getElementById('toastBottomDesc');
+                
+                toast.classList.remove('animate-avast-bottom', 'bg-red-600', 'border-red-500', 'bg-emerald-600', 'border-emerald-500');
+                
+                if (type === 'danger') {
+                    toast.classList.add('bg-red-600', 'border-red-500');
+                    title.innerText = '¡Se ha detectado una amenaza!';
+                    desc.innerText = 'Win32:Evo-gen [Susp] ha sido bloqueado y neutralizado.';
+                } else {
+                    toast.classList.add('bg-emerald-600', 'border-emerald-500');
+                    title.innerText = 'Operación Exitosa';
+                    desc.innerText = 'Los archivos se han guardado correctamente.';
+                }
+                
+                toast.classList.remove('hidden');
+                // Force reflow
+                void toast.offsetWidth;
+                toast.classList.add('animate-avast-bottom');
+            }
+
+            function showTopToast() {
+                const toast = document.getElementById('toastTop');
+                toast.classList.remove('animate-avast-top');
+                toast.classList.remove('hidden');
+                void toast.offsetWidth;
+                toast.classList.add('animate-avast-top');
+            }
+
+            function hideToast(id) {
+                document.getElementById(id).classList.add('hidden');
+            }
+        </script>
+    </body>
+</html>

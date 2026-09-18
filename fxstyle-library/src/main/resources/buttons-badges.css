@@ -650,3 +650,63 @@
 .status-badge-purple .j-status-badge-dot { -fx-background-color: #9333ea; }
 .status-badge-purple .j-status-badge-text { -fx-text-fill: #7e22ce; }
 
+/* ─── CORNER RIBBON (JRibbon) ────────────────────────────────────────────────── */
+.j-ribbon-container {
+    -fx-clip-to-bounds: true;
+}
+
+.j-ribbon {
+    -fx-padding: 4px 20px;
+    -fx-min-width: 90px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 4, 0, 0, 2);
+}
+
+/* Position Top Right */
+.ribbon-top-right {
+    -fx-rotate: 45deg;
+}
+
+/* Position Top Left */
+.ribbon-top-left {
+    -fx-rotate: -45deg;
+}
+
+/* Variants */
+.ribbon-primary { -fx-background-color: #2563eb; }
+.ribbon-success { -fx-background-color: #16a34a; }
+.ribbon-danger  { -fx-background-color: #dc2626; }
+.ribbon-warning { -fx-background-color: #d97706; }
+.ribbon-purple  { -fx-background-color: #9333ea; }
+.ribbon-dark    { -fx-background-color: #0f172a; }
+
+/* ─── SPLIT BUTTON (JSplitButton) ────────────────────────────────────────────── */
+.j-split-button {
+    -fx-alignment: center-left;
+    -fx-spacing: 0px;
+}
+
+.j-split-button .split-main-btn {
+    -fx-background-radius: 6px 0px 0px 6px;
+    -fx-border-radius: 6px 0px 0px 6px;
+    -fx-border-width: 1px 0px 1px 1px;
+}
+
+.j-split-button .split-arrow-btn {
+    -fx-padding: 7px 9px;
+    -fx-background-radius: 0px 6px 6px 0px;
+    -fx-border-radius: 0px 6px 6px 0px;
+    -fx-border-color: transparent transparent transparent rgba(255, 255, 255, 0.25);
+    -fx-border-width: 1px 1px 1px 1px;
+}
+
+.j-split-button.split-secondary .split-arrow-btn,
+.j-split-button.split-outline .split-arrow-btn {
+    -fx-border-color: transparent transparent transparent -color-slate-200;
+}
+
+
+
