@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JGauge & JGaugeCard - Documentación FxStyle</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body { font-family: 'Inter', sans-serif; }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-800">
+        <div class="min-h-screen p-8">
+            <div class="max-w-4xl mx-auto">
+                <!-- Back Button -->
+                <div class="mb-8">
+                    <a
+                        href="../index.html"
+                        class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md hover:bg-slate-50 hover:text-slate-900 transition-colors shadow-sm"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 mr-2"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Volver al Índice
+                    </a>
+                </div>
+
+                <header class="mb-8 border-b border-slate-200 pb-8">
+                    <h1 class="text-3xl font-bold text-slate-900">
+                        JGauge & JGaugeCard
+                    </h1>
+                    <p class="mt-2 text-lg text-slate-600">
+                        Tacómetros y medidores reactivos para dashboards y dispositivos IoT en tiempo real. Cuentan con movimiento físico suave de aguja (Punto A → Punto B), arcos dinámicos, semáforo de estados y múltiples estilos de instrumentación.
+                    </p>
+                </header>
+
+                <!-- Tipos de Instrumentos -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Estilos de Instrumentación IoT Disponibles
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">1. RADIAL_CLASSIC (Tacómetro deportivo 270°)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Ideal para RPM de motores, velocímetros de vehículos y rotación de ejes industriales. Incluye zona de peligro / redline y multiplicador x1000.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">2. SEMI_CIRCLE (Semicírculo Térmico 180°)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Ideal para temperatura en cámaras frigoríficas o calderas. Arco continuo dividido en zonas: Óptimo (verde), Advertencia (amarillo) y Crítico (rojo).</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">3. ARC_PROGRESS (Arco de Progreso Moderno)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Puntero exterior y barra gruesa reactiva que se llena en tiempo real. Ideal para humedad relativa (% HR) o porcentaje de batería (SOC).</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">4. LINEAR (Regla Analógica Horizontal)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Regla horizontal graduada con cursor deslizante reactivo. Ideal para voltajes de batería (12V, 24V, 48V) o potencia de señal RSSI.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">5. AMPERAGE (Cero Central - Flujo Bidireccional)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Cero central a las 12:00 (-30A a +30A). Muestra flujo de carga solar hacia la derecha (verde) o descarga de la batería hacia la izquierda (ámbar).</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">6. WIND_SPEED (Anemómetro Meteorológico)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Marcador con escala de viento Beaufort (Brisa suave, Moderado, Fuerte, Tormenta) y aguja aerodinámica de veleta.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">7. PRESSURE (Manómetro Industrial)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Dial de presión industrial para compresores (Bar / PSI) con dial de seguridad concéntrico y aguja de contrapeso circular.</p>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <h3 class="font-semibold text-slate-900 text-base">8. LEVEL_VERTICAL (Nivel de Fluido / Tanque)</h3>
+                            <p class="text-sm text-slate-500 mt-1">Silueta vertical de tanque/depósito de combustible o agua con llenado reactivo y marcas laterales de capacidad.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Código de Ejemplo -->
+                <section class="mb-12">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4">
+                        Ejemplo de Uso Rápido
+                    </h2>
+                    <div class="bg-slate-900 text-slate-100 p-6 rounded-xl font-mono text-sm overflow-x-auto shadow-inner">
+                        <pre><code>// 1. Instanciación con preset listo para usar:
+JGauge rpmGauge = JGauge.createRpmGauge();
+
+// 2. Tarjeta con cabecera y LED de estado reactivo:
+JGaugeCard card = new JGaugeCard("Motor de banda", "Velocidad de eje", rpmGauge);
+
+// 3. Conexión a streams IoT en tiempo real (MQTT / WebSocket / Serial):
+// La aguja viaja suavemente del punto actual al nuevo punto sin saltos bruscos:
+mqttClient.subscribe("sensores/motor/rpm", (topic, msg) -> {
+    double valor = Double.parseDouble(new String(msg.getPayload()));
+    Platform.runLater(() -> rpmGauge.setValue(valor));
+});</code></pre>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

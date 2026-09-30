@@ -2,6 +2,8 @@
 
 Este archivo es la entrada rápida para cualquier IA que trabaje en este proyecto. No hace falta revisar todo el repositorio para entender la librería.
 
+> 📖 **Catálogo completo de componentes para IAs**: Consulta [COMPONENTS.md](file:///c:/Users/JORGE/Documents/GitHub/fxstyle/COMPONENTS.md) para ver la lista de todos los componentes, su control JavaFX base equivalente (`JInput => TextField`, etc.), constructores, métodos clave y snippets listos para copiar.
+
 ## 1) Resumen ejecutivo
 
 FxStyle es un design system para JavaFX inspirado en conceptos de Tailwind/CSS moderno. Está organizado como proyecto Maven multi-módulo:
@@ -84,6 +86,11 @@ La librería ya tiene una base muy amplia. La demo documenta estas categorías:
 - `JTreeView`
 - `JCard`
 - `JStatCard`
+- `JGauge`
+- `JGaugeCard`
+- `JLed`
+- `JTowerLight`
+- `JBattery`
 - `JAvatar`
 - `JBadge`
 - `JChip`

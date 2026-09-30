@@ -551,3 +551,76 @@
     -fx-opacity: 0.8;
 }
 
+/* ─── J-GAUGE & J-GAUGE-CARD (IoT / DASHBOARD) ────────────────────────────── */
+.j-gauge {
+    -fx-alignment: center;
+}
+
+.j-gauge-card {
+    -fx-background-color: white;
+    -fx-border-color: #D3DCDD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 14px;
+    -fx-background-radius: 14px;
+    -fx-effect: dropshadow(three-pass-box, rgba(23, 48, 58, 0.04), 8, 0, 0, 3);
+}
+
+.j-gauge-card:hover {
+    -fx-border-color: #cbd5e1;
+    -fx-effect: dropshadow(three-pass-box, rgba(23, 48, 58, 0.08), 12, 0, 0, 4);
+}
+
+.j-gauge-card-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #17303A;
+}
+
+.j-gauge-card-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #5F747B;
+}
+
+.j-gauge-slider .track {
+    -fx-background-color: #e2e8f0;
+    -fx-pref-height: 5px;
+    -fx-background-radius: 3px;
+}
+
+.j-gauge-slider .thumb {
+    -fx-background-color: #0E6F7C;
+    -fx-pref-width: 14px;
+    -fx-pref-height: 14px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(14, 111, 124, 0.35), 4, 0, 0, 1);
+}
+
+.j-gauge-slider .thumb:hover {
+    -fx-background-color: #0b5660;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+/* ─── J-LED (INDUSTRIAL LED INDICATOR) ─────────────────────────────────────── */
+.j-led {
+    -fx-alignment: center-left;
+    -fx-spacing: 8px;
+}
+
+.j-led:hover {
+    -fx-opacity: 0.95;
+}
+
+/* ─── J-TOWER-LIGHT (ANDON STACK LIGHT) ────────────────────────────────────── */
+.j-tower-light {
+    -fx-alignment: center;
+}
+
+/* ─── J-BATTERY (TELEMETRY BATTERY WIDGET) ─────────────────────────────────── */
+.j-battery {
+    -fx-alignment: center-left;
+    -fx-spacing: 12px;
+}
+
+
+

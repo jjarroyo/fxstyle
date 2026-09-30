@@ -124,6 +124,8 @@ public class MainLayout extends StackPane {
             createItem("Steppers", JIcon.ARROW_FORWARD.view()),
             createItem("Timelines", JIcon.HOME.view()), // Using HOME temporarily as CLOCK isn't in JIcon
             createItem("StatCards", JIcon.MONEY.view()),
+            createItem("Medidores IoT", JIcon.REFRESH.view()),
+            createItem("IoT Industrial", JIcon.POWER_SETTINGS_NEW.view()),
             createItem("TitleBar", JIcon.MONITOR.view()),
             createItem("Confirm Dialogs", JIcon.CHECK_CIRCLE.view()),
             createItem("Drawers", JIcon.LAYERS.view()),
@@ -184,6 +186,8 @@ public class MainLayout extends StackPane {
         else if (text.equals("Steppers")) navigate(new com.jjarroyo.demo.views.StepperView());
         else if (text.equals("Timelines")) navigate(new com.jjarroyo.demo.views.TimelineView());
         else if (text.equals("StatCards")) navigate(new com.jjarroyo.demo.views.StatCardView());
+        else if (text.equals("Medidores IoT")) navigate(new com.jjarroyo.demo.views.GaugesView());
+        else if (text.equals("IoT Industrial")) navigate(new com.jjarroyo.demo.views.IotIndustrialView());
         else if (text.equals("TitleBar")) navigate(new TitleBarView());
         else if (text.equals("Confirm Dialogs")) navigate(new com.jjarroyo.demo.views.ConfirmDialogView());
         else if (text.equals("Drawers")) navigate(new com.jjarroyo.demo.views.DrawerView());

@@ -1,4 +1,4 @@
-# FxStyle - JavaFX Design System v2.2.0
+# FxStyle - JavaFX Design System v2.3.0
 
 Sistema de diseno moderno para JavaFX, inspirado en conceptos de Tailwind CSS y orientado a crear interfaces consistentes y reutilizables.
 
@@ -190,6 +190,14 @@ Navega a la documentación de cada componente y visualiza cómo lucen de forma e
 | **JTreeView** | [📄 Docs](docs/components/JTreeView.html) | [🖼️ Ver Preview](docs/images/treeview.png) |
 | **JCard** & **JStatCard** | [📄 Docs](docs/components/JCard.html) | [🖼️ Ver Preview](docs/images/cards.png) |
 | **JAvatar** | [📄 Docs](docs/components/JAvatar.html) | [🖼️ Ver Preview](docs/images/avatars.png) |
+
+### 📡 IoT, Telemetría e Industria
+| Componente | Documentación | Preview |
+|------------|---------------|---------|
+| **JGauge** & **JGaugeCard** | [📄 Docs](docs/components/JGauge.html) | [🖼️ Ver Preview](docs/images/gauge.png) |
+| **JLed** (Indicador LED con Glow y Parpadeo) | [📄 Docs](docs/components/JLed.html) | - |
+| **JTowerLight** (Torreta Industrial Andon) | [📄 Docs](docs/components/JTowerLight.html) | - |
+| **JBattery** (Telemetría y Estado de Carga) | [📄 Docs](docs/components/JBattery.html) | - |
 | **JBadge**, **JChip** & **JRibbon** | [📄 Docs](docs/components/JRibbon.html) | - |
 | **JTimeline** | [📄 Docs](docs/components/JTimeline.html) | - |
 | **JChart** | [📄 Docs](docs/components/JChart.html) | - |
